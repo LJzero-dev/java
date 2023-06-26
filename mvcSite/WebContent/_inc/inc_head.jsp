@@ -26,7 +26,7 @@ a:hover { text-decoration:underline; color:red; }
 .hand { cursor:pointer; }
 .bold { font-weight:bold; }
 </style>
-<script src="<%=ROOT_URL %>js/jquert-3.6.4.js"></script>
+<script src="<%=ROOT_URL %>js/jquery-3.6.4.js"></script>
 <script>
 function onlyNum(obj) {
 	if (isNaN(obj.value)) {
@@ -39,14 +39,14 @@ function onlyNum(obj) {
 <a href="<%=ROOT_URL %>">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <% if(isLogin) { %>
 <a href="<%=ROOT_URL %>logout.jsp">로그아웃</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="member_form_up">정보수정</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="cart_view">장바구니</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="memberFormUp">정보수정</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="cartView">장바구니</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <% } else { %>
 <a href="login_form">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="member_form_in">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="memberFormIn">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="login_form?url=cart_view">장바구니</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <% } %>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="product_list?pcb=AA" class="bold">구두</a>&nbsp;&nbsp;&nbsp;
-<a href="product_list?pcb=BB" class="bold">운동화</a>
+<a href="productList?pcb=AA" class="bold">구두</a>&nbsp;&nbsp;&nbsp;
+<a href="productList?pcb=BB" class="bold">운동화</a>
 <hr />

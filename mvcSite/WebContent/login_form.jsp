@@ -11,6 +11,8 @@ function chkVal(frm) {
 	var uid = frm.uid.value;	var pwd = frm.pwd.value;
 	if (uid == "") { alert("아이디를 입력하세요.");	frm.uid.focus();	return false; }
 	if (pwd == "") { alert("비밀번호를를 입력하세요.");	frm.pwd.focus();	return false; }
+
+	return true;
 }
 </script>
 <h2>로그인 폼</h2>
