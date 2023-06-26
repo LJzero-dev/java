@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>html_test_table_08.html</title>
+        <link rel="stylesheet" href="../css/html_test_table_08.css">
+    </head>
+    <body>
+        <h1>html table Test 입니다.</h1>
+        <table>
+            <caption>2학기 기말고사 점수</caption>
+            <tr>
+                <th class="header01">이름/과목</th>
+                <th>영어</th>
+                <th>수학</th>
+                <th>미술</th>
+                <th>음악</th>
+            </tr>
+            <tr>
+                <td>홍길동</td>
+                <td>100</td>
+                <td rowspan="2">90</td> <!-- 2개의 행(row)병합-->
+                <td>80</td>
+                <td>70</td>
+            </tr>
+            <tr>
+                <td>임꺽정</td>
+                <td>80</td>
+                <!-- <td>90</td> -->
+                <td rowspan="2">100</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>아무개</td>
+                <td>10</td>
+                <td>20</td>
+                <!-- <td>100</td> -->
+                <td>40</td>
+            </tr>
+            <tr>
+                <td>김영희</td>
+                <td colspan="4">90</td>
+                <!-- <td>70</td>
+                <td>60</td>
+                <td>100</td> -->
+            </tr>
+            <tr>
+                <td>이철수</td>
+                <td colspan="2">100</td>
+                <!-- <td>100</td> -->
+                <td>30</td>
+                <td>20</td>
+            </tr>
+        </table>
+    </body>
+</html>

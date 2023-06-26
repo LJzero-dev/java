@@ -1,0 +1,45 @@
+<html>
+<head>
+	<title>Document</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("#img1").animate({ width:400 }); // 넓이를 400px로 변경(px 생략 가능)
+		});
+		$("#btn2").click(function(){
+			// 넓이는 250, x좌표는 100, 투명도는 0.5로
+			$("#img1").animate({ width:250, left:100, opacity:0.5});
+			// px 는 생략 가능하지만 입력하려면 문자열로 입력 가능
+		});
+		$("#btn3").click(function(){
+			$("#img1").animate({ width:"+=5", height:"+=5", left:"+=10", opacity:"-=0.05" });
+		});
+			// 스타일 속성 값에 복합연산자를 사용하면 상대적인 값을 입력할 수 있음
+		$("#btn4").click(function(){
+			$("#img1").animate({width:"toggle"});
+			// 넓이의 값을 0%와 100%를 번갈아 가면서 지정해줌
+		});
+		$("#btn5").click(function(){
+			$("#img1").animate({width:"show"});
+			// 넓이의 값을 100%로 지정해줌
+		});
+		$("#btn6").click(function(){
+			$("#img1").animate({width:"hide"});
+			// 넓이의 값을 0%로 지정해줌
+		});
+	});
+	</script>
+</head>
+<body>
+<input type="button" id="btn1" value="넓이를 400으로" />
+<input type="button" id="btn2" value="여러 스타일 변경" />
+<input type="button" id="btn3" value="스타일의 상대적 변경" />
+<input type="button" id="btn4" value="show & hide" />
+<input type="button" id="btn5" value="show" />
+<input type="button" id="btn6" value="hide" />
+<hr />
+<img id="img1" src="../js/img/a.jpg" width="300" style="position:absolute;"/>
+<hr />
+</body>
+</html>

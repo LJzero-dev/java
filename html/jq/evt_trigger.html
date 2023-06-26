@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>evt_trigger.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		// #txt 요소의 글자들을 선택(드래그)했을 때 #txt 요소의 뒷부분에 ' Text marked!'를 출력
+		$("#txt").select(function(){
+			$(this).after(" Text marked!");
+		});
+		$("#btn1").click(function(){
+			$("#txt").trigger("select");
+			//#txt 요소에 'select' 이벤트를 발생시킴 : 'select' 이벤트의 기본기능인 선택을 해줌
+		});
+		$("#btn2").click(function(){
+			$("#txt").triggerHendler("select");
+			//#txt 요소에 'select' 이벤트를 발생시킴 : 'select' 이벤트의 기본기능인 선택을 안해줌
+		});
+	});
+	</script>
+</head>
+<body>
+<input type="text" id="txt" value="Hello World" />
+<br /><br />
+<input type="button" id="btn1" value="Trigger test" />
+<input type="button" id="btn2" value="TriggerHandler test" />
+</body>
+</html>

@@ -1,0 +1,13 @@
+body {
+    font-family: monospace;
+    color: brown;
+}
+p {
+    color: blue;
+}
+.mark_one {
+    color: red;
+}
+h2.mark_two {
+    color: green;
+}

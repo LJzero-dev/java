@@ -1,0 +1,30 @@
+<html>
+<head>
+	<title>html_removeAttr.html</title>
+	<style>
+	#p1 { color:white; background:green; font-size:20px; padding:5px; }	
+	.blue { color:white; background:blue; font-size:20px; padding:5px; }
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function() {
+			$("p").removeAttr("style");
+		});
+		$("#btn2").click(function() {
+			$("p").removeAttr("id class");
+		});
+	});
+	</script>
+</head>
+<body>
+<h1>This is a Heading</h1>
+<p style="color:red">This is a 1st paragraph.</p>
+<p style="color:green">This is a 2nd paragraph.</p>
+<button id="btn1">Remove style attribute</button>
+<hr />
+<p id="p1">This is a p1 paragraph.</p>
+<p class="blue">This is a blue paragraph.</p>
+<button id="btn2">Remove id & class attribute</button>
+</body>
+</html>

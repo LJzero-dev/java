@@ -1,0 +1,41 @@
+<html>
+<head>
+	<title>first_jq.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	var flag = false;	//	p태그가 보이는지 여부를 저장할 전역변수
+
+	function hideP(){
+		var arrP = document.getElementsByTagName("p");
+		// 현재 문서내의 모든 p 태그를 배열로 받아 arrP에 저장
+		// id가 아닌 class나 tagname으로 element를 받아올 경우
+		// getElement가 아닌 getElements로 받아야 함(여러개이므로)
+		var dis = "none";
+		if(flag)	dis= "block";
+
+		for(var i = 0; i < arrP.length ; i++){
+				arrP[i].style.display = dis;			
+			}
+			flag = !flag;
+		}
+
+		$(document).ready(function(){
+		// 현재 문서가 로딩이 완료되어 실행할 준비가 되었으면
+			$("#btn").click(function(){
+			// 아이디가 'btn'인 요소($("#btn"))를 클릭(.click())하면 주어진 기능(function() {})을 수행하라는 의미
+			if(flag)	$("p").show();
+			else		$("p").hide();	// 모든 p태그를 숨김
+			flag = !flag;
+			});
+		});					
+	</script>
+</head>
+<body>
+<h2>This is a heading</h2>
+<p>This is a paragraph</p>
+<p>This is a another paragraph</p>
+<input type="button" value="p태그 숨기기-js" onclick="hideP();" />
+
+<input type="button" value="p태그 숨기기-jq" id="btn" />
+</body>
+</html>

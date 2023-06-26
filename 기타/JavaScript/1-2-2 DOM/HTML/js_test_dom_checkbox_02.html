@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>js_test_dom_checkbox_02.html</title>
+        <link rel="stylesheet" href="../CSS/js_test_dom_03.css">
+        <script src="../JS/js_test_dom_checkbox_02.js"></script>
+    </head>
+    <body>
+        <h1>js_test_dom_checkbox_02.html</h1>
+        <form id="send_info" action="./result.jsp" method="GET" target="_blank" >
+            <label><input type="checkbox" id="check01" name="is_private_info" value="private_info_ok">여기를 클릭해도 체크박스가 동작(개인정보 동의)</label><br>
+            <input type="checkbox" id="check02" name="is_used_law" value="used_law_ok" checked>label 미사용시에는 체크박스 미동작(이용약관 동의) <br>
+            <p><label><input type="submit" name="send" value="보내기">여기를 누르셔도 보낼 수 있습니다.</label></p>
+        </form>
+        <p><input type="button" id="button01" name="info_review" value="보내기전 정보 미리확인"> 보내기 전에 미리 확인하세요.</p>
+        <input type="text" id="radio_button_text" name="input_text" size="40" value="라디오 버튼">
+        <input type="button" id="radio_button_add" name="radio_button_add" value="라디오 버튼 추가">
+        <p id="new_radio_list"></p>
+    </body>
+</html>

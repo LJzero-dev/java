@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>ef_slide.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("#img1").slideDown(1500);
+		});
+		$("#btn2").click(function(){
+			$("#img1").slideUp(1500);
+		});
+		$("#btn3").click(function(){
+			$("#img1").slideToggle(1500);
+		});
+		$("#btn4").click(function(){
+			$("#img1").finish();
+			// #img1 객체에 현재 진행되고 있는 애니메이션 효과를 종료시키고 효과의 결과화면을 바로 보여줌
+		});
+	});
+	</script>
+</head>
+<body>
+<input type="button" value=" Slide Down " id="btn1" />
+<input type="button" value=" Slide Up " id="btn2" />
+<input type="button" value=" Slide Toggle " id="btn3" />
+<input type="button" value=" Finish " id="btn4" />
+<br /><hr />
+<img src="../js/img/a.jpg" width="400" id="img1">
+<hr />
+</body>
+</html>

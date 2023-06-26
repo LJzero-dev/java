@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>html.attr2.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#img1, #img2, #img3").click(function(){
+			//#img1, #img2, #img3 객채중 하나라도 클릭 했으면 
+			$("#bigImg").attr("src",$(this).attr("src"));
+			// #bigImg 객체의 src 속성 값을 이벤트를 일으킨 객체의 src 속성으로 변경
+		});
+	});
+	</script>
+</head>
+<body>
+<table border="1">
+<tr><td colspan="3" align="center">
+	<img src="img/a.jpg" width="300" height="300" id="bigImg" />
+</td></tr>
+<tr align="center">
+<td width="33.3%"><img src="img/a.jpg" width="90" height="90" id="img1" /> </td>
+<td width="33.3%"><img src="img/b.jpg" width="90" height="90" id="img2" /> </td>
+<td width="33.3%"><img src="img/c.jpg" width="90" height="90" id="img3" /> </td>
+</body>
+</html>

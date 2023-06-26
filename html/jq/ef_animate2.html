@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>ef_animate2.html</title>
+	<style>
+	#p1 { width:500px; height:200px; border:1px solid black; }
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		// #btn1 객체를 클릭할 때 마다 #p1 박스의 테두리 두께를 2px씩 굴게
+		$("#btn1").click(function(){
+			$("#p1").animate({ borderWidth:"+=2px" });
+			// css의 속성명 중 두 단어 이상의 조합은 하이픈으로 연결하나 js 와 jQuery, java에서는 각 단어별 첫 글자를 대문자로 하여 연결(camel 방식)
+		});
+
+		// #btn2 객체를 클릭할 때 마다 #p1 박스의 테두리 두께를 2px씩 얇게
+		$("#btn2").click(function(){
+			$("#p1").animate({ borderWidth:"-=2px" });
+		});
+	});
+	</script>
+</head>
+<body>
+<input type="button" id="btn1" value="animate +" />
+<input type="button" id="btn2" value="animate -" />
+<p id="p1"> This is a paragraph.</p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body {
+    font-family: Verdana,sans-serif;
+}
+p.contents_border_effect {
+    font-size: 20px;
+    background-color: antiquewhite;
+    border-width: 2px;
+    border-style: solid; 
+    border-color: green; 
+    /* padding-top: 10px;
+    padding-right: 100px;
+    padding-bottom: 50px;
+    padding-left: 200px; */
+    padding: 10px 100px 40px 200px;
+    margin: 0px 100px 200px 10px;
+}

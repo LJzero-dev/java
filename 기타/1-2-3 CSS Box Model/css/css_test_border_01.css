@@ -1,0 +1,10 @@
+body {
+    font-family: Verdana,sans-serif;
+}
+p.contents_border_effect {
+    font-size: 20px;
+    border-color: brown;
+    border-width: 2px;
+    border-style: solid; /* 실선 */
+    background-color: beige;
+}

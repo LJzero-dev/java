@@ -1,0 +1,18 @@
+<html>
+<head>
+	<title>eval.html</title>
+	<script>
+	function evalTest(){
+		var frm = document.frm;
+		var exp = frm.exp.value;
+		alert(exp + "::" + eval(exp));
+	}
+	</script>
+</head>
+<body>
+<form name="frm">
+수식 : <input type="text" name="exp" /><br />
+<input type="button" value="연산" onclick="evalTest();" />
+</form>
+</body>
+</html>

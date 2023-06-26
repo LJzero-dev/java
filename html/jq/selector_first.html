@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>selector_first.html</title>
+	<style>
+	.box { border:1px solid black; padding:5px; }
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+		$(document).ready(function(){
+			$("#btn1").click(function(){					
+				$("p:first").css("background","yellow");
+				// 현 문서에서 p태그들 중 첫번째 요소의 배경색 변경
+			});
+			$("#btn2").click(function(){
+				$("p:first-child").css("font-weight","bold");
+				// p태그들 중 첫번째 자식요소들의 글자 굵기 변경
+				// body 밑의 p태그와 첫번째, 세번째 div 안의 첫번째 p태그들이 변경
+			});
+			$("#btn3").click(function(){
+				$("p:first-of-type").css("color","red");
+				// 자식 요소들 중 첫번째 p태그들의 글자색 변경
+				// body 밑의 p태그와 모든 div 안의 첫번째 p태그들이 변경됨
+			});
+			$("#btn4").click(function(){
+				$(".cls").css("color","green");
+			});
+			$("#btn5").click(function(){
+				$(".cls2").css("font-weight","bold");
+			});
+	});		
+	function onlyNum(obj){
+		if(isNaN(obj.value)){
+		obj.value="";
+		obj.focus();
+		}
+	}
+	</script>
+</head>
+<body>
+<p>문서의 첫번째 p태그</p>
+<div class="box">
+	<p>div의 첫번째 p태그, div의 첫번째 자식요소</p>
+	<p class="cls">div의 마지막 p태그, div의 첫번째 자식요소</p>
+</div><br />
+<div class="box">
+	<span>span요소, 이 div의 첫펀째 자식요소</span>
+	<p>두번째 div의 첫번째 p태그, div의 두번째 자식요소</p>
+	<p class="cls">두번째 div의 마지막 p태그, div의 세번째 자식요소</p>
+	<span>span요소, 이 div의 마지막 자식요소</span>
+</div><br />
+<div class="box">
+	<p>마지막 div의 첫번째 p태그, div의 첫번째 자식요소</p>
+	<p class="cls cls2">마지막 div의 마지막 p태그, div의 마지막 자식요소</p>
+</div><br />
+<p class="cls cls2">문서의 마지막 p태그</p>
+<button id="btn1">first</button>
+<button id="btn2">first-child</button>
+<button id="btn3">first-of-type</button>
+<button id="btn4">class 사용</button>
+<button id="btn5">class 사용2</button>
+<input type="text" onkeyup="onlyNum(this);">
+</body>
+</html>

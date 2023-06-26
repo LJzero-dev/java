@@ -1,0 +1,14 @@
+.image_effect {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 200px;
+}
+
+#notebook {
+    font-style: italic;
+}
+
+#tablet {
+    color: brown;
+}

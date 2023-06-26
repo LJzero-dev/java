@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta charset="utf-8">
+        <title>html_test_form_nummber_range_color_01.html</title>
+        <link rel="stylesheet" href="../CSS/html_test_form_nummber_range_color_01.css">
+    </head>
+
+    <body>
+        <h1>form number range color Test</h1>
+        <p>숫자, 범위, 색상의 입력<br></p> 주문할 제품의 개수와 만족도 그리고 색상을 입력하여 주세요. 
+        <form action="./result.jsp" method="post"></form> 
+            개수:<input id="good_cnt"type="number" name="good_cnt" min="1" max="10" value="1"><br> 
+                만족도:<input type="range" name="good_range"min="0" max="10" step="2" value="6"><br> 
+                색상: <input type="color" name="good_color" value="#0000ff"><br>
+            <input id="send" type="submit" value="보내기">
+        </form>
+    </body>
+
+</html>

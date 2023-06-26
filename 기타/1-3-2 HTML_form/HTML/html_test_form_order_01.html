@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSS/html_test_form_order_01.css">
+ <title>html_test_form_order_01.html</title>
+</head>
+<body>
+    <h1>form 주문 Test</h1>
+    <p id="title">패스트 푸드를 주문하여 봅니다.</p>
+ <hr>
+     <form id="form_box" action="./result.jsp" method="GET"> 
+        메인메뉴:
+        <select id="selectbox" name="selectbox">
+            <option value="burger1">치즈버거</option>
+            <option value="burger2">치킨버거</option>
+            <option value="burger3">한우버거</option>
+        </select>
+        <br>
+        음료선택:
+        <select id="selectbox" name="selectbox2">
+            <option value="drink1">콜라</option>
+            <option value="drink2">오렌지 주스</option>
+            <option value="drink3">커피</option>
+        </select>
+        <br>
+        <input type="radio" id="ice" name="ice" checked>얼음 있음<br>
+        <input type="radio" id="no_ice" name="ice">얼음 없음
+        <br>
+        <br>
+              <input type="checkbox" id="table" name="table">테이블 서비스 선택<br>
+        테이블 번호:<input type="text" name="table_number"><br><br>
+        <input type="submit" id="send"  value="보내기">
+    </form>
+    
+</body>
+</html>

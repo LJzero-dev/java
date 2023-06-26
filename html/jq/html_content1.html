@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>html_content1.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("p").append(" <b>Appended text</b>","test");
+			// p태그 요소들의 텍스트 뒤에 다른 지정한 텍스트(html 태그 사용가능) 추가
+			// 추가된 택스트들도 해당 태그의 속함으로 style 이 적용됨 (여러 개의 텍스트도 추가 가능)
+		});
+		$("#btn2").click(function(){
+			$("ol").append("<li>Appended Item</li>");
+			// ol 태그 마지막 li 태그로 아이템을 추가
+		});
+		$("#btn3").click(function(){
+			$("p").prepend("<b>Prepend Text</b>","test");
+		});
+		$("#btn4").click(function(){
+			$("ol").prepend("<li><b>Prepend Text</b></li>");
+		});
+	});
+	</script>
+</head>
+<body>
+<p style="color:blue;">This is a paragraph.</p>
+<p>This is a another paragraph.</p>
+<ol>
+	<li>List item 1</li>
+	<li>List item 2</li>
+	<li>List item 3</li>
+</ol>
+<button id="btn1">Append Text</button>
+<button id="btn2">Append List Item</button>
+<button id="btn3">Prepend Text</button>
+<button id="btn4">Prepend List Items</button>
+</body>
+</html>

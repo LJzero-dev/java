@@ -1,0 +1,22 @@
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    width: 400px;
+    height: 480px;
+    text-align: center;
+    border: 2px solid black;
+}
+#title{
+    font-size: 24px;
+    font-style: italic;
+}
+#form_box{
+    font-size: 20px;
+
+}
+#selectbox{
+    font-size: 20px;
+}
+#send{
+    font-size: 22px;
+}

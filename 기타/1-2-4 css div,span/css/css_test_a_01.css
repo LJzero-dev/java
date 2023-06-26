@@ -1,0 +1,33 @@
+body {
+    font-family: Verdana, sans-serif;
+    color: brown;
+
+}
+
+/* 방문하지 않을을 상태 */
+a {
+    background-color: beige;
+}
+
+a:link {
+    color: green;
+    text-decoration: none;
+
+}
+
+/* 방문 했을 때 */
+a:visited {
+    color: black;
+    text-decoration: none;
+
+}
+
+/* 마우스를 올려 놓을 때 */
+a:hover {
+    color: red;
+    text-decoration: none;
+
+}
+
+/* a :link 이런식으로 공백문자가 들어지가지 않도록 주의 */
+/* link, visited, hover 순서대로 기술해 놓을 것 */

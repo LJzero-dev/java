@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>html_box.html</title>
+	<style>
+	#box {
+	width:300px; height:100px; padding:10px; margin:3px;
+	border:1px solid blue; background:lightblue;
+	}
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("#demo").html("Height : <b>" + $("#box").height() + "</b>/px / width : <b>" + $("#box").width()+"</b>px<br />");
+			// height와 width는 스타일에서 지정한 높이와 넓이를 리턴(padding, border, margin 제외)
+			// box1 과 box2 가 붙어 있다는 가정하에 마진은 가장 높은 쪽의 마진 하나만 적용됨
+		});
+		$("#btn2").click(function(){
+
+			$("#demo").html("Height : <b>" + $("#box").height() + "</b>/px / width : <b>" + $("#box").width()+"</b>px<br />"+"Height : <b>" + $("#box").innerHeight() + "</b>/px / innerHeight : <b>" + $("#box").innerWidth()+"</b>px<br />");
+			// innerHeight와 innerWidth는 스타일에서 지정한 높이와 넓이를 리턴(border, margin 제외)
+		});
+		$("#btn3").click(function(){
+
+			$("#demo").html("Height : <b>" + $("#box").height() + "</b>/px / width : <b>" + $("#box").width()+"</b>px<br />"+"Height : <b>" + $("#box").innerHeight() + "</b>/px / innerHeight : <b>" + $("#box").innerWidth()+"</b>px<br />"+"Height : <b>" + $("#box").outerHeight() + "</b>/px / outerHeight : <b>" + $("#box").outerWidth()+"</b>px<br />");
+			// outerHeight와 outerWidth는 스타일에서 지정한 높이와 넓이를 리턴(margin제외)
+		});
+	});
+	</script>
+</head>
+<body>
+<div id="box"></div>
+<button id="btn1">height / width</button>
+<button id="btn2">innerHeight / innerWidth</button>
+<button id="btn3">outerHeight / outerWidth</button>
+<p id="demo"></p>
+</body>
+</html>

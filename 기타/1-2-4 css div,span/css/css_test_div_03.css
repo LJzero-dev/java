@@ -1,0 +1,43 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.image_effect {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 200px;
+}
+
+#notebook {
+    font-style: italic;
+    background-image: url("../imges/notebook.png");
+    background-repeat: no-repeat;
+    width: 200px;
+}
+
+#tablet {
+    color: brown;
+    background-image: url(../imges/tablet.png);
+    background-repeat: no-repeat;
+    width: 200px;
+}
+
+#cell_phone {
+    color: blue;
+    background-image: url(../imges/cell_phone.png);
+    background-repeat: no-repeat;
+    width: 200px;
+}
+
+#header {
+    color: blue;
+    border-width: thin;
+    border-style: dashed;
+    border-color: brown;
+    width: 700px;
+}
+
+#footer {
+    color: red;
+}

@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>evt_form.html</title>
+	<style>
+	#price { text-align : right; }
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$(":text").focus(function(){
+		// : text : type="text" 인 요소들을 의미하는 선택자로 모든 텍스트 필드를 의미
+		// : 어떤 텍스트필드이든 포커스가 들어오면 - 커서
+			$(this).css("background","yellow");
+			// this : 이벤트를 일으킨 주체를 의미하는 선택자
+		}); // focus != blur;
+		$(":text").blur(function(){
+			$(this).css("background","white");
+		});
+		$(":text").select(function(){
+		// 어떤 텍스트필드이든 입력한 글자를 선택(드래그)하면
+			alert("text mark");
+		});
+	});
+	</script>
+</head>
+<body>
+<form name="frm">
+Name : <input type="text" name="name" /><br />
+Mail : <input type="text" name="mail" /><br />
+Price : <input type="text" name="price" id="price" /><br />
+<input type="submit" value="데이터 전송" />
+</form>
+</body>
+</html>

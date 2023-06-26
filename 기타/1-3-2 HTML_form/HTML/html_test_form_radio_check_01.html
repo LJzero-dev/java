@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>html_test_form_radio_check_01.html</title>
+        <link rel="stylesheet" href="../css/html_test_form_radio_check_01.css">
+    </head>
+    <body>
+        <h1>form radio checkbox Test</h1>
+        <form action="./form_result.jsp" method="GET">
+            음료 주문시 얼음 선택 하세요. <br>
+            <!-- <input type="radio" name="iceselect" value="ice_ok"> 얼음 있음 <br> -->
+            <input type="radio" name="iceselect" value="ice_ok" checked> 얼음 있음 <br>
+            <input type="radio" name="iceselect" value="no_ice"> 얼음 없음 <br>
+            <p></p>
+            그 외 추가 주문 하세요. <br>
+            <input type="checkbox" name="addmenu" value="potato"> 감자 추가 <br>
+            <input type="checkbox" nane="addmenu" value="corn" checked> 옥수수 추가 <br>
+            <br>
+            <input type="submit">
+        </form>
+    </body>
+</html>

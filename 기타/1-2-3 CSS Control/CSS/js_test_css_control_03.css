@@ -1,0 +1,17 @@
+/* js_test_css_control_02.css */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
+#new_book_list_01 {
+    color: brown;
+}
+
+#best_book_list_01 {
+    color: blue;
+}
+
+.new_book_list_class_01 { /* class를 가져옵니다 .*/
+    color: green;
+}

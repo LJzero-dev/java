@@ -1,0 +1,3 @@
+var gilDongAge = 10;
+var isAdult = (gilDongAge > 20) ? "T" : "F"; // 성인여부 확인 로직...
+console.log("gidDong isAdult value is [" + isAdult + "]");

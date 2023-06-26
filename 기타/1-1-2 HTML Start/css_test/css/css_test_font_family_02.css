@@ -1,0 +1,33 @@
+body {
+    font-family: sans-serif;
+    font-size: 24px;
+    color: black;
+}
+
+h2.times_font {
+    font-family: Times;
+}
+
+h2.verdana_font {
+    font-family: Verdana;
+}
+
+h2.courier_font {
+    font-family: courier;
+}
+
+h2.cursive_font {
+    font-family: cursive;
+}
+
+h2.fantasty_font {
+    font-family: Impact;
+}
+
+h2.Arial_font {
+    font-family: Arial;
+}
+
+h2.Tahoma_font {
+    font-family: Tahoma;
+}

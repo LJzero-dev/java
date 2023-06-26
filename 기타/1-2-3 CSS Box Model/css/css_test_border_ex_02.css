@@ -1,0 +1,24 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+}
+p.border_effect{
+    border-style: outset;/* ridge (액자), groove(홈),dashed(긴 점선) */
+    border-width: thin; /* thin:4px, medium:5px, thick:6px */
+    border-color: blue;
+    /* 아래 처럼 한 부분만 따로 처리 가능 */
+    border-top-color: black; /* left, right, bottom 모두 변경가능 */
+    border-top-width: thick;
+    border-top-style: dotted;
+    border-radius: 20px; /*모서리의 4방향 모두를 변경 함 */
+}
+p.border_effect_two{
+    border-style: ridge;
+    border-width: thick;
+    border-color: black;
+    border-bottom-color: blue;
+    border-bottom-width: thin;
+    border-bottom-style: double;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}

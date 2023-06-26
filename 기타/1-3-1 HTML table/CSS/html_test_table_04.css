@@ -1,0 +1,18 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+table {
+    caption-side: bottom;
+    border-spacing: 5px;
+}
+caption {
+    font-size: 20px;
+    color: brown;
+}
+th, td {
+    border: 2px solid green;
+    padding: 5px;
+    text-align: left;
+    
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ko">
+
+    <head>
+        <title>tag_test_time_04.html</title>
+        <meta charset="utf-8">
+        <script>
+            function init() {
+                var get_time = document.getElementById("first_time");
+                alert(get_time.getAttribute("datetime"));
+            }
+            window.onload = init;
+        </script>
+    </head>
+
+    <body>
+        <h1>tag_test_time_04 입니다.</h1> 항공권 <strong>예매일</strong>은 <br>
+        <time id="first_time" datetime="2022-10-20">2022년 10월 20일</time> 입니다.
+    </body>
+
+</html>

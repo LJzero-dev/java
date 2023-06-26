@@ -1,0 +1,86 @@
+회원관련
+
+주소록 등록 : sp_member_addr_insert - 기본주소 여부에 따라 update 필요
+포인트 등록 : sp_member_point_insert - 사용 또는 적립 여부에 따라 -1을 곱함
+회원가입 : sp_member_info_insert
+회원수정/탈퇴 : sp_member_update
+
+
+drop procedure if exists 프로시저명;
+delimiter $$
+create procedure 프로시저명()
+begin
+end $$
+delimiter ;
+
+
+
+set global log_bin_trust_function_creators = 1;
+drop function if exists 함수명;
+delimiter $$
+create function 함수명() returns 자료형
+begin
+
+	return
+end $$
+delimiter ;
+
+
+
+ - 실행법 : select 함수명 ([매개변수(들)]);
+ - 삭제법 : drop function 함수명;
+
+
+ drop trigger if exists 트리거명;
+delimiter $$
+create trigger 트리거명 {after | before} {insert | update | delete} on 테이블명 for each row
+ begin
+	트리거의 내용;
+end $$
+delimiter ;
+
+
+
+
+
+
+
+delimiter $$
+create procedure 프로시저명()
+begin
+	declare is_end boolean default false;
+	declare 커서명 cursor for 커서를 만들 select문;
+	declare continue handler for not found set is_end = true;	-- 커서에서 더이상 데이터를 찾을 수 없게 되면 커서의 끝까지 루프를 돈 것으로 취급하여 is_end 변수의 값을 true로 변경
+
+	open 커서명;			-- 지정한 커서를 사용하기 위해 열어줌
+
+	cursorLoop:while true do	-- 따로 조건없이 무한 루프를 돌게 함
+		
+		fetch 커서명 into 변수명;	-- 현 레코드에 들어있는 데이터를 지정한 변수에 저장
+		-- 여러 컬럼을 select해 올 경우 각 컬럼의 값이 들어갈 변수들을 선언 후 쉼표로 연결
+		-- fetch 커서명 into 변수명1, 변수명2, ..., 변수명n;
+		-- 단, select해오는 컬럼의 순서와 값을 저장할 변수의 순서가 동일해야 함(자료형 포함)
+
+		작업할 실행문 or 쿼리문;
+
+		if is_end then			-- 커서가 끝까지 루프를 돌았으면
+			leave cursorLoop;	-- 지정한 레이블(cursorLoop)의 루프문을 빠져나감
+		end if;
+
+		작업할 실행문 or 쿼리문;
+
+	end while;
+
+	close 커서명;	-- 열었던 커서를 닫아줌
+end $$
+delimiter ;
+
+
+
+
+
+
+
+
+
+

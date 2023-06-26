@@ -1,0 +1,10 @@
+body {
+    font-family: Verdana,sans-serif;
+}
+p.contents_border_effect {
+    font-size: 20px;
+    /* background-color: beige;
+    background-image: url(../imges/snow.png);
+    background-repeat: repeat; */
+    background: burlywood url(../imges/fire.png) no-repeat;
+}

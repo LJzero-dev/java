@@ -1,0 +1,44 @@
+쓰레드(thread)
+ - 프로그램의 실행 흐름(process)을 제어하여 여러 개의 흐름을 동시에 동작시키는 기능
+ - 쓰레드 작업을 하려면 쓰레드에서 실행시킬 작업을 특정 클래스에 구현하고, 그 클래스가 쓰레드가 되어야 함
+ 	쓰레드 클래스가 되려면 java.lang.Thread 클래스를 상속받아야 함
+	쓰레드 클래스에는 상위클래스(Thread 클래스)의 run() 메소드를 오버라이딩하여 처리할 작업을 구현해야 함
+	run() 메소드를 오버라이딩 하지 않으면 해당 쓰레드는 아무 작업도 하지 않음
+ - 쓰레드를 실행하려면 쓰레드 클래스의 인스턴스 생성 후 start() 메소드를 호출해야 함
+ 	start() 메소드가 실행되면 쓰레드는 자신만의 메모리 공간을 할당받아 별도의 실행흐름(process)을 형성하고, 그 안에서 해당 쓰레드의 run() 메소드가 호출됨
+
+ - 생성자
+Thread() : 매개변수 없이 단순한 쓰레드 생성
+Thread(String name) : 쓰레드의 이름을 인수로 받아 쓰레드 생성
+Thread(Runnable target) : Thread 클래스를 상속받기 힘든 상황에서 Runnable 인터페이스를 implements한 뒤 쓰레드 생성
+Thread(Runnable target, String name) : Runnable 인터페이스를 implements한 쓰레드와 이름을 지정하여 쓰레드 생성
+
+ - 주요 메소드
+리턴타입		메소드명 및 설명
+void		destroy() : 쓰레드를 삭제시킴
+String		getName() : 쓰레드의 이름을 리턴
+void		join() : 해당 쓰레드의 작업을 마칠 때 까지 다른 쓰레드를 대기시키는 메소드
+void		run() : 쓰레드로 처리할 작업을 구현할 메소드로 거의 오버라이딩하여 정의함
+void		setName(String name) : 쓰레드에 이름을 부여하는 메소드
+void		setPriority(int newPriority) : 해당 쓰레드에 지정한 newPriority로 우선순위 변경
+void		start() : 해당 쓰레드의 시작 메소드로 자동으로 run() 메소드를 호출함
+static void sleep(long millis) : 지정한 millis 밀리초 단위로 해당 쓰레드를 잠시 멈춤
+
+ - setPriority() 메소드를 이용하면 특정 쓰레드의 우선순위를 변경할 수 있으나 절대적이지 않음
+ 	우선순위란 CPU 점유 순서를 의미하며 그 순서는 JVM이 아닌 OS가 할당하는 것으로 OS에 따라 우선순위로 동작하는 것이 달라짐
+
+ - 쓰레드의 생명주기(life cycle)
+ 	New : 쓰레드 클래스를 이용해 쓰레드 인스턴스를 생성시킨 상태
+	Runnable : start() 메소드가 호출되어 run() 메소드가 실행되고 있는 상태
+		- start() 메소드가 호출된다고 바로 run() 메소드가 실행되는 것은 아님
+		- 스케쥴러에 의해 여러 쓰레드들 중 실행의 대상으로 선택되어야 해당 쓰레드의 run() 메소드가 실행됨
+	Blocked : 실행중인 쓰레드가 sleep, join 등의 메소드를 실행하면 다른 쓰레드에 CPU를 양보하고, 해당 쓰레드는 'Blocked' 상태가 됨
+	Dead : run() 메소드가 종료되었을 때를 의미하며, 한 번 Dead된 쓰레드는 다시 Runnable 상태가 될 수 없음
+	 - Dead 상태가 되면 쓰레드에서 사용하던 메모리를 비롯한 관련 정보도 완전히 삭제됨
+	
+동기화(synchronized)
+ - 여러 쓰레드가 하나의 인스턴스 또는 변수들을 공유하게 되면 서로 작업이 겹쳐서 잘못된 결과를 나오게 할 수 있으며, 그 겹치는 상황을 없애기 위해 사용하는 것이 'synchronized' 명령임
+ - 'synchronized'는 메소드에 직접 입력하여 사용할 수 있음
+ 	예) public synchronized 리턴타입 메소드명() { ... } 단, 메소드 자체에 'synchronized'를 붙이면 메소드 전체가 잠김 상태로 들어가기 때문에 속도가 많이 떨어짐
+	예 synchronized(this) { ... }
+	 - this : 현재 동작중인 쓰레드의 인스턴스를 의미

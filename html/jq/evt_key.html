@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>evt_key.html</title>
+	<style>
+	#comment { width:300px; height:100px; }
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+	// #comment에 들어간 글자수를 세어 #count에 입력하고, 100자를 넘을 경우 경고 메시지 출력
+		$("#comment").keyup(function(){
+			// 1. #comment에 입력된 글자들을 받아옴
+			var cmt = $(this).val();	// 이벤트가 일어난 컨트롤(this)의 value를 cmt에 저장
+
+			// 2. 글자 개수를 세어 100자가 넘으면 경고 메시지를 출력
+			if (cmt.length > 100){
+				alert("100자 치내로 입력하세요.");
+
+
+				// 2-1. 100자가 넘을 경우 100자까지 문자열을 잘라냄
+				cmt = cmt.substring(0, 99);
+			} 
+			$(this).val(cmt);
+
+			// 3. 글자 수 출력
+			$("#count").text(cmt.length);
+		});
+	});
+	</script>
+</head>
+<body>
+<textarea name="comment" id="comment"></textarea><br />
+100자 이내로 입력하세요 (글자 수 : <span id="count">0</span> / 100)
+</body>
+</html>

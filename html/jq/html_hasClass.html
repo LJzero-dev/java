@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>html_hasClass.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function() {
+			var isIntro = $("p").hasClass("intro");
+			if(isIntro){
+				$(".intro").append("-intro 클래스");
+			} else{
+				$("p").append("-intro 클래스 없음")
+			};
+			//$("p").hasClass("intro") ? $("p").append("a"):$("p").append("b");
+			// hasClass() 메소드를 이용하여 p태그들 중 'intro'라는 클래스가 있으면 해당 요소의 뒤에 '-intro 클래스'라는 문자열을 추가하고, 없으면 '-intro 클래스없음'을 추가
+		});
+	});
+	</script>
+</head>
+<body>
+<p class="p1">This is a 1st paragraph.</p>
+<p class="intro">This is a 2nd paragraph.</p>
+<p class="p1">This is a 3rd paragraph.</p>
+<button id="btn1">has class?</button>
+</body>
+</html>

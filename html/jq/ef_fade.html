@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title>Document</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	var flag = false;
+	$(document).ready(function(){
+		$("#btn1").click(function() {
+			$("#img1").fadeIn("slow");
+		});
+		$("#btn2").click(function() {
+			$("#img1").fadeOut("fast");
+		});
+		$("#btn3").click(function() {
+			flag = !flag;
+			flag ? $("#img1").fadeTo(1000,0.3) : $("#img1").fadeTo(1000,1);			
+		});
+		$("#btn4").click(function() {
+			$("#img1").fadeToggle(500);
+		});
+	});
+	</script>
+</head>
+<body>
+<input type="button" value=" FadeIn " id="btn1" />
+<input type="button" value=" FadeOut " id="btn2" />
+<br /><hr />
+<img src="../js/img/a.jpg" width="400" id="img1" />
+<hr />
+<input type="button" value=" fadeTo " id="btn3" />
+<input type="button" value=" FadeToggle " id="btn4" />
+</body>
+</html>

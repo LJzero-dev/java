@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>html_attr.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			// #btn1 객체를 클릭하면 #demo에 #test1의 내용이 글자로 보이게 함		
+			$("#demo").text($("#test1").text());
+			// #test1 객체의 텍스트(태그 제외)를 #demo 객체에서 보여줌
+		});
+
+			// #btn1 객체를 클릭하면 #demo에 #test1의 내용이 html로 보이게 함	
+		$("#btn2").click(function(){			
+			$("#demo").html($("#test1").html());
+			//  #test1 객체의 텍스트(태그 포함)를 #demo 객체에서 보여줌
+		});
+
+		$("#btn3").click(function(){
+			// #btn3 객체를 클릭하면 #demo에 #test2의 내용이 html로 보이게 함
+			$("#demo").html($("#test2").val());
+			// #test2 객체의 value속성 값을 #demo의 html로 넣음
+			//val()은 컨트롤의 value속성을 리턴하거나 설정하는 함수
+		});
+
+		$("#btn4").click(function(){
+			
+			var oldUrl = $("#www").attr("href");
+			// #www 객체(a 태그)의 href 속성 값을 리턴받아 oldUrl 변수에 저장
+			$("#www").attr("href", "http://www.google.com/");
+			// #www 객체(a 태그)의 href 속성 값을 다른 값으로 변경
+			$("#old").text(oldUrl);
+			$("#new").text($("#www").attr("href"));
+		
+		});
+	});
+	</script>
+</head>
+<body>
+<p id="test1">This is some <b>bold</b> text in a paragraph.</p>
+<p>Name : <input type="text" id="test2" value="Mickey Mouse" /></p>
+<input type="button" id="btn1" value="Show Text" />
+<input type="button" id="btn2" value="Show HTML" />
+<input type="button" id="btn3" value="Show Value" />
+<p id="demo"></p>
+<hr />
+<p><a href="http://www.naver.com/" id = "www" target="_new">Changing URL</a></p>
+<input type="button" id="btn4" value="change href value" /><br />
+Old URL : <span id="old"></span><br />
+New URL : <span id="new"></span>
+</body>
+</html>

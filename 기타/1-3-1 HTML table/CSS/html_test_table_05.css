@@ -1,0 +1,26 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+table {
+    caption-side: bottom;
+    /* border-spacing: 5px; */
+    border-collapse: collapse;
+}
+caption {
+    font-size: 20px;
+    color: brown;
+}
+th {
+    background-color : yellowgreen;
+}
+.header01 {
+    background-color: beige;
+}
+
+th, td {
+    border: 2px solid brown;
+    /* padding-top: 10px; */
+    padding: 5px; /* top, right,bottom,left 모두 동일하게 적용하는 빠른 표기법 */
+    text-align: left;
+}

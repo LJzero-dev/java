@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>html_test_form_select_textarea_01.html</title>
+        <link rel="stylesheet" href="../css/html_test_form_select_textarea_01.css">
+    </head>
+    <body>
+        <h1>form select textarea Test.</h1> 
+        메시지를 보낼 분을 선택하세요. <br>
+        <form action="./result.jsp" method="GET">
+            <select id="selectbox" name="person">
+                <option value="홍길동">홍길동</option>
+                <option value="임꺽정" >임꺽정</option>
+                <option value="이몽룡" selected>이몽룡</option>
+            </select>
+            <p></p>
+            <textarea id="message" name="message" rows="10" cols="40">여기에 입력해 주세요</textarea> <!-- rows:행(세로) cols:열(가로)-->
+            <p></p>
+            <input type="submit" id="send" name="send" value="보내기">
+        </form>
+    </body>
+</html>

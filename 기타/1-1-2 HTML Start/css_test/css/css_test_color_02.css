@@ -1,0 +1,25 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+}
+h1 {
+    font-size: 100%;
+    background-color: green;
+}
+h2 {
+    font-size: 100%;
+    background-color: rgb(0,255,0); /* red, green, blue 가 0~255 까지 값을 가집니다.  각각의 값을 넣으면 혼합합니다.*/
+}
+h3 {
+    font-size: 100%;
+    background-color: rgba(0, 255, 0, 1); /*네번째 마지막 인수는 알파값으로 투명도 입니다. 0을 넣으면 완전투명으로 빨간색이 완전투명색으로 바뀝니다.  범위는 0~1까지 입니다.*/ 
+    /* background-color: rgba(255, 0, 0, 0.5);*/ /* 네번째의 마지막 인수를 0.5를 넣으면 투명도가 50% 됩니다.*/
+}
+h4 {
+    font-size: 100%;
+    background-color: rgb(0%, 100%, 0%); /* red, green, bule의 색혼합이 % 비율로 넣을 수 있습니다.*/
+}
+h5 {
+    font-size: 100%;
+    background-color: #00ff00; /* Red의 값을 16진수로 넣으면 ff 값을 가집니다. */
+}

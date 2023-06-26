@@ -1,0 +1,13 @@
+body {
+    font-family: Verdana, sans-serif;
+    font-size: 20px;
+}
+p.font_size_01 { /* 10px로 변경 */
+    font-size: 10px;
+}
+p.font_size_02 { /* 기준은 body의 폰트 크기 입니다(20px). 150% 확대*/
+    font-size: 50%;
+}
+p.font_size_03 { /* 기준은 body의 폰트 크기 입니다(20px). 2.0배*/
+    font-size: 0.5em;
+}

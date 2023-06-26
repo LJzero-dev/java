@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>html_content2.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("h1").appendTo("p");
+			// p태그 요소 뒤에 h1 태그 요소를 이동시킴
+			// 여기서 p태그 요소와 h1태그 요소는 현 문서 안에 존재하는 요소들이어야 함
+		});
+		$("#btn2").click(function(){
+			$("h1").prependTo("p");
+			// p태그 요소 앞에 h1 태그 요소를 이동시킴
+		});
+	});
+	</script>
+</head>
+<body>
+<button id="btn1">Insert after element</button>
+<button id="btn2">Insert before element</button>
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+<!-- <p>This is a another paragraph.</p> -->
+</body>
+</html>

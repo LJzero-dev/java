@@ -1,0 +1,36 @@
+<html>
+<head>
+	<title>ef_animate3.html</title>
+	<style>
+	#box { background:pink; height:70px; width:70px; }
+	#img1 { display:none; }
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("#box").animate({ width:"100px", height:"100px" });
+			// box 객체의 넓이와 높이를 각각 100px 로 변경
+			$("#box").delay(500).animate({ height:"500px" });
+			// box 객체의 넓이와 높이를 1초 후 200px로 변경
+		});
+		$("#btn2").click(function(){
+			$("#img1").slideDown(3000);
+			// #img1 객체를 1초동안 slide down 시킴
+		});
+		$("#btn3").click(function(){});
+			$("#img1").stop();
+		// #img1 객체에 적용된 애니메이션 효과를 멈춤(애니메이션 효과 도중에 멈춤)                    //////////
+	});
+	</script>
+</head>
+<body>
+<div id="box"></div>
+<input type="button" id="btn1" value="Animate delay" />
+<br /><br />
+<input type="button" id="btn2" value="slide down" />
+<input type="button" id="btn3" value="stop animation" />
+<br /><br />
+<img id="img1" src="../js/img/a.jpg" width="300">
+</body>
+</html>

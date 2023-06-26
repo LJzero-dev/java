@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>selector_test.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+			$(document).ready(function(){
+				$("#btn1").click(function(){ // 아이디가 btn1인 요소를 클릭했을 때
+					$("body *").css("background","yellow");
+					// body * = body태그 안에 있는 모든 요소들의 배경색을 yellow로 변경
+					// '*'만 사용하면 body태그 까지 포함하여 적용됨
+				});
+				$("#btn2").click(function(){
+					$("p").css("background","pink");
+				});
+				$("#btn3").click(function(){
+					$(".cls").css("font-weight","bold");
+				});
+				$("#btn4").click(function(){
+					$("#ii").css("font-style","italic");
+				});
+		});
+			
+	</script>
+</head>
+<body>
+<h2>jQuery에서의 선택자 테스트</h2>
+<p>p태그만 있는 경우</p>
+<p class="cls">클래스만 있는 p태그</p>
+<p class="cls" id="ii">클래스와 아이디가 있는 p태그</p>
+<button id="btn1">모든 요소에 배경색 : yellow넣기</button>
+<button id="btn2">p태그 모두 배경색 : pink넣기</button><br/>
+<button id="btn3">클래스만 글자 굵게 하기</button>
+<button id="btn4">아이디만 글자 기울임꼴 하기</button>
+</body>
+</html>

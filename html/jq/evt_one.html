@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>evt_one.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("p").one("click dblclick", function(){
+		// 모든 p태그에 click과 dblclick 이벤트를 각각 한 번씩만 동작하게 해줌
+			$(this).animate({ fontSize:"+=6px" });
+		});
+		$("#btn1").click(function(){
+			$("#p1").animate({ fontSize:"+=2px" });
+		});
+		$("#btn2").click(function(){
+			$("#p1").animate({ fontSize:"-=2px" });
+		});
+	});
+	</script>
+</head>
+<body>
+<p id="p1">This is a paragraph.</p>
+<p id="p2">This is a another paragraph.</p>
+<input type="button" value="p1 +2px" id="btn1" />
+<input type="button" value="p2 -2px" id="btn2" />
+</body>
+</html>

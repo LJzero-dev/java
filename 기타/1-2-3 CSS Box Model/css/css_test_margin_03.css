@@ -1,0 +1,17 @@
+body {
+    font-family: Verdana,sans-serif;
+}
+p.contents_border_effect {
+    font-size: 20px;
+    border-color: green;
+    border-width: 2px;
+    border-style: solid; 
+    background-color: antiquewhite;
+    padding: 30px;
+    padding-top: 100px;
+    background-image: url(../img/book.png);
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: top;
+    margin: 100px;
+}

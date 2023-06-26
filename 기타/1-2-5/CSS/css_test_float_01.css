@@ -1,0 +1,22 @@
+body {
+    font-family: Verdana,  Tahoma, sans-serif;
+    font-size: 20px;
+}
+#header {
+    border-width: thin;
+    border-style: solid;
+    border-color: black;
+}
+#sidebar {
+    color: brown;
+    border: thin solid blue; /* 빠른 표기법으로 표현합니다. */
+    float: right;
+}
+#main {
+     border: thin solid red;
+     margin: 0px 330px 10px 10px;
+}
+#footer {
+    border: thin solid green;
+    clear: right;
+}

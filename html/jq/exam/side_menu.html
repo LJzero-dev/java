@@ -1,0 +1,61 @@
+<html>
+<head>
+	<title>side_menu.html</title>
+	<style>
+	body { background:#656565; }
+	#sideMenu {
+		width:200px; height:100%; position:fixed; top:0; left:-200px;
+		background:rgba(0, 0, 0, 0.5);
+	}
+	#sideMenu ul { position:absolute; top:50px; left:50px; padding:0; margin-top:40px }
+	#sideMenu ul li { margin:0 0 20px; list-style-type:none; }
+	#sideMenu ul li a { color:white; font-weight:bold; text-decoration:none; font-size:1.2em; }
+	#sideMenu button { background:rgba(0, 0, 0, 0.8); position:absolute; top:150px; left:200px; border:none; cursor:pointer; }
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	var flag = false;
+	$(document).ready(function(){
+		$("#btnMenu").click(function() {
+			flag=!flag;
+			if(flag){
+				// #sideMenu 객체에 'open'이라는 클래스가 있으면(메뉴가 열릴때로 메뉴를 열어줌)
+				$("#sideMenu").animate({ left:0}, 300);
+				$("#imgMenu").attr("src","images/close.png");
+			}else{
+				// #sideMenu 객체에 'open'이라는 클래스가 없으면(메뉴가 열릴때로 메뉴를 닫아줌)	
+				$("#sideMenu").animate({ left:"-200"}, 300);
+				$("#imgMenu").attr("src","images/open.png");
+			}
+			/*
+			$("#sideMenu").toggleClass("open");
+			// #sideMenu 객체에 'open'이라는 클래스를 이벤트 발생 시 마다 추가 및 삭제를 번갈아 가며 실행
+
+			if($("#sideMenu").hasClass("open")){
+				// #sideMenu 객체에 'open'이라는 클래스가 있으면(메뉴가 열릴때로 메뉴를 열어줌)
+				$("#sideMenu").animate({ left:0}, 300);
+				$("#imgMenu").attr("src","images/close.png");
+			}else{
+				// #sideMenu 객체에 'open'이라는 클래스가 없으면(메뉴가 열릴때로 메뉴를 닫아줌)	
+				$("#sideMenu").animate({ left:"-200"}, 300);
+				$("#imgMenu").attr("src","images/open.png");
+			}
+*/
+			
+		});
+	});
+	</script>
+</head>
+<body>
+<h1>Creative jQuery Sidemenu</h1>
+<div id="sideMenu">
+	<ul>
+		<li><a href="#">1번째 메뉴</a></li>
+		<li><a href="#">2번째 메뉴</a></li>
+		<li><a href="#">3번째 메뉴</a></li>
+		<li><a href="#">4번째 메뉴</a></li>
+	</ul>
+	<button id="btnMenu"><img src="images/open.png" id="imgMenu" width="30" ></button>
+</div>
+</body>
+</html>

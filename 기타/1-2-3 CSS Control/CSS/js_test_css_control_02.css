@@ -1,0 +1,10 @@
+body{
+    font-size: 16px;
+    font-family: 'Courier New', Courier, monospace;
+}
+#new_book_list_01{
+    color: brown;
+}
+#best_book_list_01{
+    color: blue;
+}

@@ -1,0 +1,9 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+#one h2{
+    color: brown;
+}
+#two h2{
+    color: blue;
+}

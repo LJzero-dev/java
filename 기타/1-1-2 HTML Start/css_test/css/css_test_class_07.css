@@ -1,0 +1,9 @@
+body {
+    font-family: sans-serif;
+}
+.effect_color {
+    color: gray;
+}
+.effect_bg_color {
+    background-color: green;
+}

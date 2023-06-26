@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>ent_on.html</title>
+	<style>
+	.txt { font-size:150%; color:red; };
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+	// #p1 요소에서 mouseover와 mouseout 두 가지 이벤트 중 하나라도 발생하면 동작
+	// mouseover시에는 글자크기를 크게 하고, 색상을 빨간색으로 mouseout시에는 원래대로 돌림
+		$("#p1").on("mouseover mouseout", function(){
+			$(this).toggleClass("txt");
+			// 이벤트가 발생한 객체(this)에 'txt'라는 클래스를 적용했다가 다시 빼는 작업(toggleClass)
+		});
+
+	// #p2 요소의 배경색을 마우스가 들어가면 'lightgray', 나가면 'light', 클릭하면 'yellow'
+		$("#p2").on({
+			mouseenter:function(){
+				$(this).css("background", "lightgray");	
+			}, mouseleave:function(){
+				$(this).css("background", "lightblue");
+			}, click:function(){
+				$(this).css("background", "yellow");		
+			}
+		}); // on() 메소드를 사용하면 한 선택자에서 발생하는 여러 이벤트를 묶어서 처리할 수 있음
+	});
+	</script>
+</head>
+<body>
+<p id="p1">Move the mouse pointer over this paragraph.</p>
+<p id="p2">Click or move the mouse pointer over this paragraph.</p>
+</body>
+</html>

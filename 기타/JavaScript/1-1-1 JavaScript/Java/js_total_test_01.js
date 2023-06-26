@@ -1,0 +1,5 @@
+console.log("Welcome to the js")
+console.log("log test 01")
+console.log("log test 02")
+// console.log("log test 03")
+// alert("테스트가 완료 되었어요.")

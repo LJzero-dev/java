@@ -1,0 +1,25 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+}
+
+input#send {
+    /* 상위 부모 함께 표기 */
+    background: url(../images/send.png);
+    background-repeat: no-repeat;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    
+}
+
+input.uname {
+    border: 6px dotted brown;
+}
+input#asdf{
+    color: blue;
+    margin: 50px;
+}
+input#send{
+    size: 40px;
+}

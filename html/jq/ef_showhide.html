@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>ef_showhide.html</title>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			$("#img1").show(500);
+			// #img1 객체를 500ms 만에 보여줌
+		});
+		$("#btn2").click(function(){
+			$("#img1").hide(800);
+			// #img1 객체를 800ms 만에 숨겨줌
+		});
+		$("#btn3").click(function(){
+			$("#img1").toggle(10000);
+			// #img1 객체를 누를 때마다 현 상태를 뒤집어 보여주거나 숨김
+		});
+	});
+	</script>
+</head>
+<body>
+<input type="button" value=" SHOW" id="btn1" />
+<input type="button" value=" HIDE" id="btn2" />
+<input type="button" value=" TOGGLE" id="btn3" />
+<br /><hr /><br />
+<img src="../js/img/a.jpg" width="400" id="img1" />
+</body>
+</html>

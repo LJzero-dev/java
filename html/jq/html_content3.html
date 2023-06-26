@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>html_content3.html</title>
+	<style>
+	.intro { font-size:30px; color:blue; }
+	.note { background:yellow; width:200px; }
+	</style>
+	<script src="./jquery-3.6.4.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#btn1").click(function() {
+			$("h1").addClass("intro");
+			// h1 태그 요소의 'intro' 라는 클래스를 추가			
+		});
+		$("#btn2").click(function() {
+			$("p:first").addClass("intro note");
+			// 첫번째 p 요소의 intro와 note 클래스를 추가
+		});
+		$("#btn3").click(function() {
+			$("p:last").removeClass("intro").addClass("note");
+			// 마지막 p 요소의 intro 클래스를 지우고 note 클래스를 추가
+		});
+	});
+	</script>
+</head>
+<body>
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+<p>This is a another paragraph.</p>
+<p class="intro">This is a last paragraph.</p>
+<button id="btn1">Add class</button>
+<button id="btn2">add two class</button>
+<button id="btn3">class name change</button>
+</body>
+</html>
