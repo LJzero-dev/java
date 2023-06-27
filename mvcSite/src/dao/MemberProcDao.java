@@ -39,7 +39,6 @@ public class MemberProcDao {	// 회원 가입 및 정보수정을 위한 쿼리 작업을 하는 Da
 					pstmt = conn.prepareStatement("insert into t_member_point (mi_id, mp_point, mp_desc) values (?, ?, '가입축하금')");
 					pstmt.setString(1, memberInfo.getMi_id());		pstmt.setInt(2, memberInfo.getMi_point());
 					result += pstmt.executeUpdate();
-					if (result == 3) conn.setAutoCommit(true);
 				}
 			}
 		} catch (Exception e) {
@@ -47,7 +46,7 @@ public class MemberProcDao {	// 회원 가입 및 정보수정을 위한 쿼리 작업을 하는 Da
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-		}		
+		}
 		return result;
 	}
 }
