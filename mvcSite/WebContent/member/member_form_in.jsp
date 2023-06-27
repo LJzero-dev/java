@@ -26,6 +26,11 @@ $(document).ready(function() {
 		}
 	});
 });
+function chkDupId() {
+	// 팝업
+	awin = window.open("member/dup_id_form.jsp", "aa", "width=300, height=200, left=50, top=50");
+}
+
 </script>
 <h2>회원 가입 폼</h2>
 <form name="frmJoin" action="memberProcIn" method="post">
@@ -42,7 +47,8 @@ $(document).ready(function() {
 <hr />
 <div>
 	<label for="mi_id">아이디 : </label>
-	<input type="text" name="mi_id" id="mi_id" maxlength="20" />
+	<input type="text" name="mi_id" id="mi_id" maxlength="20" readonly="readonly" />
+	<input type="button" value="중복검사" onclick="chkDupId();">
 	<br />
 	<label for="mi_pw">비밀번호 : </label>
 	<input type="password" name="mi_pw" id="mi_pw" maxlength="20" />
