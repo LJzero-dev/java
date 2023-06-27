@@ -8,9 +8,5 @@
 <input type="submit" value="검색" />
 </form>
 <hr />
-
-
-
-
 </body>
 </html>

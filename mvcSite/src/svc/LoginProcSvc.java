@@ -6,7 +6,6 @@ import java.sql.*;
 import dao.*;
 import vo.*;
 
-
 public class LoginProcSvc {
 	public MemberInfo getLoginInfo(String uid, String pwd) {	// 로그인에 필요한 아이디와 암호를 받아 비지니스 로직을 처리(쿼리 작업 제외)하는 클래스
 		MemberInfo loginInfo = null;
