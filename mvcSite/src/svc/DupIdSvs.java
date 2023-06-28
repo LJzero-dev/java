@@ -12,8 +12,7 @@ public class DupIdSvs {
 		DupIdDao dupIdDao = DupIdDao.getInstance();
 		dupIdDao.setConnection(conn);
 		result = dupIdDao.chkDupId(uid);
-		close(conn);
-		
+		close(conn);		
 		return result;
 	}
 }

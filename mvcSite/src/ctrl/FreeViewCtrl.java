@@ -19,7 +19,7 @@ public class FreeViewCtrl extends HttpServlet {
 		String args = "?cpage=" + request.getParameter("cpage");
 		if (schtype != null && !schtype.equals("") && keyword != null && !keyword.equals("")) {
 			args += "&schtype=" + schtype + "&keyword=" + keyword;
-		}		
+		}
 		int flidx = Integer.parseInt(request.getParameter("flidx"));
 		FreeProcSvc freeProcSvc = new FreeProcSvc();
 		freeProcSvc.readUpdate(flidx);	// 사용자가 선택한 게시글의 조회수를 증가시키는 메소드 호출

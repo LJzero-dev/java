@@ -40,14 +40,16 @@ insert into t_free_list (fl_idx, fl_ismem, fl_writer, fl_pw, fl_title, fl_conten
 insert into t_free_list (fl_idx, fl_ismem, fl_writer, fl_pw, fl_title, fl_content, fl_ip) values (29, 'n', 'ㅇㅇ17', '1234', '제목 입니다19.', '내용 입니다.17', '127.0.0.1');
 insert into t_free_list (fl_idx, fl_ismem, fl_writer, fl_pw, fl_title, fl_content, fl_ip) values (30, 'n', 'ㅇㅇ18', '1234', '제목 입니다20.', '내용 입니다.18', '127.0.0.1');
 insert into t_free_list (fl_idx, fl_ismem, fl_writer, fl_pw, fl_title, fl_content, fl_ip) values (31, 'n', 'ㅇㅇ19', '1234', '제목 입니다21.', '내용 입니다.19', '127.0.0.1');
-insert into t_free_list (fl_idx, fl_ismem, fl_writer, fl_pw, fl_title, fl_content, fl_ip) values (32, 'n', 'ㅇㅇ20', '1234', '제목 입니다22.', '내용 입니다.20', '127.0.0.1');
+insert into t_free_list (fl_idx, fl_ismem, fl_writer, fl_pw, fl_title, fl_content, fl_ip) values (?, ?, ?, ?, ?, ?, ?);
+
+select * from t_free_list;
+
+select max(fl_idx) + 1 from t_free_list;
+
+update t_free_list set fl_read = fl_read + 1 where fl_idx = ?;
 
 
-
-
-
-
-
+select * from t_free_list where fl_idx = 1;
 
 
 

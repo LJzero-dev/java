@@ -103,6 +103,7 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 				freeList.setFl_idx(flidx);	freeList.setFl_ismem(rs.getString("fl_ismem"));	freeList.setFl_writer(rs.getString("fl_writer"));
 				freeList.setFl_pw(rs.getString("fl_pw"));	freeList.setFl_title(rs.getString("fl_title"));	freeList.setFl_content(rs.getString("fl_content"));
 				freeList.setFl_date(rs.getString("fl_date"));	freeList.setFl_read(rs.getInt("fl_read"));	freeList.setFl_ip(rs.getString("fl_ip"));
+				close(rs);
 				return freeList;
 			}
 		} catch (Exception e) {
@@ -110,5 +111,18 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public String getIsMem(int flidx) {	// 지정한 글이 비회원 글인지 여부를 리턴하는 메소드
+		String result = "";
+		try {
+			ResultSet rs = conn.createStatement().executeQuery("select fl_ismem from t_free_list where fl_isview = 'y' and fl_idx = " + flidx);
+			if (rs.next())	result = rs.getString(1);
+			close(rs);
+		} catch (Exception e) {
+			System.out.println("FreeProcDao 클래스의 getIsMem() 메소드 오류");
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

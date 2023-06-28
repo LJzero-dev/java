@@ -16,8 +16,7 @@ public class MemberProcSvc {	// 회원 가입 및 정보 수정을 위한 Service 클래스
 		
 		if (result == 3)	commit(conn);	// 사용한 쿼리가 insert, update, delete 일 경우 반드시 트랜잭션을 완료해야 함
 		else				rollback(conn);
-		close(conn);
-		
+		close(conn);		
 		return result;
 	}
 }

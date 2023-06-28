@@ -14,8 +14,7 @@ public class LoginProcSvc {
 		loginProcDao.setConnection(conn);
 		
 		loginInfo = loginProcDao.getLoginInfo(uid, pwd);
-		close(conn);
-		
+		close(conn);		
 		return loginInfo;
 	}	
 }
