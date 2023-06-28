@@ -114,15 +114,22 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 	}
 
 	public String getIsMem(int flidx) {	// 지정한 글이 비회원 글인지 여부를 리턴하는 메소드
-		String result = "";
 		try {
-			ResultSet rs = conn.createStatement().executeQuery("select fl_ismem from t_free_list where fl_isview = 'y' and fl_idx = " + flidx);
-			if (rs.next())	result = rs.getString(1);
-			close(rs);
+			String result = null;
+			ResultSet rs = conn.createStatement().executeQuery("select fl_ismem from t_free_list where fl_isview = 'y' and fl_idx = " + flidx);			
+			if (rs.next()) {
+				result = rs.getString(1);
+				close(rs);
+				return result;		
+			}
+			else{
+				close(rs);
+				return result;
+			}
 		} catch (Exception e) {
 			System.out.println("FreeProcDao 클래스의 getIsMem() 메소드 오류");
 			e.printStackTrace();
 		}
-		return result;
+		return null;
 	}
 }

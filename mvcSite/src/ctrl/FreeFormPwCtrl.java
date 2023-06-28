@@ -20,5 +20,18 @@ public class FreeFormPwCtrl extends HttpServlet {
 		int flidx = Integer.parseInt(request.getParameter("flidx"));
 		FreeProcSvc freeProcSvc = new FreeProcSvc();
 		String ismem = freeProcSvc.getIsMem(flidx);
+		
+		if (ismem != null && ismem.equals("n")) {	// 해당 게시글이 비회원 글일 경우
+			request.setAttribute("ismem", ismem);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/bbs/free_form_pw.jsp");
+			dispatcher.forward(request, response);
+		} else {	// 회원글이거나 결과가 없을 경우
+			response.setContentType("text/html; charset=utf-8");
+    		PrintWriter out = response.getWriter();
+    		out.println("<script>");
+    		out.println("alert('존재하지 않는 게시글입니다.');");
+    		out.println("history.back();");
+    		out.println("</script>");
+		}
 	}
 }
