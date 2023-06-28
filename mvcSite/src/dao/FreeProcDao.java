@@ -65,7 +65,7 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 	}
 
 	public int freeInsert(FreeList freeList) {	// 자유게시판 게시글 등록 처리 메소드(글번호를 리턴)
-		int flidx = 1, result;
+		int flidx = 1, result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -75,13 +75,40 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 			pstmt.setString(4,freeList.getFl_pw());			pstmt.setString(5,freeList.getFl_title());			pstmt.setString(6,freeList.getFl_content());
 			pstmt.setString(7,freeList.getFl_ip());
 			result = pstmt.executeUpdate();
-			flidx = result == 1 ? flidx : 0;
+			return result == 1 ? flidx : 0;	// 오류 발생 시 글번호가 아닌 0을 리턴하여 svc에서 롤백을 시킴
 		} catch (Exception e) {
 			System.out.println("FreeProcDao 클래스의 freeInsert() 메소드 오류");
 			e.printStackTrace();
 		} finally {
 			close(rs);	close(pstmt);
-		}	
-		return flidx;
+		}
+		return 0;
+	}
+
+	public int readUpdate(int flidx) {
+		try {
+			return conn.createStatement().executeUpdate("update t_free_list set fl_read = fl_read + 1 where fl_idx = " + flidx);
+		} catch (Exception e) {
+			System.out.println("FreeProcDao 클래스의 readUpdate() 메소드 오류");
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public FreeList getFreeInfo(int flidx) {	// 지정한 게시글의 정보들을 FreeList형 인스턴스로 리턴하는 메소드
+		try {			
+			ResultSet rs = conn.createStatement().executeQuery("select * from t_free_list where fl_isview = 'y' and fl_idx = " + flidx);
+			if (rs.next()) {
+				FreeList freeList = new FreeList();
+				freeList.setFl_idx(flidx);	freeList.setFl_ismem(rs.getString("fl_ismem"));	freeList.setFl_writer(rs.getString("fl_writer"));
+				freeList.setFl_pw(rs.getString("fl_pw"));	freeList.setFl_title(rs.getString("fl_title"));	freeList.setFl_content(rs.getString("fl_content"));
+				freeList.setFl_date(rs.getString("fl_date"));	freeList.setFl_read(rs.getInt("fl_read"));	freeList.setFl_ip(rs.getString("fl_ip"));
+				return freeList;
+			}
+		} catch (Exception e) {
+			System.out.println("FreeProcDao 클래스의 getFreeInfo() 메소드 오류");
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

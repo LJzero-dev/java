@@ -31,7 +31,17 @@ public class FreeProcInCtrl extends HttpServlet {
     		freeList.setFl_ismem("y");
     	}	// 등록할 때 필요한(t_free_list테이블에 insert할) 데이터들을 모두 FreeList형 인스턴스에 저장
     	FreeProcSvc	freeProcSvc = new FreeProcSvc();
-    	int flidx = freeProcSvc.freeInsert(freeList);	// insert 쿼리를 실행하므로 insert된 레코드 개수를 받아오는 것이 일반적이나, 처리 후 해당 글 보기 화면으로 이동해야 하므로 해당 글의 글번호를 받아옴
+    	int flidx = freeProcSvc.freeInsert(freeList);	// insert 쿼리를 실행하므로 insert된 레코드 개수를 받아오는 것이 일반적이나, 처리 후 해당 글 보기 화면으로 이동해야 하므로 해당 글의 글번호를 받아옴 
     	
+    	if (flidx > 0) {	// 정상적으로 글이 등록 되었으면
+    		response.sendRedirect("freeView?cpage=1&flidx=" + flidx);
+    	} else {	// 글 등록 시 문제가 발생했으면
+    		response.setContentType("text/html; charset=utf-8");
+    		PrintWriter out = response.getWriter();
+    		out.println("<script>");
+    		out.println("alert('글 등록에 실패했습니다. 다시 시도해 보세요');");
+    		out.println("history.back();");
+    		out.println("</script>");
+    	}
 	}
 }

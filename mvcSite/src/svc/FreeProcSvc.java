@@ -41,4 +41,25 @@ public class FreeProcSvc {
 		close(conn);
 		return flidx;
 	}
+
+	public int readUpdate(int flidx) {
+		int result = 0;
+		Connection conn = getConnection();
+		FreeProcDao freeProcDao = FreeProcDao.getInstance();
+		freeProcDao.setConnection(conn);
+		result = freeProcDao.readUpdate(flidx);
+		if (result == 1)	commit(conn);
+		else				rollback(conn);
+		return result;
+	}
+
+	public FreeList getFreeInfo(int flidx) {
+		Connection conn = getConnection();
+		FreeProcDao freeProcDao = FreeProcDao.getInstance();
+		freeProcDao.setConnection(conn);
+		
+		FreeList freeList = freeProcDao.getFreeInfo(flidx);
+		close(conn);
+		return freeList;
+	}
 }
