@@ -1,8 +1,8 @@
 package dao;
 
 import static db.JdbcUtil.*;	// JdbcUtil 클래스의 모든 멤버들을 자유롭게 사용
-import java.util.*;import com.sun.org.apache.regexp.internal.recompile;
-
+import java.util.*;
+import com.sun.org.apache.regexp.internal.recompile;
 import java.sql.*;
 import vo.*;
 
@@ -51,7 +51,7 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 			while (rs.next()) {
 				fl = new FreeList();
 				fl.setFl_idx(rs.getInt("fl_idx"));		fl.setFl_ismem(rs.getString("fl_ismem"));		fl.setFl_writer(rs.getString("fl_writer"));		fl.setFl_title(rs.getString("fl_title"));
-				fl.setFl_reply(rs.getInt("fl_reply"));	fl.setFl_ip(rs.getString("fl_ip"));				fl.setFl_date(rs.getString("fl_date"));
+				fl.setFl_reply(rs.getInt("fl_reply"));	fl.setFl_ip(rs.getString("fl_ip"));				fl.setFl_date(rs.getString("wdate"));			fl.setFl_read(rs.getInt("fl_read"));
 				freeList.add(fl);
 			}
 		} catch (Exception e) {
@@ -62,5 +62,26 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 		}
 		
 	return freeList;
+	}
+
+	public int freeInsert(FreeList freeList) {	// 자유게시판 게시글 등록 처리 메소드(글번호를 리턴)
+		int flidx = 1, result;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			rs = conn.createStatement().executeQuery("select max(fl_idx) + 1 from t_free_list");	rs.next();	flidx = rs.getInt(1);	// 새롭게 등록할 게시글의 글번호를 생성하여 flidx에 저장
+			pstmt = conn.prepareStatement("insert into t_free_list (fl_idx, fl_ismem, fl_writer, fl_pw, fl_title, fl_content, fl_ip) values (?, ?, ?, ?, ?, ?, ?)");
+			pstmt.setInt(1, flidx);							pstmt.setString(2,freeList.getFl_ismem());			pstmt.setString(3,freeList.getFl_writer());
+			pstmt.setString(4,freeList.getFl_pw());			pstmt.setString(5,freeList.getFl_title());			pstmt.setString(6,freeList.getFl_content());
+			pstmt.setString(7,freeList.getFl_ip());
+			result = pstmt.executeUpdate();
+			flidx = result == 1 ? flidx : 0;
+		} catch (Exception e) {
+			System.out.println("FreeProcDao 클래스의 freeInsert() 메소드 오류");
+			e.printStackTrace();
+		} finally {
+			close(rs);	close(pstmt);
+		}	
+		return flidx;
 	}
 }

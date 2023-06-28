@@ -29,4 +29,16 @@ public class FreeProcSvc {
 		
 		return freeList;
 	}
+
+	public int freeInsert(FreeList freeList) {
+		int flidx = 0;
+		Connection conn = getConnection();
+		FreeProcDao freeProcDao = FreeProcDao.getInstance();
+		freeProcDao.setConnection(conn);
+		flidx = freeProcDao.freeInsert(freeList);
+		if (flidx > 0)	commit(conn);
+		else			rollback(conn);
+		close(conn);
+		return flidx;
+	}
 }
