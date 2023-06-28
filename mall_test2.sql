@@ -48,7 +48,6 @@ select max(fl_idx) + 1 from t_free_list;
 
 update t_free_list set fl_read = fl_read + 1 where fl_idx = ?;
 
-
 select * from t_free_list where fl_idx = 1;
 
 
