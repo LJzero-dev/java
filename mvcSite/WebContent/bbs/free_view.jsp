@@ -69,7 +69,7 @@ String args = (String)request.getAttribute("args");
 .txt { width:530px; height:60px; }
 .btn { width:120px; height:60px; }
 .frmUp { display:none;}
-.reWriter { width:700px; display:flex; padding:5px; justify-content:spacd-between; border:1px solid black; }
+.reWriter { width:700px; display:flex; padding:5px; justify-content:space-between; border:1px solid black; }
 .reContent { width:700px; padding:5px; border:1px solid black; border-top:none; margin-bottom:5px; }
 </style>
 <script>
@@ -88,6 +88,23 @@ function setCharCount(con, fr_idx) {
 		obj.innerHTML = 200;
 	}
 }
+function replyIn() {	// ajsx를 이용한 댓글 등록 함수
+	var fr_content = document.frmReply.fr_content.value;
+	if (fr_content != "") {
+		$.ajax({
+			type : "POST", url : "/mvcSite/freeReplyProcIn", data : {"flidx" : "<%=flidx %>", "fr_content" : fr_content}, success : function(chkRs) {
+				if (chkRs == 0) {
+					alert("댓글 등록에 실패했습니다.\n다시 시도해 보세요.");
+				} else {
+					location.reload();
+				}
+			}
+		});
+	} else {
+		alert("댓글 내용을 입력하세요.");
+		document.frmReply.fr_content.focus();
+	}
+}
 </script>
 	<form name="frmReply" >
 		<table width="700" cellpadding="5">
@@ -97,7 +114,7 @@ function setCharCount(con, fr_idx) {
 					<br />200자 이내로 입력하세요. (<span id="charCnt">0</span> / 200)
 				</td>
 				<td width="*" valign="top">
-					<input type="submit" value="댓글 등록" class="btn" <%=dis %>/>
+					<input type="button" value="댓글 등록" class="btn" <%=dis %> onclick="replyIn();" />
 				</td>
 			</tr>
 		</table>
@@ -110,9 +127,14 @@ function setCharCount(con, fr_idx) {
 	%>
 	<div class="reWriter">
 		<%=fr.getMi_id() %>&nbsp;&nbsp;&nbsp;&nbsp;<%=fr.getFr_date() %>
+		<img src="img/thumbs-up.png" width="20" style="margin-left:410px;"/>
+		<%=fr.getFr_good() %>
+		<img src="img/thumbs-down.png" width="20" />
+		<%=fr.getFr_bad() %>
+		<img src="img/close.png" width="20" />
 	</div>
 	<div class="reContent">
-		<pre><%=fr.getFr_content() %></pre><!-- pre는 태그 먹힘 xmp는 태그 안먹힘 둘다 엔터 표시해줌 -->
+		<%=fr.getFr_content().replace("\r\n", "<br />") %><!-- pre는 태그 먹힘 xmp는 태그 안먹힘 둘다 엔터 표시해줌 or .replace("\r\n", "<br />") -->
 	</div>
 	<%
 		}
