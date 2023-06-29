@@ -50,5 +50,35 @@ update t_free_list set fl_read = fl_read + 1 where fl_idx = ?;
 
 select * from t_free_list where fl_idx = 1;
 
+use mall;
+select * from t_free_list;
+
+
+-- 회원용
+select * from t_free_list where fl_isview = 'y' and fl_idx = ? and fl_writer = '';
+
+-- 비회원용
+select * from t_free_list where fl_isview = 'y' and fl_idx = ? and fl_pw = '';
+
+select * from t_free_list;
+update t_free_list set fl_reply = fl_reply + 1 where fl_idx = ;
+select * from t_free_reply;
+
+insert into t_free_reply (fl_idx, mi_id, fr_content, fr_ip) values (?, '', '', '');
+
+
+select * from t_free_reply where fl_idx = 53;
+
+
+
+
+
+
+
+
+
+
+
+
 
 
