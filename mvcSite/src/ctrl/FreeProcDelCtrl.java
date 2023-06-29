@@ -8,7 +8,6 @@ import svc.*;
 import vo.FreeList;
 import vo.MemberInfo;
 
-
 @WebServlet("/freeProcDel")
 public class FreeProcDelCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,12 +27,7 @@ public class FreeProcDelCtrl extends HttpServlet {
 		int result = freeProcSvc.freeDelete(where);
 		
 		if (result == 1) {
-			response.setContentType("text/html; charset=utf-8");
-    		PrintWriter out = response.getWriter();
-    		out.println("<script>");
-    		out.println("alert('삭제에 성공했습니다.');");
-    		out.println("location.replace('freeList');");
-    		out.println("</script>");
+			response.sendRedirect("freeList");
 		} else {
 			response.setContentType("text/html; charset=utf-8");
     		PrintWriter out = response.getWriter();

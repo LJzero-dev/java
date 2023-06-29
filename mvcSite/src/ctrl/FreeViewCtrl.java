@@ -25,8 +25,10 @@ public class FreeViewCtrl extends HttpServlet {
 		int flidx = Integer.parseInt(request.getParameter("flidx"));
 		FreeProcSvc freeProcSvc = new FreeProcSvc();
 		freeProcSvc.readUpdate(flidx);	// 사용자가 선택한 게시글의 조회수를 증가시키는 메소드 호출
-		
 		FreeList freeList = freeProcSvc.getFreeInfo(flidx);	// 사용자가 선택한 게시글의 내용들을 FreeList형 인스턴스로 받아옴
+		FreeReplyProcSvc freeReplyProcSvc = new FreeReplyProcSvc();
+		ArrayList<FreeReply> replyList = freeReplyProcSvc.getReplyList(flidx);	// 사용자가 선택한 게시글에 속하는 댓글들의 목록을 가져옴
+		
 		if (freeList == null) {	// 게시글이 없으면
 			response.setContentType("text/html; charset=utf-8");
     		PrintWriter out = response.getWriter();
@@ -37,7 +39,7 @@ public class FreeViewCtrl extends HttpServlet {
 		} else {				// 게시글이 있으면
 			request.setAttribute("args", args);
 			request.setAttribute("freeList", freeList);
-			
+			request.setAttribute("replyList", replyList);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bbs/free_view.jsp");
 			dispatcher.forward(request, response);
 		}

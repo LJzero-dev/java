@@ -151,7 +151,7 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 
 
 
-	public int freeUpdate(FreeList freeList) {
+	public int freeUpdate(FreeList freeList) {	// 수정
 		try {
 			return conn.createStatement().executeUpdate("update t_free_list set fl_title = '" + freeList.getFl_title() + "', fl_content = '" + freeList.getFl_content() + "' where fl_idx = " + freeList.getFl_idx());
 		} catch (Exception e) {
@@ -161,7 +161,7 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 		return 0;
 	}
 
-	public int freeDelete(String where) {
+	public int freeDelete(String where) {	// 삭제
 		try {
 			return conn.createStatement().executeUpdate("update t_free_list set fl_isview = 'n' where fl_isview = 'y' " + where);
 		} catch (Exception e) {
