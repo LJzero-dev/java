@@ -69,6 +69,45 @@ public class FreeProcSvc {
 		FreeProcDao freeProcDao = FreeProcDao.getInstance();
 		freeProcDao.setConnection(conn);
 		ismem = freeProcDao.getIsMem(flidx);
+		close(conn);
 		return ismem;
+	}
+
+
+	public FreeList getFreeListInfoUp(String where) {
+		Connection conn = getConnection();
+		FreeProcDao freeProcDao = FreeProcDao.getInstance();
+		freeProcDao.setConnection(conn);
+		
+		FreeList freeList = freeProcDao.getFreeListInfoUp(where);
+				
+		close(conn);
+		return freeList;
+	}
+
+	public int freeUpdate(FreeList freeList) {
+		int result = 0;
+		Connection conn = getConnection();
+		FreeProcDao freeProcDao = FreeProcDao.getInstance();
+		freeProcDao.setConnection(conn);
+		
+		result = freeProcDao.freeUpdate(freeList);
+		if (result == 1)	commit(conn);
+		else				rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int freeDelete(String where) {
+		int result = 0;
+		Connection conn = getConnection();
+		FreeProcDao freeProcDao = FreeProcDao.getInstance();
+		freeProcDao.setConnection(conn);
+		
+		result = freeProcDao.freeDelete(where);
+		if (result == 1)	commit(conn);
+		else				rollback(conn);
+		close(conn);
+		return result;
 	}
 }

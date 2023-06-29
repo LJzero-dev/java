@@ -15,6 +15,8 @@ public class FreeViewCtrl extends HttpServlet {
     public FreeViewCtrl() { super(); }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		
+		
 		String schtype = request.getParameter("schtype"), keyword = request.getParameter("keyword");
 		String args = "?cpage=" + request.getParameter("cpage");
 		if (schtype != null && !schtype.equals("") && keyword != null && !keyword.equals("")) {

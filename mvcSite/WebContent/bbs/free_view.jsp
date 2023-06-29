@@ -2,9 +2,9 @@
 <%@ include file="/_inc/inc_head.jsp" %>
 <%
 request.setCharacterEncoding("utf-8");
-String args = (String)request.getAttribute("args");
 FreeList freeList = (FreeList)request.getAttribute("freeList");
 int flidx = freeList.getFl_idx();
+String args = (String)request.getAttribute("args");
 %>
 <h2>자유 게시판 글 보기 폼</h2>
 	<table width="600" cellpadding="5" >
@@ -33,7 +33,7 @@ int flidx = freeList.getFl_idx();
 				} else {	// 현재 게시글이 회원 글이면
 					if (isLogin && loginInfo.getMi_id().equals(freeList.getFl_writer())) {	// 현재 사용자가 로그인이 되어 있고, 현 게시글의 작성자일 경우
 						isPms = true;
-						upLink = "location.href='freeFormUp" + args + "&flidx=" + flidx + "'";
+						upLink = "location.href='freeFromUp" + args + "&flidx=" + flidx + "'";
 						delLink = "realDel();";
 					}
 				}

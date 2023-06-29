@@ -132,4 +132,42 @@ public class FreeProcDao {	// 자유게시판 관련 쿼리 작업(목록, 등록, 수정, 삭제 �
 		}
 		return null;
 	}
+	public FreeList getFreeListInfoUp(String where) {	// 수정할 특정 게시글의 정보들을 FreeList형 인스턴스로 리턴하는 메소드
+		try {			
+			ResultSet rs = conn.createStatement().executeQuery("select * from t_free_list where fl_isview = 'y' " + where);
+			if (rs.next()) {
+				FreeList freeList = new FreeList();
+				freeList.setFl_idx(rs.getInt("fl_idx"));		freeList.setFl_ismem(rs.getString("fl_ismem"));		freeList.setFl_writer(rs.getString("fl_writer"));
+				freeList.setFl_title(rs.getString("fl_title"));	freeList.setFl_content(rs.getString("fl_content"));	freeList.setFl_date(rs.getString("fl_date"));	
+				close(rs);
+				return freeList;
+			}
+		} catch (Exception e) {
+			System.out.println("FreeProcDao 클래스의 getFreeListInfoUp() 메소드 오류");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
+	public int freeUpdate(FreeList freeList) {
+		try {
+			return conn.createStatement().executeUpdate("update t_free_list set fl_title = '" + freeList.getFl_title() + "', fl_content = '" + freeList.getFl_content() + "' where fl_idx = " + freeList.getFl_idx());
+		} catch (Exception e) {
+			System.out.println("FreeProcDao 클래스의 freeUpdate() 메소드 오류");
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	public int freeDelete(String where) {
+		try {
+			return conn.createStatement().executeUpdate("update t_free_list set fl_isview = 'n' where fl_isview = 'y' " + where);
+		} catch (Exception e) {
+			System.out.println("FreeProcDao 클래스의 freeDelete() 메소드 오류");
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
