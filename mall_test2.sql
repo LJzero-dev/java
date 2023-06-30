@@ -69,10 +69,32 @@ insert into t_free_reply (fl_idx, mi_id, fr_content, fr_ip) values (?, '', '', '
 
 select * from t_free_reply where fl_idx = 53;
 
+select * from t_free_list;
+select * from t_free_reply;
+update t_free_list set fl_reply = fl_reply - 1 where fl_idx = 3;
+
+select * from t_free_reply;
 
 
 
+select frg_gnb from t_free_reply_gnb where fr_idx = 1 and mi_id = '';
 
+insert into t_free_reply_gnb (mi_id, fr_idx, frg_gnb, frg_date) values ('', ?, '', '');
+
+select * from t_free_list;
+update t_free_list set fl_reply = fl_reply - 1 where fl_idx = (select fl_idx from t_free_reply where fr_idx =45);
+
+select * from t_product_info;
+
+select * from t_product_ctgr_big;
+
+select * from t_product_info where pcs_id like 'AA%';
+select * from t_product_info where left(pcs_id, 2) = 'BB';
+
+select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_special, a.pi_review, a.pi_sale, a.pi_score, sum(b.ps_stock) stock
+from t_product_info a, t_product_stock b
+where a.pi_id = b.pi_id and a.pi_isview = 'y'
+group by a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_special, a.pi_review, a.pi_sale, a.pi_score;
 
 
 

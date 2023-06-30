@@ -8,5 +8,7 @@
 <input type="submit" value="검색" />
 </form>
 <hr />
+<a href="comboCtgr?pcb=AA">상품 분류</a>
+<hr />
 </body>
 </html>

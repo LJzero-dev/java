@@ -60,7 +60,7 @@ String args = (String)request.getAttribute("args");
 	loginUrl = "/mvcSite/freeView" + args.replace('&', '~') + "~flidx=" + flidx;
 	String msg = " placeholder='로그인 후에 사용하실 수 있습니다.' ";
 	String dis = " disabled='disabled'";
-	String login = " onclick='goLogin(\"댓글 등록\");' ";
+	String login = " onclick='goLogin(\"댓글 등록은\");' ";
 	if (isLogin) {
 		msg = "";	dis = "";	login = "";
 	}
@@ -93,16 +93,41 @@ function replyIn() {	// ajsx를 이용한 댓글 등록 함수
 	if (fr_content != "") {
 		$.ajax({
 			type : "POST", url : "/mvcSite/freeReplyProcIn", data : {"flidx" : "<%=flidx %>", "fr_content" : fr_content}, success : function(chkRs) {
-				if (chkRs == 0) {
-					alert("댓글 등록에 실패했습니다.\n다시 시도해 보세요.");
+				if (chkRs == 1) {
+					location.reload();				
 				} else {
-					location.reload();
+					alert("댓글 등록에 실패했습니다. \n다시 시도해 보세요.");
 				}
 			}
 		});
 	} else {
 		alert("댓글 내용을 입력하세요.");
 		document.frmReply.fr_content.focus();
+	}
+}
+function replyGnb(gnb, fridx) {	// ajax를 이용한 댓글 좋아요/싫어요 등록 함수
+	$.ajax({
+		type : "POST", url : "/mvcSite/freeReplyProcGnb", data : {"gnb" : gnb, "fridx" : fridx}, success : function(chkRs) {
+			if (chkRs == 2) {
+				location.reload();
+			} else if (chkRs == -1) {
+				alert("이미 참여했습니다. \n다시 시도해 보세요.");
+			} else {
+				alert("처리에 실패했습니다. \n다시 시도해 보세요.");
+			}
+		}
+	});	
+}
+function replyDel(fridx) {
+	if (confirm("정말 삭제하시겠습니까?")) {
+	$.ajax({
+		type : "POST", url : "/mvcSite/freeReplyProcDel", data : {"fridx" : fridx}, success : function(chkRs) {
+			if (chkRs == 2) {
+				location.reload();
+			} else
+				alert("삭제에 오류가 발생했습니다.. \n다시 시도해 보세요.");
+			}
+		});
 	}
 }
 </script>
@@ -124,14 +149,24 @@ function replyIn() {	// ajsx를 이용한 댓글 등록 함수
 	ArrayList<FreeReply> replyList = (ArrayList<FreeReply>)request.getAttribute("replyList");
 	if (replyList.size() > 0) {	// 보여줄 댓글 목록이 있으면
 		for (FreeReply fr : replyList) {
+			int fridx = fr.getFr_idx();
+			String lnkG = "", lnkB = "";	// 좋아요 싫어요 링크
+			if (isLogin) {	// 현재 로그인 한 상태
+				lnkG = "replyGnb('good'," + fridx + ");";
+				lnkB = "replyGnb('bad'," + fridx + ");";
+			} else {	// 로그인을 하지 않은 상태
+				lnkG = lnkB = "goLogin('댓글의 좋아요/싫어요는');";
+			}		
 	%>
 	<div class="reWriter">
 		<%=fr.getMi_id() %>&nbsp;&nbsp;&nbsp;&nbsp;<%=fr.getFr_date() %>
-		<img src="img/thumbs-up.png" width="20" style="margin-left:410px;"/>
+		<img  src="img/thumbs-up.png" width="20" onclick="<%=lnkG %>" class="hand" style="margin-left:410px;" />
 		<%=fr.getFr_good() %>
-		<img src="img/thumbs-down.png" width="20" />
+		<img src="img/thumbs-down.png" width="20" class="hand" onclick="<%=lnkB %>" />
 		<%=fr.getFr_bad() %>
-		<img src="img/close.png" width="20" />
+		<% if (isLogin && loginInfo.getMi_id().equals(fr.getMi_id())) { %>
+		<img src="img/close.png" width="20" class="hand" onclick="replyDel(<%=fridx %>);" />
+		<% } %>
 	</div>
 	<div class="reContent">
 		<%=fr.getFr_content().replace("\r\n", "<br />") %><!-- pre는 태그 먹힘 xmp는 태그 안먹힘 둘다 엔터 표시해줌 or .replace("\r\n", "<br />") -->
