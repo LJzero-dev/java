@@ -46,5 +46,7 @@ public class ProductListCtrl extends HttpServlet {
 				}
 			}
 		}
+		
+		String orderBy = "";	// 목록 정렬 순서
 	}
 }
