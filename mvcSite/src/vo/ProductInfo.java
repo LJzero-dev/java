@@ -6,7 +6,7 @@ public class ProductInfo {	// 하나의 상품 정보들을 저장할 클래스
 	private String pi_id, pcs_id, pb_id, pi_name, pi_com, pi_img1, pi_img2, pi_img3, pi_desc, pi_special, pi_isview, pi_date, pi_last;
 	private String pcb_name, pcs_name, pb_name;	// 상품 상세보기 화면에서 사용할 분류와 브랜드명을 저장할 변수들
 	
-	private int pi_price, pi_cost, pi_read, pi_review, pi_sale, ai_idx, pi_admin;
+	private int pi_price, pi_cost, pi_read, pi_review, pi_sale, ai_idx, pi_admin, stock;
 	private double pi_dc, pi_score;
 	private ArrayList<ProductStock> stockList;	// 현 상품에 속하는 옵션 및 재고량들을 저장할 ArrayList
 	
@@ -147,6 +147,12 @@ public class ProductInfo {	// 하나의 상품 정보들을 저장할 클래스
 	}
 	public void setPi_admin(int pi_admin) {
 		this.pi_admin = pi_admin;
+	}	
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	public double getPi_dc() {
 		return pi_dc;
