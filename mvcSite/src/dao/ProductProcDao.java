@@ -21,7 +21,7 @@ public class ProductProcDao {	// 상ㅍ훔 관련 작업(목록 및 상세 보기)들을 처리하�
 	public int getProductCount(String where) {	// 검색되는 상품의 개수를 리턴하는 메소드
 		int rcnt = 0;
 		try {
-			ResultSet rs = conn.createStatement().executeQuery(" select count(*) from t_product_info a where a.pi_isview = 'y' ");	if(rs.next())	rcnt = rs.getInt(1);	close(rs);
+			ResultSet rs = conn.createStatement().executeQuery(" select count(*) from t_product_info a where a.pi_isview = 'y'" + where);	if(rs.next())	rcnt = rs.getInt(1);	close(rs);
 		} catch (Exception e) {
 			System.out.println("ProductProcDao 클래스 의 getProductCount() 메소드 오류");			
 			e.printStackTrace();
@@ -33,7 +33,7 @@ public class ProductProcDao {	// 상ㅍ훔 관련 작업(목록 및 상세 보기)들을 처리하�
 		ArrayList<ProductInfo> productList = new ArrayList<ProductInfo>();
 		ProductInfo pi = null;
 		ResultSet rs = null;
-		try {		
+		try {
 			 rs = conn.createStatement().executeQuery("select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_special, a.pi_review, a.pi_sale, a.pi_score, sum(b.ps_stock) stock " + 
 			 		" from t_product_info a, t_product_stock b " + 
 			 		" where a.pi_id = b.pi_id and a.pi_isview = 'y' " + where +

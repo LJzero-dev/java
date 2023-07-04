@@ -39,7 +39,7 @@ public class ProductListCtrl extends HttpServlet {
 				if (c == 'n') {			// 상품명 검색일 경우(n검색어)
 					where += " and a.pi_name like '%" + arrSch[i].substring(1) + "%' ";
 				} else if (c == 'b') {	// 브랜드 검색일 경우(b브랜드1:브랜드2)	" and (a.pb_id = '브1' || a.pb_id = '브2')"
-					String[] arr = arrSch[i].split(":");
+					String[] arr = arrSch[i].substring(1).split(":");
 					where += " and (";
 					for (int j = 0; j < arr.length; j++) {
 						where += (j == 0 ? "" : " or ") + "a.pb_id = '" + arr[j] + "' ";
@@ -49,7 +49,7 @@ public class ProductListCtrl extends HttpServlet {
 					String sp = arrSch[i].substring(1, arrSch[i].indexOf('~'));
 					if (sp != null && !sp.equals(""))	where += " and a.pi_price >= " + sp;
 					String ep = arrSch[i].substring(arrSch[i].indexOf('~') + 1);
-						where += " and a.pi_price <= " + ep;
+					if (ep != null && !ep.equals(""))	where += " and a.pi_price <= " + ep;
 				}
 			}
 		}

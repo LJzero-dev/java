@@ -97,8 +97,11 @@ where a.pi_id = b.pi_id and a.pi_isview = 'y'
 group by a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_special, a.pi_review, a.pi_sale, a.pi_score;
 
 
+
 select count(*) from t_product_info a where a.pi_isview = 'y';
 
 select * from t_product_ctgr_small where pcb_id = 'AA';
 
+select * from t_product_brand order by pb_name asc;
 
+select * from t_product_brand order by pb_name;
