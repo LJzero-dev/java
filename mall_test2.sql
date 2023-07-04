@@ -105,3 +105,53 @@ select * from t_product_ctgr_small where pcb_id = 'AA';
 select * from t_product_brand order by pb_name asc;
 
 select * from t_product_brand order by pb_name;
+select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_special, a.pi_review, a.pi_sale, a.pi_score, sum(b.ps_stock) stock  from t_product_info a, t_product_stock b  where a.pi_id = b.pi_id and a.pi_isview = 'y'  and a.pi_name like '%aa%'  and (a.pb_id = 'B3' )  and a.pi_price >= 30 and a.pi_price <= 77 group by a.pi_id  order by  a.pi_date desc  limit 0, 12;
+
+select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_special, a.pi_review, a.pi_sale, a.pi_score, sum(b.ps_stock) stock  
+from t_product_info a, t_product_stock b  
+where a.pi_id = b.pi_id and a.pi_isview = 'y'  and a.pi_name like '%aa%'  and (a.pb_id = 'B3'  or a.pb_id = 'B2'  or a.pb_id = 'B4' )  and a.pi_price >= 30 and a.pi_price <= 77 
+group by a.pi_id  
+order by  a.pi_date desc  limit 0, 12;
+
+
+
+select a.pi_id, a.pi_name, a.pi_img1, a.pi_price, a.pi_dc, a.pi_special, a.pi_review, a.pi_sale, a.pi_score, sum(b.ps_stock) stock  
+from t_product_info a, t_product_stock b  
+where a.pi_id = b.pi_id and a.pi_isview = 'y'  and a.pi_name like '%aa%'  and (a.pb_id = 'B3'  or a.pb_id = 'B2'  or a.pb_id = 'B4' )  and a.pi_price >= 30 and a.pi_price <= 77 
+group by a.pi_id  
+order by  a.pi_date desc  limit 0, 12;
+
+select * from t_product_info;
+update t_product_info set pi_img1 = 'AA01101_1.png' where pi_id = 'AA01101';
+update t_product_info set pi_img1 = 'AA01102_1.png' where pi_id = 'AA01102';
+update t_product_info set pi_img1 = 'AA01103_1.png' where pi_id = 'AA01103';
+update t_product_info set pi_img1 = 'AA02101_1.png' where pi_id = 'AA02101';
+update t_product_info set pi_img2 = 'AA02101_2.png' where pi_id = 'AA02101';
+update t_product_info set pi_img1 = 'BB01103_1.png' where pi_id = 'BB01101';
+
+select * from t_product_info;
+insert into t_product_info () values ();
+
+insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc,
+pi_com, pi_img1, pi_desc, pi_isview, ai_idx)
+values ('AA01109', 'AA01', 'B1', '좋은 로퍼3', 150000, 80000, 0, '좋은 회사', 'AA01101_1.png',
+'AA01101_d.jpg', 'y', 1);
+insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc,
+pi_com, pi_img1, pi_desc, pi_isview, ai_idx)
+values ('AA01102', 'AA01', 'B2', '좋은 윙팁', 180000, 90000, 0.1, '좋은 회사', 'AA01102_1.jpg',
+'AA01102_d.jpg', 'y', 1);
+insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc,
+pi_com, pi_img1, pi_desc, pi_isview, ai_idx)
+values ('BB01101', 'BB01', 'B3', '뛰는 러닝화', 130000, 70000, 0, '좋은 회사2', 'BB01101_1.jpg',
+'BB01101_d.jpg', 'y', 1);
+select * from t_product_info;
+
+select * from t_product_stock;
+insert into t_product_stock (pi_id, ps_size, ps_stock, ps_isview) values ('AA011', 250, 100, 'y');
+
+update t_product_info set pi_read = piread + 1 where pi_id = '';
+
+select a.*, b.pcb_name, c.pcs_name, d.pb_name from t_product_info a, t_product_ctgr_big b, t_product_ctgr_small c, t_product_brand d where a.pcs_id = c.pcs_id and b.pcb_id = c.pcb_id and a.pb_id = d.pb_id and a.pi_isview = 'y' and a.pi_id = 'AA01101';
+select ps_idx, ps_size, ps_stock from t_product_stock where ps_isview = 'y' and pi_id = 'AA01101';
+
+
