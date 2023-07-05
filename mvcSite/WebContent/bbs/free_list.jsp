@@ -13,9 +13,6 @@ String args = pageInfo.getArgs(), schargs = pageInfo.getSchargs(), schtype = pag
 #list th { border-bottom:double black 3px; }
 #list td { border-bottom:dotted black 1px; }
 </style>
-<script>
-
-</script>
 <h2>자유 게시판 목록</h2>
 <table width="700" cellpadding="5">
 	<tr>

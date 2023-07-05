@@ -79,4 +79,16 @@ public class ProductProcSvc {
 		close(conn);		
 		return pi;	
 	}
+
+	public ArrayList<ReviewList> getReviewList(String piid) {
+		ArrayList<ReviewList> reviewList = new ArrayList<ReviewList>();
+		Connection conn = getConnection();
+		ProductProcDao productProcDao = ProductProcDao.getInstance();
+		productProcDao.setConnection(conn);
+		
+		reviewList = productProcDao.getReviewList(piid);
+		
+		close(conn);
+		return reviewList;
+	}
 }

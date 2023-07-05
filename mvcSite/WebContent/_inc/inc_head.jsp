@@ -44,7 +44,7 @@ function onlyNum(obj) {
 <% } else { %>
 <a href="login_form">로그인</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="memberFormIn">회원가입</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="login_form?url=cart_view">장바구니</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="login_form?url=cartView">장바구니</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <% } %>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="productList?pcb=AA" class="bold">구두</a>&nbsp;&nbsp;&nbsp;

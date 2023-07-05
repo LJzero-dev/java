@@ -9,23 +9,24 @@
 	ArrayList<ProductBrand> brandList = (ArrayList<ProductBrand>) request.getAttribute("brandList");
 
 	String name = "", chkBrd = "", sp = "", ep = "", sch = pageInfo.getSch();
-	int pr1 = 0, pr2 = 0;
+	if (sch != null && !sch.equals("")) {
+	// 검색조건 : &sch=ntest,bB1:B2:B3,p100000~200000
 
-	if (sch != null && !sch.equals("")) { // 검색조건 : &sch=ntest,bB1:B2:B3,p100000~200000
-		String[] arrSch = sch.split(",");
-		for (int i = 0; i < arrSch.length; i++) {
-			char c = arrSch[i].charAt(0);
-			if (c == 'n') {
-				name = arrSch[i].substring(1);
-			} else if (c == 'b') {
-				chkBrd = arrSch[i].substring(1);
-			} else if (c == 'p') {
-				sp = arrSch[i].substring(1, arrSch[i].indexOf('~'));
-				ep = arrSch[i].substring(arrSch[i].indexOf('~') + 1);
-			}
-		}
+	   String[] arrSch = sch.split(",");
+	   for (int i = 0; i < arrSch.length ; i++) {
+	      char c = arrSch[i].charAt(0);
+	      if (c == 'n') {         // 상품명 검색일 경우 (n검색어)
+	         name = arrSch[i].substring(1);
+	      } else if (c == 'b') {   // 브랜드 검색일 경우 (b브랜드1:브랜드2)   // where += " and (a.pb_id = '브1' or a.pb_id = '브2') "   // 삼항연산자 순위가 낮으므로 괄호쳐주기
+	         chkBrd = arrSch[i].substring(1);
+	      } else if (c == 'p') {   // 가격대 검색일 경우 (p시작가~종료가)
+	         sp = arrSch[i].substring(1, arrSch[i].indexOf('~'));
+	         ep = arrSch[i].substring(arrSch[i].indexOf('~') + 1);
+	      }
+	   }
 	}
-%>
+	%>
+
 <style>
 .bigCtgr {
 	width: 100px;
@@ -86,13 +87,10 @@ del {
 			}
 		} // sch=n검색어,b브랜드(들)
 
-		var sp = parseInt(frm.sp.value), ep = parseInt(frm.ep.value); // 가격대
+		var sp = frm.sp.value, ep = frm.ep.value; // 가격대
 		if (sp != "" || ep != "") { // 가격대중 하나라도 값이 있으면
 			if (sch != "")
 				sch += ",";
-			if (sp > ep && (sp != "" && ep != ""))
-				sch += "p" + ep + "~" + sp;
-			else
 				sch += "p" + sp + "~" + ep;
 			
 			
@@ -188,22 +186,15 @@ del {
 			<p align="right">
 				<select name="ob"
 					onchange="location.href='<%=lnk + pageInfo.getVargs()%>&ob=' + this.value;">
-					<option value="a" <%if (pageInfo.getOb().equals("a")) {%>
-						selected="selected" <%}%>>신상품</option>
-					<option value="b" <%if (pageInfo.getOb().equals("b")) {%>
-						selected="selected" <%}%>>인기순</option>
-					<option value="c" <%if (pageInfo.getOb().equals("c")) {%>
-						selected="selected" <%}%>>낮은 가격순</option>
-					<option value="d" <%if (pageInfo.getOb().equals("d")) {%>
-						selected="selected" <%}%>>높은 가격순</option>
-					<option value="e" <%if (pageInfo.getOb().equals("e")) {%>
-						selected="selected" <%}%>>평점 높은순</option>
-					<option value="f" <%if (pageInfo.getOb().equals("f")) {%>
-						selected="selected" <%}%>>리뷰 많은 순</option>
-					<option value="g" <%if (pageInfo.getOb().equals("g")) {%>
-						selected="selected" <%}%>>조회수 높은 순</option>
-				</select> &nbsp;&nbsp;&nbsp;&nbsp; <img src="<%=imgList%>" width="18"
-					height="22" align="absmiddle" class="hand"
+					<option value="a" <%if (pageInfo.getOb().equals("a")) {%> selected="selected" <%}%>>신상품</option>
+					<option value="b" <%if (pageInfo.getOb().equals("b")) {%> selected="selected" <%}%>>인기순</option>
+					<option value="c" <%if (pageInfo.getOb().equals("c")) {%> selected="selected" <%}%>>낮은 가격순</option>
+					<option value="d" <%if (pageInfo.getOb().equals("d")) {%> selected="selected" <%}%>>높은 가격순</option>
+					<option value="e" <%if (pageInfo.getOb().equals("e")) {%> selected="selected" <%}%>>평점 높은순</option>
+					<option value="f" <%if (pageInfo.getOb().equals("f")) {%> selected="selected" <%}%>>리뷰 많은 순</option>
+					<option value="g" <%if (pageInfo.getOb().equals("g")) {%> selected="selected" <%}%>>조회수 높은 순</option>
+				</select> &nbsp;&nbsp;&nbsp;&nbsp; 
+				<img src="<%=imgList%>" width="18" height="22" align="absmiddle" class="hand"
 					onclick="location.href='<%=lnk + pageInfo.getObargs()%>&v=l';" />
 				<img src="<%=imgGall%>" width="18" height="22" align="absmiddle"
 					class="hand"

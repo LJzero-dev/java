@@ -21,8 +21,17 @@ public class ProductViewCtrl extends HttpServlet {
 		ProductProcSvc productProcSvc = new ProductProcSvc();
 		productProcSvc.readUpdate(piid);
 		ProductInfo pi = productProcSvc.getProductInfo(piid);
-		
-		request.setAttribute("pi", pi);
+		if (pi == null) {	// 보여주려는 상품의 옵션이 없을 경우
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('상품 정보가 없습니다.'); history.back();");
+			out.println("</script>");
+			out.close();
+		}
+		ArrayList<ReviewList> reviewList = productProcSvc.getReviewList(piid);
+		request.setAttribute("productInfo", pi);
+		request.setAttribute("reviewList", reviewList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/product/product_view.jsp");
 		dispatcher.forward(request, response);
 	}

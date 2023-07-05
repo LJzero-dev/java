@@ -154,4 +154,11 @@ update t_product_info set pi_read = piread + 1 where pi_id = '';
 select a.*, b.pcb_name, c.pcs_name, d.pb_name from t_product_info a, t_product_ctgr_big b, t_product_ctgr_small c, t_product_brand d where a.pcs_id = c.pcs_id and b.pcb_id = c.pcb_id and a.pb_id = d.pb_id and a.pi_isview = 'y' and a.pi_id = 'AA01101';
 select ps_idx, ps_size, ps_stock from t_product_stock where ps_isview = 'y' and pi_id = 'AA01101';
 
+select * from t_order_info;
 
+select * from t_order_cart;
+update t_product_info set pi_img1 = 'AA01102_1.png', pi_img2 = 'AA01103_1.png', pi_img3 = 'AA02101_1.png' where pi_id = 'AA01102';
+select * from t_product_stock where pi_id = 'AA01102' and ps_idx = 9;
+update t_product_stock set ps_stock = -3 where pi_id = 'AA01102' and ps_idx = 9;
+
+insert into t_order_cart (mi_id, pi_id, ps_idx, oc_cnt) values ('test1','','',3);
