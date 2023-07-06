@@ -19,12 +19,15 @@ public class ProductProcDao {	// 상ㅍ훔 관련 작업(목록 및 상세 보기)들을 처리하�
 		this.conn = conn;
 	}
 	public int getProductCount(String where) {	// 검색되는 상품의 개수를 리턴하는 메소드
+		ResultSet rs = null;
 		int rcnt = 0;
 		try {
-			ResultSet rs = conn.createStatement().executeQuery(" select count(*) from t_product_info a where a.pi_isview = 'y'" + where);	if(rs.next())	rcnt = rs.getInt(1);	close(rs);
+			rs = conn.createStatement().executeQuery(" select count(*) from t_product_info a where a.pi_isview = 'y'" + where);	if(rs.next())	rcnt = rs.getInt(1);
 		} catch (Exception e) {
 			System.out.println("ProductProcDao 클래스 의 getProductCount() 메소드 오류");			
 			e.printStackTrace();
+		} finally {
+			close(rs);
 		}
 		return rcnt;
 	}

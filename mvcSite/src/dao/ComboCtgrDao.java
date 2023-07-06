@@ -49,8 +49,7 @@ public class ComboCtgrDao {
 				productCtgrSmall.setPcs_id(rs.getString("pcs_id"));
 				productCtgrSmall.setPcs_name(rs.getString("pcs_name"));
 				smallList.add(productCtgrSmall);
-			}
-			
+			}			
 		} catch (Exception e) {
 			System.out.println("ComboCtgrDao 클래스의 getSmallList() 메소드 오류");
 			e.printStackTrace();

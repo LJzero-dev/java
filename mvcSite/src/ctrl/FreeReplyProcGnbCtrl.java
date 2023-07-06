@@ -23,7 +23,7 @@ public class FreeReplyProcGnbCtrl extends HttpServlet {
 		
 		if (loginInfo == null) {
 			out.println("<script>");
-			out.println("alert('로그인 후 사용하실 수 있습니다.')");
+			out.println("alert('로그인 후 사용하실 수 있습니다.');");
 			out.println("</script>");
 			out.close();
 		}

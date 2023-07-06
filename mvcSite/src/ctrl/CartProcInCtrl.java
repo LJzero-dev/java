@@ -16,7 +16,7 @@ public class CartProcInCtrl extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String piid = request.getParameter("piid");
-		int psidx = Integer.parseInt(request.getParameter("psidx").substring(0,request.getParameter("psidx").indexOf(":")));
+		int psidx = Integer.parseInt(request.getParameter("psidx").substring(0,request.getParameter("psidx").indexOf(":")));	// psidx는 옵션 번호와 재고량을 같이 가지고 있으므로 옵션 번호 부분만 추출하여 사용
 		int cnt = Integer.parseInt(request.getParameter("cnt"));
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();

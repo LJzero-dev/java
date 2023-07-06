@@ -156,9 +156,37 @@ select ps_idx, ps_size, ps_stock from t_product_stock where ps_isview = 'y' and 
 
 select * from t_order_info;
 
-select * from t_order_cart;
+select * from t_order_cart order by oc_idx desc;
+
 update t_product_info set pi_img1 = 'AA01102_1.png', pi_img2 = 'AA01103_1.png', pi_img3 = 'AA02101_1.png' where pi_id = 'AA01102';
 select * from t_product_stock where pi_id = 'AA01102' and ps_idx = 9;
 update t_product_stock set ps_stock = -3 where pi_id = 'AA01102' and ps_idx = 9;
 
 insert into t_order_cart (mi_id, pi_id, ps_idx, oc_cnt) values ('test1','','',3);
+
+
+update t_order_cart set oc_cnt = oc_cnt + ? where mi_id = '' and pi_id = '' and ps_idx = ?;
+
+select * from t_order_cart;
+
+select a.oc_cnt, b.pi_name, b.pi_img1, b.pi_price, b.pi_id 
+from t_order_cart a, t_product_info b 
+where a.pi_id = b.pi_id and a.mi_id = 'test1';
+
+
+select b.ps_size, b.ps_stock, sum(a.oc_cnt)
+from t_order_cart a left join t_product_stock b on a.pi_id = b.pi_id
+where a.mi_id = 'test1' and ps_isview = 'y' and a.pi_id = 'AA01102'
+group by b.ps_size, b.ps_stock;
+
+select * from t_order_cart;
+select * from t_product_stock;
+
+select a.*, b.pi_img1, if(b.pi_dc > 0, round((1 - b.pi_dc) * b.pi_price) ,b.pi_dc) price from t_order_cart a, t_product_info b where a.pi_id = b.pi_id and b.pi_isview = 'y' and a.mi_id = 'test1' order by a.pi_id, a.ps_idx;
+
+select a.*,b.pi_name, b.pi_img1, if(b.pi_dc > 0, round((1 - b.pi_dc) * b.pi_price) ,b.pi_dc) price from t_order_cart a, t_product_info b where a.pi_id = b.pi_id and b.pi_isview = 'y' and a.mi_id = 'test1' order by a.pi_id, a.ps_idx;
+
+select * from t_product_info;
+
+-- delete from t_order_cart
+
