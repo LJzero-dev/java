@@ -66,4 +66,87 @@ public class CartProcDao {	// 장바구니 관련 작업(장바구니에 등록, 보기, 수정, 삭
 		}
 		return 0;
 	}
+
+	public int cartUpdate(int ocidx, int opt, int cnt, String miid) {	// 지정한 상품의 옵션 또는 수량을 변경하는 메소드
+		ResultSet rs = null;
+		try {
+			if (opt == 0)	return conn.createStatement().executeUpdate("update t_order_cart set oc_cnt = " + cnt + " where mi_id = '" + miid + "' and oc_idx = " + ocidx);
+			else {				
+				rs = conn.createStatement().executeQuery("select oc_idx, oc_cnt from t_order_cart where mi_id = '"+ miid +"' and ps_idx = " + opt);
+				if (rs.next()) {	// 변경하려는 옵션과 동일한 옵션의 상품이 장바구니에 이미 존재하는 경우 기존 상품의 수량을 추가한 후 삭제
+					conn.createStatement().executeUpdate("update t_order_cart set Ps_idx = " + opt + ",  oc_cnt = oc_cnt + " + rs.getInt("oc_cnt") + " where mi_id = '" + miid + "' and oc_idx = " + ocidx);
+					return conn.createStatement().executeUpdate("delete from t_order_cart where oc_idx = " + ocidx);
+				} else {	// 해당 상품의 옵션만 변경
+					return conn.createStatement().executeUpdate("update t_order_cart set ps_idx = " + opt + " where mi_id = '" + miid + "' and oc_idx = " + ocidx);
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("CartProcDao 클래스의 cartUpdate() 메소드 오류");
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
+
+///*
+//try {
+//    stmt = conn.createStatement();
+//    String sql = "";
+//    if (oc.getOc_cnt() == 0) { //옵션 변경일 경우
+//       sql = "select oc_idx, oc_cnt from t_order_cart where mi_id = '"+ oc.getMi_id() +"' and ps_idx =" + oc.getPs_idx();
+///*System.out.println(sql);   */         
+//       //변경하려는 옵션과 동일한 옵견의 삼품이 장바구니에 이미 존재하는지 여부를 검사할 쿼리
+//       rs = stmt.executeQuery(sql);
+//       if (rs.next()) {
+//       // 변경하려는 옵션과 동일한 옵션의 상품이 장바구니에 이미 존재하는 경우
+//       // 기존 상품의 수량을 추가한 후 삭제
+//          int idx = rs.getInt("oc_idx");
+//          // stmt로 다른 쿼리를 실행하기 전(delete쿼리)에 사용할 값을 미리 rs에서 받아놓아 준다
+//          
+//          sql = "update t_order_cart set Ps_idx = " + oc.getPs_idx() + ",  oc_cnt = oc_cnt + " + rs.getInt("oc_cnt") + " where mi_id = '" + oc.getMi_id() + "' and oc_idx=" + oc.getOc_idx();
+//          // ** 옵션변경 및 동일한 옵션의 기존 상품 수량을 현 상품에 추가하는 쿼리 **
+///*System.out.println(sql);*/
+//          result = stmt.executeUpdate(sql);
+//          
+//          sql = "delete from t_order_cart where oc_idx = " + idx;
+///*System.out.println(sql);*/
+//          //동일한 옵션의 기존 상품을 장바구니에서 삭제하는 쿼리
+//       } else {
+//       // 변경하려는 옵션과 동일한 옵션의 상품이 장바구니에 없는 경우
+//       // 해당상품의 옵션만 변경
+//          sql = "update t_order_cart set Ps_idx = "+ oc.getPs_idx() + " where mi_id = '"+ oc.getMi_id() +"' and oc_idx=" + oc.getOc_idx();
+/////*System.out.println(sql);   */         
+//       }
+//       close(rs);
+//    } else {   //수량 변경일 경우
+//       sql = "update t_order_cart set oc_cnt = "+ oc.getOc_cnt() + " where mi_id = '"+ oc.getMi_id() +"' and oc_idx=" + oc.getOc_idx();
+//    }
+/////*System.out.println(sql);*/
+//    result = stmt.executeUpdate(sql); 
+//
+//    
+//
+//
+//*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

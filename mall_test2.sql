@@ -188,5 +188,49 @@ select a.*,b.pi_name, b.pi_img1, if(b.pi_dc > 0, round((1 - b.pi_dc) * b.pi_pric
 
 select * from t_product_info;
 
+select * from t_order_cart where mi_id='test1';
+update t_order_cart set ps_idx = 23, oc_cnt = oc_cnt + 1 where oc_idx = 44;
+delete from t_order_cart where ps_idx = 10;
+
+
+delete from t_order_cart where ps_idx = 22;
 -- delete from t_order_cart
+select oc_idx, oc_cnt from t_order_cart where mi_id = 'test1' and ps_idx = 12;
+select * from t_order_cart where mi_id = 'test1' and ps_idx = 1;
+select oc_cnt, oc_idx from t_order_cart;
+select * from t_order_cart;
+
+update t_order_cart set ps_idx = ?, oc_cnt = ? where mi_id = '' and oc_idx = ?;
+update t_order_cart set ps_idx = ? where mi_id = '' and oc_idx = ?;
+
+select * from t_product_stock;
+select * from t_product_info;
+
+
+ update t_order_cart set ps_idx = 11 where mi_id = 'test1' and oc_idx = 34;
+
+update t_order_cart set oc_cnt = 0 where mi_id = 'test1' and oc_idx = 34;
+update t_order_cart set ps_idx = 11 where mi_id = 'test1' and oc_idx = 34;
+
+-- 바로 구매 시 결제 폼 쿼리
+select a.pi_id, a.pi_name, a.pi_img1, b.ps_size, if(a.pi_dc > 0, round((1 - a.pi_dc) * a.pi_price), a.pi_price) price, ? cnt
+from t_product_info a, t_product_stock b
+where a.pi_id = b.pi_id and a.pi_isview = 'y' and b.ps_isview = 'y' and a.pi_id = '' and b.ps_idx = ? and b.ps_stock > ?;
+
+-- 장바구니 구매 시 결제 폼 쿼리
+select a.pi_id, a.pi_name, a.pi_img1, b.ps_size, c.oc_cnt, if(a.pi_dc > 0, round((1 - a.pi_dc) * a.pi_price), a.pi_price) price, c.oc_cnt cnt
+from t_product_info a, t_product_stock b, t_order_cart c
+where a.pi_id = b.pi_id and a.pi_isview = 'y' and b.ps_isview = 'y' 
+and b.ps_idx = c.ps_idx and (c.oc_idx = ? or ... or c.oc_idx = ? )
+order by a.pi_id, c.ps_idx;
+
+select * from t_member_addr where mi_id = 'test1' order by ma_basic desc;
+
+
+select a.pi_id, a.pi_name, a.pi_img1, b.ps_size, if(a.pi_dc > 0, round((1 - a.pi_dc) * a.pi_price), a.pi_price) price,  c.oc_cnt cnt, c.oc_idx  
+from t_product_info a, t_product_stock b , t_order_cart c  
+where a.pi_id = b.pi_id and a.pi_isview = 'y' and b.ps_isview = 'y'  and a.pi_id = c.pi_id and b.ps_idx = c.ps_idx and c.mi_id = 'test1' and (c.oc_idx = 44) 
+order by a.pi_id, c.ps_idx;
+
+
 

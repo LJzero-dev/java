@@ -31,6 +31,16 @@ function chkOne(one) {	// 특정 체크박스 클릭 시 체크 여부에 따른
 		all.checked = false;
 	}
 }
+function cartUp(ocidx, opt, cnt) {	// 장바구니 내 특정 상품의 옵션 및 수량을 변경하는 함수	// cnt가 0이면 옵션 변경이고, opt가 0이면 수량 변경을 의미
+	$.ajax({
+		type : "POST", url : "/mvcSite/cartProcUp", data : {"ocidx" : ocidx, "opt" : opt, "cnt" : cnt  }, success : function(chkRs) {
+			if (chkRs == 0) {
+				alert("상품 변경에 실패했습니다.\n다시 시도하세요.");
+			}
+			location.reload();
+		}
+	});
+}
 function cartDel(ocidx) {	// 장바구니 내 특정 상품을 삭제하는 함수
 	if(confirm("정말 삭제하시겠습니까?")) {
 		$.ajax({
@@ -57,6 +67,18 @@ function chkDel() {	// 사용자가 선택한 상품(들)을 삭제하는 함수
 	if (ocidx == "")	alert("삭제할 상품을 선택하세요.");
 	else				cartDel(ocidx);
 }
+function chkBuy() {	// 사용자가 선택한 상품(들)을 구매하는 함수
+	var ocidx = getSelectedChk();
+	if (ocidx == "")	alert("구매할 상품을 선택하세요.");
+	else				document.frmCart.submit();
+}
+function allBuy() {	// 전체 상품 구매를 처리하는 함수
+	var arr = document.frmCart.chk;
+	for (var i = 1; i < arr.length; i++) {
+		arr[i].checked = true;
+	}
+	document.frmCart.submit();
+}
 </script>
 <h2>장바구니</h2>
 <form name="frmCart" action="orderForm" method="post">
@@ -80,7 +102,7 @@ function chkDel() {	// 사용자가 선택한 상품(들)을 삭제하는 함수
 					<a href="productView?piid=<%=oc.getPi_id() %>" /><%=oc.getPi_name() %></a>
 				</td>
 				<td width="25%">
-					<select name="size">
+					<select name="size" onchange="cartUp(<%=ocidx %>, this.value, 0);">
 						<% 	for (ProductStock ps : oc.getStockList()) {
 							String txt = ps.getPs_size() + "mm (재고 : " + ps.getPs_stock() + "개)";
 							String slt = "";
@@ -92,14 +114,14 @@ function chkDel() {	// 사용자가 선택한 상품(들)을 삭제하는 함수
 							
 							if (ps.getPs_stock() > 0) {	// 재고량이 있을 경우에만 보여줌
 								%>
-								<option value="<%=oc.getPs_idx() %>" <%=slt %>><%=txt %></option>
+								<option value="<%=ps.getPs_idx() %>" <%=slt %>><%=txt %></option>
 								<%
 							}
 						 } %>
 					</select>
 				</td>
 				<td width="10%">
-					<select name="cnt">
+					<select name="cnt" onchange="cartUp(<%=ocidx %>, 0, this.value);">
 						<% for (int i = 1; i <= max ; i++) {
 							String slt = "";
 							if (oc.getOc_cnt() == i) slt = " selected='selected' ";

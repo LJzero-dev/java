@@ -42,4 +42,16 @@ public class CartProcSvc {
 		close(conn);
 		return result;
 	}
+
+	public int cartUpdate(int ocidx, int opt, int cnt, String miid) {
+		Connection conn = getConnection();
+		CartProcDao cartProcDao = CartProcDao.getInstance();
+		cartProcDao.setConnection(conn);
+		
+		int result = cartProcDao.cartUpdate(ocidx, opt, cnt, miid);
+		if (result == 1)	commit(conn);
+		else				rollback(conn);
+		close(conn);
+		return result;
+	}
 }
