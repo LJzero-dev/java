@@ -4,6 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
 <%
@@ -13,5 +14,21 @@
 		out.println(str + "<br />");
 	} */
 %>
+<script>
+function a() {
+	$.ajax({
+		type : "get",
+		url : "/mvcSite/test",
+		dataType : "html",
+		success: function(data) {
+        	$("#listDiv").html(data);
+          }
+	});
+}
+</script>
+<button id="listButton" onclick="a();">추가</button>
+<div id="listDiv" style="width:80px; height:80px; background-color:green;">
+aa
+</div>
 </body>
 </html>
