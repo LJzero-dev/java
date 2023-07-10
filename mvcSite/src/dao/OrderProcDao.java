@@ -1,11 +1,11 @@
 package dao;
 import static db.JdbcUtil.*;	// JdbcUtil 클래스의 모든 멤버들을 자유롭게 사용
 import java.util.*;
-
 import com.mysql.cj.xdevapi.Result;
-
 import java.sql.*;
 import vo.*;
+import java.time.*;
+import java.util.*;
 
 public class OrderProcDao {	// 주문 관련 작업(폼, 등록, 변경)들을 처리하는 클래스
 	private static OrderProcDao orderProcDao;
@@ -68,4 +68,152 @@ public class OrderProcDao {	// 주문 관련 작업(폼, 등록, 변경)들을 처리하는 클래�
 		}
 		return addrList;
 	}
+	
+	private String getOrderId() {	// 새로운 주문번호를 생성하여 리턴하는 메소드	yymmdd + 랜덤영문2자리 + 일련번호4자리(1001) + 랜덤영문2자리
+		ResultSet rs = null;
+		String oi_id = null;
+		
+		String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		Random rnd = new Random();
+		String eng1 = alpha.charAt(rnd.nextInt(26)) + "" + alpha.charAt(rnd.nextInt(26));
+		String eng2 = alpha.charAt(rnd.nextInt(26)) + "" + alpha.charAt(rnd.nextInt(26));
+		
+		
+		try {
+			LocalDate today = LocalDate.now();	// yyyy-mm-dd
+			String td = (today + "").substring(2).replace("-", "");	//	 yymmdd
+			oi_id = td + eng1;
+			rs = conn.createStatement().executeQuery("select mid(oi_id,9,4) from t_order_info where left(oi_id, 6) = '" + td + "' order by oi_date desc limit 0, 1");
+			if (rs.next())	oi_id += Integer.parseInt(rs.getString(1)) + 1;	// 같은 날 입력된 주문번호들중 가장 최근 것을 더함
+			else			oi_id += "1001";	// 오늘 첫 구매
+			oi_id += eng2;
+		}  catch (Exception e) {
+			System.out.println("OrderProcDao 클래스 의 getOrderId() 메소드 오류");			
+			e.printStackTrace();
+		} finally {
+			close(rs);
+		}
+		return oi_id;
+	}
+	
+	public String orderInsert(String kind, OrderInfo oi, String ocidxs) {	// 주문처리를 하는 메소드(장바구니나 바로 구매를 통한 주문)
+		ResultSet rs = null;
+		Statement stmt = null;
+		String sql = "";
+		String oi_id = getOrderId();
+		String result = oi_id + ",";
+		int rcount = 0, target = 0;	// rcount : 실제 쿼리 실행 결과로 적용되는 레코드 개수를 누적 저장할 변수 target : insert, update, delete 등의 쿼리 실행횟수로 적용되어야 할 레코드의 총 개수
+		
+		try {
+			stmt = conn.createStatement();
+			rcount = stmt.executeUpdate("insert into t_order_info values ('" + oi_id + "', '" + oi.getMi_id() + "', '" + oi.getOi_name() + "', '" + oi.getOi_phone() + "', '" + oi.getOi_zip() + "', '" + oi.getOi_addr1() +
+					"', '" + oi.getOi_addr2() + "', '" + oi.getOi_memo() + "', '" + oi.getOi_payment() + "', " + oi.getOi_pay() + ", 0, 0, null, '" + oi.getOi_status() + "', now())");// t_order_info 테이블에 사용할 insert 문				
+			target++;
+			if (kind.equals("c")) {	// 장바구니를 통한 구매일 경우
+				// 장바구니에서 t_order_detail 테이블에 insert할 상품정보를 추출
+				sql = "select a.pi_id, a.ps_idx, a.oc_cnt, b.pi_name, b.pi_img1, c.ps_size, if(b.pi_dc > 0, round((1 - b.pi_dc) * b.pi_price), b.pi_price) price from t_order_cart a, t_product_info b, t_product_stock c " + 
+						" where a.pi_id = b.pi_id and a.ps_idx = c.ps_idx and a.mi_id = '" + oi.getMi_id() + "' and (";
+				String delWhere = " where mi_id = '" + oi.getMi_id() + "' and (";
+				
+				String[] arr = ocidxs.split(",");	// 장바구니 테이블의 인덱스 번호들로 배열 생성
+				for (int i = 0; i < arr.length; i++) {
+					if (i == 0) { 
+						sql += "a.oc_idx = " + arr[i];
+						delWhere += "oc_idx = " + arr[i];
+					} else {
+						sql += " or a.oc_idx = " + arr[i];
+						delWhere += " or oc_idx = " + arr[i];						
+					} 
+				}
+				sql += ")";
+				delWhere += ")";
+				
+				rs = stmt.executeQuery(sql);
+				System.out.println("1");
+				if (rs.next()) {	// 장바구니에 구매할 상품정보가 있으면
+					do {
+						Statement stmt2 = conn.createStatement();
+						
+						// t_order_detail 테이블에 사용할 insert문
+						sql = "insert into t_order_detail values (null, '" + oi_id + "', '" + rs.getString("pi_id") + "', " + rs.getInt("ps_idx") + ", " +
+						rs.getInt("oc_cnt") + ", " + rs.getInt("price") + ", '" + rs.getString("pi_name") + "', '" + rs.getString("pi_img1") + "', " + rs.getInt("ps_size") + ")";
+						target++;	rcount += stmt2.executeUpdate(sql);
+						System.out.println("update t_product_info set pi_sales = pi_sale + " + rs.getInt(rs.getInt("oc_cnt")) + " where pi_id = '" + rs.getString("pi_id") + "'");
+						// t_product_info 테이블의 판매수 증가 update
+						sql = "update t_product_info set pi_sales = pi_sale + " + rs.getInt(rs.getInt("oc_cnt")) + " where pi_id = '" + rs.getString("pi_id") + "'";
+						
+						target++;	rcount += stmt2.executeUpdate(sql);
+						System.out.println("3");
+						// t_product_stock 테이블의 판매 및 재고 변경 update문
+						sql = "update t_product_stock set ps_stock = ps_stock - " + rs.getInt(rs.getInt("oc_cnt")) + ", ps_sale = ps_sale + " + rs.getInt(rs.getInt("oc_cnt")) + " where ps_idx = " + rs.getInt("ps_idx");
+						target++;	rcount += stmt2.executeUpdate(sql);	
+						System.out.println("4");
+						close(stmt2);			
+					} while(rs.next());
+					close(rs);
+					
+					//	t_order_cart 테이블의 구매 후 삭제 delete문
+					sql = "delete from t_order_cart " + delWhere;
+					stmt.executeUpdate(sql);	// 실행시 문제가 발생해도 구매와는 별도이므로 rcount에 누적시키지 않음
+					
+				} else {	// 장바구니에 구매할 상품정보가 없으면
+					return result + "1,4";
+				}
+				
+			} else {				// 바로 구매일 경우
+				
+			}
+			if (oi.getOi_spoint() > 0) {	// 적립되는 포인트가 있으면
+				//	t_member_info 회원의 보유 포인트 update문
+				sql = "update t_member_info set mi_point = mi_point + " + oi.getOi_spoint() + " where mi_id = '" + oi.getMi_id() + "'";
+				target++;	rcount += stmt.executeUpdate(sql);
+				
+				//	t_member_point 회원의 포인트 사용내역 insert문
+				sql = "insert into t_member_point (mi_id, mp_point, mp_desc, mp_detail) values ('" + oi.getMi_id() + "', " + oi.getOi_spoint() + ", '상품구매', '" + oi_id + "')";
+				target++;	rcount += stmt.executeUpdate(sql);
+			}
+			
+			if (oi.getOi_upoint() > 0) {	// 사용되는 포인트가 있으면
+				//	t_member_info 회원의 보유 포인트 update문
+				sql = "update t_member_info set mi_point = mi_point - " + oi.getOi_upoint() + " where mi_id = '" + oi.getMi_id() + "'";
+				target++;	rcount += stmt.executeUpdate(sql);
+				
+				//	t_member_point 회원의 포인트 사용내역 insert문
+				sql = "insert into t_member_point (mi_id,mp_su, mp_point, mp_desc, mp_detail) values ('" + oi.getMi_id() + "','u', -" + oi.getOi_upoint() + ", '상품구매', '" + oi_id + "')";
+				target++;	rcount += stmt.executeUpdate(sql);
+			}			
+		}  catch (Exception e) {
+			System.out.println("OrderProcDao 클래스 의 orderInsert() 메소드 오류");			
+			e.printStackTrace();
+		} finally {
+			close(stmt);
+		}
+		return result + rcount + "," + target;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

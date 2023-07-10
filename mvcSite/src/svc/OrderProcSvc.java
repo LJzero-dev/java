@@ -27,5 +27,20 @@ public class OrderProcSvc {
 		addrList = orderProcDao.getAddrList(miid);
 		close(conn);
 		return addrList;
+	}
+
+	public String orderInsert(String kind, OrderInfo oi, String ocidxs) {
+		String result = null;
+		Connection conn = getConnection();
+		OrderProcDao orderProcDao = OrderProcDao.getInstance();
+		orderProcDao.setConnection(conn);
+		
+		result = orderProcDao.orderInsert(kind, oi, ocidxs);	// result : 주문번호,적용된레코드수,적용되어야할레코드수
+		String[] arr = result.split(",");	
+		if(arr[1].equals(arr[2]))	commit(conn);	// 실제 적용된 레코드 개수와 적용되어야 할 레코드 개수가 같으면
+		else 						rollback(conn);
+		
+		close(conn);
+		return result;
 	}	
 }

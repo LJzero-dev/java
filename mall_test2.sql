@@ -233,4 +233,34 @@ where a.pi_id = b.pi_id and a.pi_isview = 'y' and b.ps_isview = 'y'  and a.pi_id
 order by a.pi_id, c.ps_idx;
 
 
+select mid(oi_id, 9, 4) seq from t_order_info where left(oi_id, 6) = 'td' order by oi_date desc limit 0, 1;
+insert into t_order_info values ('', '', '', '', '', '', '', '', '', ?, 0, 0, null, '', now());
 
+
+
+select a.pi_id, a.ps_idx, a.od_cnt, b.pi_name, b.pi_img1, c.ps_size, if(b.pi_dc > 0, round((1 - b.pi_dc) * b.pi_price), b.pi_price) price
+from t_order_cart a, t_product_info b, t_product_stock c
+where a.pi_id = b.pi_id and a.ps_idx = c.ps_idx and a.mi_id = '' and (a.oc_idx = ? or ... or a.oc_idx = ?);
+
+
+select a.pi_id, a.ps_idx, a.oc_cnt, b.pi_name, b.pi_img1, c.ps_size, if(b.pi_dc > 0, round((1 - b.pi_dc) * b.pi_price), b.pi_price) price from t_order_cart a, t_product_info b, t_product_stock c  where a.pi_id = b.pi_id and a.ps_idx = c.ps_idx and a.mi_id = 'test1' and (a.oc_idx = 46 or a.oc_idx = 50);
+select * from t_order_detail;
+insert into t_order_detail values (null, '', '', ?, ?, ?, "", "", ?);
+select * from t_product_info;
+update t_product_info set pi_sales = pi_sale + ? where pi_id = '';
+
+select * from t_product_stock;
+
+update t_product_stock set ps_stock = ps_stock - ?, ps_sale = ps_sale + ? where ps_idx = ?;
+
+select * from t_member_info;
+update t_member_info set mi_point = mi_point + ? where mi_id = '';
+select * from t_member_point;
+insert into t_member_point (mi_id, mp_point, mp_desc, mp_detail) values ('', ?, '', '');
+
+select oi_id from t_order_info;
+select oi_id from t_order_info where left(oi_id,6) = '230710' order by oi_date desc limit 0, 1;
+
+select mid(oi_id,9,4) from t_order_info;
+
+select * from t_order_info where left(oi_id, 6) = '230710' order by oi_date desc limit 0, 1
