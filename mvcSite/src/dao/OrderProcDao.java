@@ -83,10 +83,12 @@ public class OrderProcDao {	// ÁÖ¹® °ü·Ã ÀÛ¾÷(Æû, µî·Ï, º¯°æ)µéÀ» Ã³¸®ÇÏ´Â Å¬·¡½
 			LocalDate today = LocalDate.now();	// yyyy-mm-dd
 			String td = (today + "").substring(2).replace("-", "");	//	 yymmdd
 			oi_id = td + eng1;
+			System.out.println("oi_id = " + oi_id);
 			rs = conn.createStatement().executeQuery("select mid(oi_id,9,4) from t_order_info where left(oi_id, 6) = '" + td + "' order by oi_date desc limit 0, 1");
 			if (rs.next())	oi_id += Integer.parseInt(rs.getString(1)) + 1;	// °°Àº ³¯ ÀÔ·ÂµÈ ÁÖ¹®¹øÈ£µéÁß °¡Àå ÃÖ±Ù °ÍÀ» ´õÇÔ
 			else			oi_id += "1001";	// ¿À´Ã Ã¹ ±¸¸Å
 			oi_id += eng2;
+			System.out.println("oi_id = " + oi_id);
 		}  catch (Exception e) {
 			System.out.println("OrderProcDao Å¬·¡½º ÀÇ getOrderId() ¸Þ¼Òµå ¿À·ù");			
 			e.printStackTrace();
@@ -100,7 +102,8 @@ public class OrderProcDao {	// ÁÖ¹® °ü·Ã ÀÛ¾÷(Æû, µî·Ï, º¯°æ)µéÀ» Ã³¸®ÇÏ´Â Å¬·¡½
 		ResultSet rs = null;
 		Statement stmt = null;
 		String sql = "";
-		String oi_id = getOrderId();
+		String oi_id = OrderProcDao.getInstance().getOrderId();
+		System.out.println(oi_id);
 		String result = oi_id + ",";
 		int rcount = 0, target = 0;	// rcount : ½ÇÁ¦ Äõ¸® ½ÇÇà °á°ú·Î Àû¿ëµÇ´Â ·¹ÄÚµå °³¼ö¸¦ ´©Àû ÀúÀåÇÒ º¯¼ö target : insert, update, delete µîÀÇ Äõ¸® ½ÇÇàÈ½¼ö·Î Àû¿ëµÇ¾î¾ß ÇÒ ·¹ÄÚµåÀÇ ÃÑ °³¼ö
 		
@@ -129,7 +132,6 @@ public class OrderProcDao {	// ÁÖ¹® °ü·Ã ÀÛ¾÷(Æû, µî·Ï, º¯°æ)µéÀ» Ã³¸®ÇÏ´Â Å¬·¡½
 				delWhere += ")";
 				
 				rs = stmt.executeQuery(sql);
-				System.out.println("1");
 				if (rs.next()) {	// Àå¹Ù±¸´Ï¿¡ ±¸¸ÅÇÒ »óÇ°Á¤º¸°¡ ÀÖÀ¸¸é
 					do {
 						Statement stmt2 = conn.createStatement();
@@ -137,17 +139,18 @@ public class OrderProcDao {	// ÁÖ¹® °ü·Ã ÀÛ¾÷(Æû, µî·Ï, º¯°æ)µéÀ» Ã³¸®ÇÏ´Â Å¬·¡½
 						// t_order_detail Å×ÀÌºí¿¡ »ç¿ëÇÒ insert¹®
 						sql = "insert into t_order_detail values (null, '" + oi_id + "', '" + rs.getString("pi_id") + "', " + rs.getInt("ps_idx") + ", " +
 						rs.getInt("oc_cnt") + ", " + rs.getInt("price") + ", '" + rs.getString("pi_name") + "', '" + rs.getString("pi_img1") + "', " + rs.getInt("ps_size") + ")";
+						System.out.println(sql);
 						target++;	rcount += stmt2.executeUpdate(sql);
-						System.out.println("update t_product_info set pi_sales = pi_sale + " + rs.getInt(rs.getInt("oc_cnt")) + " where pi_id = '" + rs.getString("pi_id") + "'");
+						
 						// t_product_info Å×ÀÌºíÀÇ ÆÇ¸Å¼ö Áõ°¡ update
 						sql = "update t_product_info set pi_sales = pi_sale + " + rs.getInt(rs.getInt("oc_cnt")) + " where pi_id = '" + rs.getString("pi_id") + "'";
 						
 						target++;	rcount += stmt2.executeUpdate(sql);
-						System.out.println("3");
+						
 						// t_product_stock Å×ÀÌºíÀÇ ÆÇ¸Å ¹× Àç°í º¯°æ update¹®
 						sql = "update t_product_stock set ps_stock = ps_stock - " + rs.getInt(rs.getInt("oc_cnt")) + ", ps_sale = ps_sale + " + rs.getInt(rs.getInt("oc_cnt")) + " where ps_idx = " + rs.getInt("ps_idx");
 						target++;	rcount += stmt2.executeUpdate(sql);	
-						System.out.println("4");
+						
 						close(stmt2);			
 					} while(rs.next());
 					close(rs);

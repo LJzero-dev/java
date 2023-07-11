@@ -1,0 +1,10 @@
+maven 설치
+https://maven.apache.org/
+좌측 탭 메뉴에서 다운로드 클릭 후
+원하는 버전 Binary zip archive으로 다운받은 후 원하는 폴더에 압축 해제 후 
+시스템 변수 새로만들기 
+변수 이름 : M2_HOME
+변수 값 : 설치된 경로
+이후 Path 더블킬릭 후 
+%M2_HOME%\bin 추가시킴
+혹여나 %JAVA_HOME% 있는 경우 삭제시킴

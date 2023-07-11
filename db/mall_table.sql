@@ -1,3 +1,4 @@
+create database mall;
 use mall;
 
 -- 관리자 정보 테이블
@@ -143,11 +144,13 @@ create table t_product_info (
 	constraint fk_product_info_pb_id foreign key (pb_id) references t_product_brand(pb_id),
 	constraint fk_product_info_ai_idx foreign key (ai_idx) references t_admin_info(ai_idx)
 );
-insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc, pi_com, pi_img1, pi_desc, pi_isview, ai_idx) values ('AA01101', 'AA01', 'B1', '좋은 로퍼', 150000, 80000, 0, '좋은 회사', 'AA01101_1.jpg', 'AA01101_d.jpg', 'y', 1);
-insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc, pi_com, pi_img1, pi_desc, pi_isview, ai_idx) values ('AA01102', 'AA01', 'B2', '좋은 윙팁', 180000, 90000, 0.1, '좋은 회사', 'AA01102_1.jpg', 'AA01102_d.jpg', 'y', 1);
-insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc, pi_com, pi_img1, pi_desc, pi_isview, ai_idx) values ('BB01101', 'BB01', 'B3', '뛰는 러닝화', 130000, 70000, 0, '좋은 회사2', 'BB01101_1.jpg', 'BB01101_d.jpg', 'y', 1);
+insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc, pi_com, pi_img1, pi_desc, pi_isview, ai_idx) values ('AA01101', 'AA01', 'B1', '좋은 로퍼', 150000, 80000, 0, '좋은 회사', 'AA01102_1.png', 'AA01101_d.jpg', 'y', 1);
+insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc, pi_com, pi_img1, pi_desc, pi_isview, ai_idx) values ('AA01102', 'AA01', 'B2', '좋은 윙팁', 180000, 90000, 0.1, '좋은 회사', 'AA01103_1.png', 'AA01102_d.jpg', 'y', 1);
+insert into t_product_info (pi_id, pcs_id, pb_id, pi_name, pi_price, pi_cost, pi_dc, pi_com, pi_img1, pi_desc, pi_isview, ai_idx) values ('BB01101', 'BB01', 'B3', '뛰는 러닝화', 130000, 70000, 0, '좋은 회사2', 'AA02101_1.png', 'BB01101_d.jpg', 'y', 1);
 select * from t_product_info;
-
+update t_product_info set pi_img1 = 'AA01102_1.png' where pi_id = 'AA01101';
+update t_product_info set pi_img1 = 'AA01103_1.png' where pi_id = 'AA01102';
+update t_product_info set pi_img1 = 'AA02101_1.png' where pi_id = 'BB01101';
 -- 상품 옵션별 재고	테이블
 create table t_product_stock (
 	ps_idx int	primary key auto_increment,	-- 일련번호
