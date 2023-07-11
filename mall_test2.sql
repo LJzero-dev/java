@@ -263,4 +263,17 @@ select oi_id from t_order_info where left(oi_id,6) = '230710' order by oi_date d
 
 select mid(oi_id,9,4) from t_order_info;
 
-select * from t_order_info where left(oi_id, 6) = '230710' order by oi_date desc limit 0, 1
+select * from t_order_info where left(oi_id, 6) = '230710' order by oi_date desc limit 0, 1;
+
+select * from t_order_info where left(oi_id, 6) = '230710' order by oi_date desc limit 0, 1;
+update t_order_info set oi_id = '211111AF1001AS';
+select * from t_order_info;
+delete from t_order_info where oi_status = 'b';
+
+select mid(oi_id,9,4) from t_order_info where left(oi_id, 6) = '230710' order by oi_date desc limit 0, 1;
+
+insert into t_order_detail values (null, '230710TE1014FY', 'AA01102', 14, 1, 162000, '좋은 윙팁', 'AA01102_1.png', 250);
+select * from t_order_detail;
+
+
+select a.*, b.*, c.pi_isview from t_order_info a, t_order_detail b, t_product_info c where a.oi_id = b.oi_id and b.pi_id = c.pi_id and a.mi_id = '' and a.oi_id = '';

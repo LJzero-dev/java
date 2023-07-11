@@ -16,9 +16,9 @@ public class OrderProcInCtrl extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		HttpSession session = request.getSession();
 		MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
 		if (loginInfo == null) {
-			response.setContentType("text/html; charset=utf-8");
-			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('로그인 후 이용 부탁드립니다.');");
 			out.println("location.href='/mvcSite/';");
@@ -39,19 +39,29 @@ public class OrderProcInCtrl extends HttpServlet {
 		String oi_payment = request.getParameter("oi_payment");
 		
 		OrderInfo oi = new OrderInfo();
-		oi.setMi_id(miid);
-		oi.setOi_name(oi_name);
-		oi.setOi_phone(oi_phone);
-		oi.setOi_zip(oi_zip);
-		oi.setOi_addr1(oi_addr1);
-		oi.setOi_addr2(oi_addr2);
-		oi.setOi_payment(oi_payment);
-		oi.setOi_pay(total);
+		oi.setMi_id(miid);	oi.setOi_name(oi_name);	oi.setOi_phone(oi_phone);	oi.setOi_zip(oi_zip);	oi.setOi_addr1(oi_addr1);	oi.setOi_addr2(oi_addr2);	oi.setOi_payment(oi_payment);	oi.setOi_pay(total);
 		oi.setOi_spoint(Math.round(total * 0.02f));	// 적립 포인트
 		oi.setOi_status(oi.getOi_payment().equals("c") ? "a" : "b");
 		
 		OrderProcSvc orderProcSvc = new OrderProcSvc();
 		String result = orderProcSvc.orderInsert(kind, oi, ocidxs);	// 주문번호,실제 적용된 레코드 개수, 적용되어야 할 레코드 개수
+		String[] arr = result.split(",");
+		if (arr[1].equals(arr[2])) {	// 정상적으로 구매가 이루어 졌으면
+			out.println("<form name='frm' action='orderEnd' method='post' >");
+			out.print("<input type='hidden' name='oiid' value='" + arr[0] + "' />");
+			out.println("</form>");
+			out.println("<script>");
+			out.println("document.frm.submit();");
+			out.println("</script>");
+			out.close();
+		} else {	// 구매 처리 시 오류가 발생했으면
+			out.println("<script>");
+			out.println("alert('구매 처리 시 문제가 발생했습니다.\\n고객 센터에 문의하세요');");
+			out.println("history.back();");
+			out.println("</script>");
+			out.close();
+		}
+		
 	}
 }
 

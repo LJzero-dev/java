@@ -190,6 +190,31 @@ public class OrderProcDao {	// 주문 관련 작업(폼, 등록, 변경)들을 처리하는 클래�
 		}
 		return result + rcount + "," + target;
 	}
+
+	public OrderInfo getOrderInfo(String miid, String oiid) {	// 받아온 회원 아이디와 주문 아이디에 해당하는 주문정보들을 OrderInfo형 인스턴스로 리턴하는 메소드
+		Statement stmt = null;
+		ResultSet rs = null;
+		OrderInfo oi = null;
+		ArrayList<OrderDetail> detailList = new ArrayList<OrderDetail>();
+		try {
+			stmt = conn.createStatement();
+			String sql = "select a.*, b.*, c.pi_isview from t_order_info a, t_order_detail b, t_product_info c where a.oi_id = b.oi_id and b.pi_id = c.pi_id and a.mi_id = '" + miid + "' and a.oi_id = '" + oiid + "' order by c.pi_id, b.od_size";
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				
+				do {
+					
+				} while(rs.next());
+			}
+			
+		} catch(Exception e) {
+			System.out.println("OrderProcDao 클래스 의 getOrderInfo() 메소드 오류");			
+			e.printStackTrace();
+		} finally {
+			close(rs);	close(stmt);
+		}
+		return oi;
+	}
 }
 
 
