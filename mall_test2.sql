@@ -277,3 +277,15 @@ select * from t_order_detail;
 
 
 select a.*, b.*, c.pi_isview from t_order_info a, t_order_detail b, t_product_info c where a.oi_id = b.oi_id and b.pi_id = c.pi_id and a.mi_id = '' and a.oi_id = '';
+
+select * from t_order_info;
+
+insert into t_order_info values ('oi_id', 'oi.getMi_id()', 'oi.getOi_name()', 'oi.getOi_phone()',
+ 'oi.getOi_zip()', 'oi.getOi_addr1()', 'oi.getOi_addr2()', 'oi.getOi_memo()', 'oi.getOi_payment()', 'oi.getOi_pay()', 0, 0, null, 'oi.getOi_status()', now());
+
+
+select * from t_order_detail;
+
+
+
+

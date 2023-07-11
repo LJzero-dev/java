@@ -19,4 +19,6 @@ mvn archetype:generate -DgroupId=com.test -DartifactId=testprj -DarchetypeArtifa
 	testprj 폴더에는 'pom.xml'파일이 생성됨
 
 이클립스에서 maven 프로젝트 생성
- - file -> new
+ - file -> new -> maven projact를 선택 -> Use default Workspace location을 체크 해제하고, [Brows...]를 눌러 작업할 폴더를 선태간 후 [Next] -> Filter 텍스트 필드에 
+ 'maven-archetype-webapp'를 입력하여 검색한 후 'org.apache.maven.archetypes'를 선택하고 [Next] -> 필요한 정보를 입력 Group Id : 프로젝트 그룹명(패키지), Artifact Id : 프로젝트 이름,
+ Package : 프로젝트 최상위 패키지(자동으로 설정됨) 입력 후 [Finish] 
