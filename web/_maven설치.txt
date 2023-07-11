@@ -8,3 +8,17 @@ https://maven.apache.org/
 이후 Path 더블킬릭 후 
 %M2_HOME%\bin 추가시킴
 혹여나 %JAVA_HOME% 있는 경우 삭제시킴
+
+며열ㅇ 프롬프트로 maven 프로젝트 생성
+먼저 프로젝트를 생성할 폴더로 이동 후 
+mvn archetype:generate -DgroupId=com.test -DartifactId=testprj -DarchetypeArtifactId=maven-archetype-quickstart
+ - groupId : 프로젝트가 속하는 그룹 식별 값, 회사, 본부, 단체등을 의미하는 값으로 패키지 형식으로 계층을 표현함
+ - ArtifactId : 프로젝트 결과물의 식별 값. 프로젝트나 모듈을 의미하는 값을 사용
+
+ - 모든 명령이 실행되고 나면 실행했던 폴더내에 ArtifactId로 지정한 testprj라는 이름의 폴더가 생겨남('src/main/java/com/test' 와 'test/main/java/com/test' 구조로 폴더들이 생겨남)
+	testprj 폴더에는 'pom.xml'파일이 생성됨
+
+이클립스에서 maven 프로젝트 생성
+ - file -> new -> maven projact를 선택 -> Use default Workspace location을 체크 해제하고, [Brows...]를 눌러 작업할 폴더를 선태간 후 [Next] -> Filter 텍스트 필드에 
+ 'maven-archetype-webapp'를 입력하여 검색한 후 'org.apache.maven.archetypes'를 선택하고 [Next] -> 필요한 정보를 입력 Group Id : 프로젝트 그룹명(패키지), Artifact Id : 프로젝트 이름,
+ Package : 프로젝트 최상위 패키지(자동으로 설정됨) 입력 후 [Finish] 
