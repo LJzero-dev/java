@@ -22,6 +22,7 @@ public class MemberPrinter {
 			System.out.printf("회원 정보 : 인덱스=%d, 아이디=%s, 이름=%s, 이메일=%s, 등록일=%tF\n", mi.getIdx(), mi.getUid(), mi.getName(), mi.getEmail(), dateTimeFormatter.format(mi.getRegDate()));
 		}
 	}
+	/*<>*/
 /*	@Autowired(required = false)	// @Autowired만 지정할 경우 setter가 무조건 실행되어 오류가 발생
 									// (required = false)를 지정하면 빈이 없어도 오류가 발생하지 ㅏㅇㄴ혹, setDateFormatter() 메소드를 실행하지 않음
 	public void setDateFormatter(DateTimeFormatter dtf) {
