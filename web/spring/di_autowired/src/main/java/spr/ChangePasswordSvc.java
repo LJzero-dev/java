@@ -1,7 +1,9 @@
 package spr;
 
+import org.springframework.beans.factory.annotation.*;
 
 public class ChangePasswordSvc {
+	@Autowired
 	private MemberDao memberDao;
 	
 	public void changePassword(String uid, String oldPwd, String newPwd) {
@@ -12,8 +14,7 @@ public class ChangePasswordSvc {
 		
 		memberDao.update(mi);		
 	}
-
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
-	}	
+	}
 }

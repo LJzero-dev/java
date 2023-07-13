@@ -6,10 +6,10 @@ import org.springframework.context.annotation.*;
 import config.*;
 import spr.*;
 
-public class MainForSpring {
+public class MainForImport {
 	private static ApplicationContext ctx = null;
 	public static void main(String[] args) {
-		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+		ctx = new AnnotationConfigApplicationContext(AppConfImport.class);
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.print("명령어 입력 : ");

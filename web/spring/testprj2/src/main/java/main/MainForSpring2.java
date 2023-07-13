@@ -6,10 +6,10 @@ import org.springframework.context.annotation.*;
 import config.*;
 import spr.*;
 
-public class MainForSpring {
+public class MainForSpring2 {
 	private static ApplicationContext ctx = null;
 	public static void main(String[] args) {
-		ctx = new AnnotationConfigApplicationContext(AppCtx.class);
+		ctx = new AnnotationConfigApplicationContext(AppConf1.class, AppConf2.class); // 가변 인자이므로 쉼표로 구분하여 전달할 수 있음
 		Scanner sc = new Scanner(System.in);
 		while (true) {
 			System.out.print("명령어 입력 : ");
