@@ -1,0 +1,96 @@
+JdbcTemplate
+ - 스프링에서는 DataSource나 Connection, Statement, ResultSet을 직접 사용하지 않고 JdbcTemplate을 이용해서 편하게 쿼리를 실행할 수 있음
+ - JdbcTemplate을 사용하려면 DB와 상호작용할 클래스에서 JdbcTemplate 객체를 생성해서 사용해야 합니다, 또한 해당 클래스에서 설정에서 빈으로 등록해야 함
+
+1. select 쿼리 실행
+ - JdbcTemplate 클래스는 select 쿼리 실행을 위해 query()와 queryForObject() 메소드를 제공
+
+ 1-1. queryForObject() 메소드
+  - 결과가 1행인 경우 사용하는 메소드
+  - 단, 결과가 2행 이상인 경우 IncorrectResultSizeDataAccessException 발생
+  - 결과가 없을 경우에는 EmptyResultDataAccessException 발생
+
+1)  String이나 Integer 같은 공용 객체일 경우 
+리턴받을 객체 = JdbcTemplate객체.queryForObject(쿼리문자열, 리턴받을객체.class);
+
+2) 제작한 객체로 받을 경우 query() 메소드와 같이 RowMapper를 이용하여 변환 후 리턴받음
+리턴받을 객체 = JdbcTemplate객체.queryForObject(
+	쿼리문자열,
+	new RowMapper<T>() {
+	
+	@Override
+	public 리턴받을 클래스 mapRow(ResultSet rs, int rowNum) throws SQLException {
+		리턴받을 클래스의 객체 생성;
+		return 생성된 객체
+	}
+	}, 쿼리에 필요한 매개변수
+);
+
+
+public User mapRow(ResultSet rs, int count) throws SQLException {
+    // ResultSet 값을 User 객체에 저장
+    User user = new User();
+    actor.setFirstName(resultSet.getString("name"));
+    actor.setLastName(resultSet.getString("description"));
+    
+    // user 반환
+    return user;
+};
+
+람다 =>
+// select 구문
+String SELECT_BY_ID = "SELECT * FROM USER WHERE id=?";
+
+// user 반환 받기
+User user = jdbcTemplate.queryForObject(
+        SELECT_BY_ID,
+        (rs, count) -> new User(
+                     rs.getString("name"),
+                     rs.getString("description")
+                   ),
+        1000L);
+}
+
+1-2 query() 메소드
+ - 실행결과가 2행 이상일 경우 사용하는 메소드
+ 	List<T> quert(String sql, RowMapper<T> rowMapper)
+ 	List<T> quert(String sql, Object[] args, RowMapper<T> rowMapper)
+ 	List<T> quert(String sql, RowMapper<T> Object... args)
+ - sql 매개변수로 전달받은 쿼리를 실행한 결과를 RowMapper를 이용해서 ResultSet의 결과를 자바객체로 변환하여 사용
+ - 결과가 없을 경우 size가 0인 List를 리턴함
+ - RowMapper 인터페이스의 mapRow() 메소드는 쿼리 실행결과로 구한 ResultSet에서 한 행의 데이터를 읽어와 자바 객체로 변환하는 매퍼 기능을 구현
+
+ - 매퍼 사용법
+1) 익명 클래스로 RowMapper 객체를 생성하여 작업 - 단일 작업일 경우 사용됨
+List<MemberInfo> result = JdbcTemplate객체.query(
+	쿼리문자열, new RowMapper<제네릭>() {
+		@Override
+		public 리턴받을 클래스 mapRow(ResultSet rs, int rowNum) throws SQLException {
+			리턴 받을 클래스의 객체 생성;
+			return 생성된 객체;
+		}
+	}, 쿼리에 필요한 매개변수
+);
+
+2) 람다식으로 RowMapper 객체를 생성하여 작업 - 단일 작업일 경우 사용됨
+
+List<MemberInfo> result = JdbcTemplate객체.query(
+	쿼리문자열, (ResultSet rs, int rowNum) -> {
+		리턴받을 클래스의 객체 생성;
+		return 생성된 객체;
+	},	쿼리에 필요한 매개변수
+);
+
+3) RowMapper 인터페이스를 구현한 클래스로 RowMapper 객체를 생성하여 작업 - 여러 번 사용
+List<MemberInfo> result = JdbcTemplate객체.query(
+	쿼리문자열, new RowMapper 인터페이스를 구현한 클래스() , 쿼리에 필요한 매개변수
+);
+
+
+public class 인터페이스를 구현한 클래스 implements RowMapper<제네릭> {
+	@Override
+	public 리턴받을 클래스 mapRow(ResultSet rs, int rowNum) throws SQLException {
+			리턴 받을 클래스의 객체 생성;
+			return 생성된 객체;
+	}
+}

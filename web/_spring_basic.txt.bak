@@ -26,3 +26,33 @@
 
 	  3) @Nullable 애노테이션
 	   - 의존주입 대상 매개변수에 @Nullable 애노테이션을 붙이면 스프링이 setter를 호출할 때 해당 빈이 있으면 빈을, 없으면 null을 각각 전달함
+	   - 1) (required = false)와의 차이는 (required = false)는 해당 빈이 없으면 setter를 호출하지 않고, @Nullable은 호출함
+
+1-3. 컴포넌트 스캔 의존주입
+ - 스프링이 직접 클래스를 검색(스캔)하여 빈으로 등록해주는 기능으로 설정 클래스(@Configuration 클래스)에 빈으로 등록 하지 않아도 원하는 클래스를 빈으로 등록할 수 있게 해줌
+ - 스프링이 스캔하여 빈으로 등록하려면 클래스에 @Component 애노테이션을 붙여야 함
+ 	org.springframework.stereotype.Component에 들어있음
+ - @Component 만 붙이면 클래스 이름의 첫글자를 소문자로 하여 빈의 이름로 사용하고, 특정 값을 입력하면 그 값을 빈의 이름으로 사용
+	예)
+	@Component 
+	public calss ComTest1 { ... } // 빈의 이름 : comTest1
+	
+	@Component("com")
+	public calss ComTest1 { ... } // 빈의 이름 : com
+
+ - 만약 @Component 애노테이션로 지정한 빈 이름과 @Bean 애노테이션으로 지정한 빈 이름이 같을 경우 @Bean 애노테이션으로 지정한 빈 이름이 우선순위를 갖게 되어 하나의 빈만 존재함
+ - @Component 애노테이션으로 지정한 빈의 생성할 때 빈의 이름을 생략하여 생성하면 됨
+ 	빈객체 빈이름 = ctx.getBean(["빈이름", ],클래스.class);
+
+2. Bean 라이프사이클
+ - 스프링 빈 객체의 라이프사이클 : 객체생성 -> 의존설정 -> 초기화 -> 소멸
+ - 스프링 컨테이너는 빈 객체를 초기화하고 소멸하기 위해 빈 객체의 지정한 메소드를 호출함
+ - 빈 객체가 org.springframework.beans.factory.InitializingBean 인터페이스를 구현하면 스프링 컨테이너는 초기화 과정에서 빈 객체의 afterPropertiesSet() 메소드를 실행함 만약 빈 객체를 생성한 후 초기화 과정에 특정 작업을 하려면 
+ 	InitializingBean 인터페이스를 구현한 후 afterPropertiesSet() 메소드를 오버라이딩하여 사용하면 됨
+ - 빈 객체가 org.springframework.beans.factory.DisposableBean  인터페이스를 구현하면 빈 객체의 소멸 과정에서 빈 객체의 destroy() 메소드를 실행함
+ 	만약 빈 객체의 소멸 과정에 특정 작업을 하려면 DisposableBean 인터페이스를 구현한 후 destroy() 메소드를 오버라이딩하여 사용하면 됨
+
+
+
+
+

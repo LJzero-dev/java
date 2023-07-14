@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com</groupId>
+  <artifactId>dbTest</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>dbTest Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context</artifactId>
+    	<version>5.0.2.RELEASE</version>
+    </dependency>
+    <!-- db 연결을 위한 추가 부분 시작 -->
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-jdbc</artifactId>
+    	<version>5.0.2.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.tomcat</groupId>
+    	<artifactId>tomcat-jdbc</artifactId>
+    	<version>8.5.27</version>
+    </dependency>
+    <dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>8.0.29</version>
+		<!-- 오류 메시지 - Caused by: java.lang.ClassNotFoundException:Unable to load class: com.mysql.jdbc.Driver from ClassLoader:sun.misc.Launcher$AppClassLoader@18b4aac2;
+				ClassLoader:sun.misc.Launcher$AppClassLoader@18b4aac2가 나면 'mysql-connector-java'의 version을 낮추어 해결 -->
+		<!-- 안될 시 버전 확인 링크 == https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    </dependency>
+    <!-- db 연결을 위한 추가 부분 종료 -->
+  </dependencies>
+  <build>
+    <finalName>dbTest</finalName>
+  </build>
+</project>
