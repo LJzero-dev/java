@@ -73,3 +73,24 @@ List<MemberInfo> result = JdbcTemplate객체.query(
 );
 
 2) 람다식으로 RowMapper 객체를 생성하여 작업 - 단일 작업일 경우 사용됨
+
+List<MemberInfo> result = JdbcTemplate객체.query(
+	쿼리문자열, (ResultSet rs, int rowNum) -> {
+		리턴받을 클래스의 객체 생성;
+		return 생성된 객체;
+	},	쿼리에 필요한 매개변수
+);
+
+3) RowMapper 인터페이스를 구현한 클래스로 RowMapper 객체를 생성하여 작업 - 여러 번 사용
+List<MemberInfo> result = JdbcTemplate객체.query(
+	쿼리문자열, new RowMapper 인터페이스를 구현한 클래스() , 쿼리에 필요한 매개변수
+);
+
+
+public class 인터페이스를 구현한 클래스 implements RowMapper<제네릭> {
+	@Override
+	public 리턴받을 클래스 mapRow(ResultSet rs, int rowNum) throws SQLException {
+			리턴 받을 클래스의 객체 생성;
+			return 생성된 객체;
+	}
+}

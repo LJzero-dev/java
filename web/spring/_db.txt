@@ -26,31 +26,6 @@ JdbcTemplate
 	}, 쿼리에 필요한 매개변수
 );
 
-
-public User mapRow(ResultSet rs, int count) throws SQLException {
-    // ResultSet 값을 User 객체에 저장
-    User user = new User();
-    actor.setFirstName(resultSet.getString("name"));
-    actor.setLastName(resultSet.getString("description"));
-    
-    // user 반환
-    return user;
-};
-
-람다 =>
-// select 구문
-String SELECT_BY_ID = "SELECT * FROM USER WHERE id=?";
-
-// user 반환 받기
-User user = jdbcTemplate.queryForObject(
-        SELECT_BY_ID,
-        (rs, count) -> new User(
-                     rs.getString("name"),
-                     rs.getString("description")
-                   ),
-        1000L);
-}
-
 1-2 query() 메소드
  - 실행결과가 2행 이상일 경우 사용하는 메소드
  	List<T> quert(String sql, RowMapper<T> rowMapper)
@@ -94,3 +69,9 @@ public class 인터페이스를 구현한 클래스 implements RowMapper<제네릭> {
 			return 생성된 객체;
 	}
 }
+
+2. insert, update, delete 쿼리 실행
+ - 데이터를 변경하는 쿼리는 update() 메소르들 사용함
+ - update() 메소드는 쿼리 실행 후 변경된 레코드의 개수를 리턴함
+
+
