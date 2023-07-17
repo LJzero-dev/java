@@ -22,3 +22,29 @@ mvn archetype:generate -DgroupId=com.test -DartifactId=testprj -DarchetypeArtifa
  - file -> new -> maven projact를 선택 -> Use default Workspace location을 체크 해제하고, [Brows...]를 눌러 작업할 폴더를 선태간 후 [Next] -> Filter 텍스트 필드에 
  'maven-archetype-webapp'를 입력하여 검색한 후 'org.apache.maven.archetypes'를 선택하고 [Next] -> 필요한 정보를 입력 Group Id : 프로젝트 그룹명(패키지), Artifact Id : 프로젝트 이름,
  Package : 프로젝트 최상위 패키지(자동으로 설정됨) 입력 후 [Finish] 
+
+
+비정상 작동 시 알트 F5 통해 업데이트
+
+스프링 웹 프로젝트 만들기
+1. file -> new -> maven project 클릭 -> Use defalut Workspace location 체크 헤제 Location 원하는 폴더 지정 -> next
+	-> maven-archetype-webapp -> org.apache.maven.archetypes 를 선택하고 Next -> 필요한 정보 입력 - Group Id : 프로젝트 그룹명(패키지), Artifact Id : 프로젝트(폴더) 이름, Package : 프로젝트 최상위
+	패키지(자동으로 설정됨) 입력 후 Finish
+
+2. 프로젝트 생성 후 환경설정
+ - 프로젝트 이름에서 오른쪽 버튼 Properties -> 좌측 탭에서 JavaBuild Path ->Libraries탭에서 'JRE System Libray 더블클릭 후 현재 Java 버전을 선택 Finish -> Apply
+ -> 좌측 탭에서 Maven -> Java EE Integration -> Enable Project Specific Settings 체크 후 Apply -> 프로젝트를 업데이트하겠냐는 대화상자에서 Yes -> 
+ 좌측 탭에서 Java Build Path -> Libraries탭 우측 버튼들 중 Add Library 클릭 -> Server Runtime 클릭 -> 현재 Apache Tomcat 선택 후 Finish -> Apply and Close
+
+3. 프로젝트 폴더 트리(없으면 직접 생성해도 됨)
+ - src/main/java : Java 패키지 폴더와 소스코드 저장
+ - src/main//resources : *.properties, *.xml 등 설정파일 저장
+ - src/main/webapp : WEB-INF와 웹 관련 리소스 저장
+ - src/main/webapp/WEB-INF : web.xml 웹설정 파일
+ - src/main/webapp/WEB-INF/view : jsp 파일들이 저장
+ -target : 컴파일, 패키징된 결과물들이 저장
+ - pom.xml : Maven 설정 파일
+
+※ 404 오류(Origin 서버가 대상 리소스를 위한 현재의 representation을 찾지 못했거나, 그것이 존재하는지를 밝히려 하지 않습니다.) 발생 시
+ - 경로 및 파일명등을 확인한 후 이상이 없으면 프로젝트에서 오른쪽 버튼 누른 후 Properties -> 왼쪽 탭의 Deployment Assembly 선택 후 오른쪽 화면의 Maven Dependencies 가 있는지
+ 확인 후 없으면 Add 버튼 클릭 -> java Build Path Entries -> Maven Dependencies -> 

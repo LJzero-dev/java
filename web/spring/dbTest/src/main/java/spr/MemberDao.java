@@ -1,8 +1,13 @@
 package spr;
 
+import java.sql.ResultSet;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import vo.MemberInfo;
 
 public class MemberDao {
 	private JdbcTemplate jdbcTemplate;
@@ -12,12 +17,23 @@ public class MemberDao {
 	public int getCount() {
 		return jdbcTemplate.queryForObject("select count(*) from t_member_info", Integer.class);
 	}
-	
-	// 한 명의 회원 정보를 리턴하는 메소드
-	
-	// 모든 회원정보들을 리턴하는 메소드
-	
-	// 한 명의 회원정보를 받아와 회원 가입시키는 메소드
-	
-	// 한 명의 회원정보(암호, 전화, 메일)를 받아와 정보 변경 시키는 메소드
+	public List<MemberInfo> getMemberList() {
+		List<MemberInfo> result = jdbcTemplate.query("select * from t_member_Info", (ResultSet rs, int rowNum) -> {
+			MemberInfo mi = new MemberInfo();
+			mi.setMi_id(rs.getString("mi_id"));
+			mi.setMi_pw(rs.getString("mi_pw"));
+            mi.setMi_name(rs.getString("mi_name"));
+            mi.setMi_gender(rs.getString("mi_gender"));
+            mi.setMi_birth(rs.getString("mi_birth"));
+            mi.setMi_phone(rs.getString("mi_phone"));
+            mi.setMi_email(rs.getString("mi_email"));
+            mi.setMi_isad(rs.getString("mi_isad"));
+            mi.setMi_point(rs.getInt("mi_point"));
+            mi.setMi_status(rs.getString("mi_status"));
+            mi.setMi_date(rs.getString("mi_date"));
+            mi.setMi_lastlogin(rs.getString("mi_lastlogin"));
+			return mi;
+		});
+		return result;
+	}
 }
