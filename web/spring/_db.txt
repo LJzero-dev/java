@@ -75,3 +75,18 @@ public class 인터페이스를 구현한 클래스 implements RowMapper<제네릭> {
  - update() 메소드는 쿼리 실행 후 변경된 레코드의 개수를 리턴함
 
 
+※ DataSource 클래스의 주요 프로퍼티 setter메소드들
+프로퍼티 setter메소드         설명
+setInitialSize(int)         커넥션 풀을 초기화할 때 생성할 초기 커넥션 객체의 개수를 지정. 기본값 : 10
+setMaxActive(int)         커넥션 풀에서 가져올 수 있는 최대 커넥션 객체의 개수를 지정. 기본값 : 100
+setMaxIdle(int)            커넥션 풀에서 유지할 수 있는 최대 커넥션 객체의 개수를 지정. 기본값 : 100
+setMinIdle(int)            커넥션 풀에서 유지할 수 있는 최소 커넥션 객체의 개수를 지정. 기본값 : 10(setInitialSize와 동일)
+setMaxWait(int)            커넥션 풀에서 커넥션을 가져올 때 대기하는 최대 시간을 밀리초 단위로 지정. 기본값 : 30000(30초)
+setValidationQuery(String)   커넥션이 유효한지 검사할 때 사용할 쿼리를 지정(보통 'select 1'등을 사용) 기본값 : null(검사안함)
+setValidationQueryTimeout(int) setValidationQuery()에서 지정한 쿼리의 최대 실행시간으로 초단위로 지정. 기본값 : -1(비활성화)
+setTestOnBorrow(boolean)   커넥션 풀에서 커넥션을 가져올 때 검사 여부를 지정. 기본값 : false
+setTestOnReturn(boolean)   커넥션 풀에 커넥션을 반환할 때 검사 여부를 지정. 기본값 : false
+setTestWhileIdle(boolean)   커넥션 풀에 유휴 상태로 있는 커넥션의 검사 여부를 지정. 기본값 : false
+setMinEvictableIdleTimeMillis(int) 기본값 : 60000(60초)
+ - 커넥션 풀에 유휴 상태로 유지할 최소 시간을 밀리초 단위로 지정(setTestWhileIdle이 true이면 유휴 시간이 이 값을 넘으면 커넥션을 제거)
+setTimeBetweenEvictionRunsMillis(int) 커넥션 풀의 유휴 커넥션을 검사할 주기를 밀리초 단위로 지정. 기본값 : 5000(5초) - 1이하의 값 사용불가
