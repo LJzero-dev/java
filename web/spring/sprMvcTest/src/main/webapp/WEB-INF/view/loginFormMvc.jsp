@@ -7,7 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="loginMvc">로그인-MVC</a><br />
-<a href="loginSpr">로그인-SPR</a>
+<h2>로그인 폼(MVC)</h2>
+<form name="frmLogin" action="loginMvc" method="post">
+아이디 : <input type="text" name="uid" value="test1" /><br />
+비밀번호 : <input type="password" name="pwd" value="1234" /><br />
+<input type="submit" value="로그인" />
+</form>
 </body>
 </html>
