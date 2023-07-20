@@ -9,5 +9,4 @@ public class LoginFormCtrl {
 	public String loginForm() {
 		return "loginForm";
 	}
-
 }

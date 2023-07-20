@@ -13,6 +13,8 @@ MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
 <% if (loginInfo == null) { %>
 <a href="loginMvc">로그인-MVC</a><br />
 <a href="loginSpr">로그인-SPR</a>
+<hr />
+<a href="memberJoin">회원가입</a>
 <% } else { %>
 <a href="logout">로그아웃</a>
 <% } %>

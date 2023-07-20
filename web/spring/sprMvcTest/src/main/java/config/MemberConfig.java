@@ -5,7 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import dao.LoginDaoSpr;
+import dao.MemberDao;
 import svc.LoginSvcSpr;
+import svc.MemberSvc;
 
 @Configuration
 public class MemberConfig {	// 회원 관련 작업 설정 클래스
@@ -25,5 +27,15 @@ public class MemberConfig {	// 회원 관련 작업 설정 클래스
 		LoginSvcSpr loginSvcSpr = new LoginSvcSpr();
 		loginSvcSpr.setLoginDaoSpr(loginDaoSpr());
 		return loginSvcSpr;
+	}
+	@Bean
+	public MemberDao memberDao() {
+		return new MemberDao(dataSource());
+	}
+	@Bean
+	public MemberSvc memberSvc() {
+		MemberSvc memberSvc = new MemberSvc();
+		memberSvc.setMemberDao(memberDao());
+		return memberSvc;
 	}
 }
