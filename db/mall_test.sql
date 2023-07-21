@@ -300,9 +300,13 @@ select count(*) from t_member_info where mi_id = '';
 
 update t_member_info set mi_phone = '', mi_email = '', mi_isad = '' where mi_id = '';
 
+select * from t_schedule_info;
 
+insert into t_schedule_info values (?,'', '', '', '', now());
 
+select * from t_schedule_info;
 
+select * from t_schedule_info where mi_id = '' and si_date like '2023-07%';
 
 
 
