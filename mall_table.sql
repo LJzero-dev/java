@@ -1,3 +1,4 @@
+create database mall;
 use mall;
 
 -- 관리자 정보 테이블 
@@ -38,7 +39,7 @@ values('test2', '1234', '유관순', '여','1989-03-01', '010-3333-1111', 'you@t
 insert into t_member_info (mi_id, mi_pw, mi_name, mi_gender, mi_birth, mi_phone, mi_email, mi_isad, mi_point) 
 values('test3', '1234', '전우치', '남','1995-12-20', '010-9999-8888', 'jeon@test.com', 'y', 1000); 
 
-select * from t_member_info;
+select * from t_member_info where mi_id = ? and mi_pw = ?;
 
 
 
@@ -543,14 +544,13 @@ create table t_poll_result (
 		references t_poll_exam(pe_idx)
 );
 
-
-
-
-
-
-
-
-
-
-
+CREATE TABLE t_schedule_info (
+  si_idx int AUTO_INCREMENT primary key,	-- 일련번호
+  mi_id varchar(20) NOT NULL,				-- 회원ID
+  si_date CHAR(10) NOT NULL,				-- 일정 일자
+  si_time CHAR(5) NOT NULL,					-- 일정 시간
+  si_content varchar(200) NOT NULL,			-- 일정 내용
+  si_regdate datetime DEFAULT now(),		-- 등록일
+  CONSTRAINT fk_schedule_info_mi_id FOREIGN KEY (mi_id) REFERENCES t_member_info (mi_id)
+);
 

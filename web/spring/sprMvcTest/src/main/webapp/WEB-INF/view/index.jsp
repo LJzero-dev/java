@@ -17,6 +17,10 @@ MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
 <a href="memberJoin">회원가입</a>
 <% } else { %>
 <a href="logout">로그아웃</a>
+<hr />
+<a href="memberUp">정보수정</a>
+<hr />
+<a href="schedule">일정관리</a>
 <% } %>
 </body>
 </html>

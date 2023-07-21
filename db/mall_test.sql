@@ -279,6 +279,12 @@ create view v_member_gender as select year(mi_date) joinyear, month(mi_date) joi
 select * from v_member_gender;
 select * from t_admin_info;
 insert into t_admin_info (ai_id, ai_pw, ai_name) values ('admin2', '1111', '관리자2');
+use mall;
+
+
+select * from t_member_info;
+
+insert into t_member_info values (?, ?, ?, ?, ?, ?, ?, ?, 1000, 'a', now(), null);
 
 
 
@@ -290,15 +296,9 @@ insert into t_admin_info (ai_id, ai_pw, ai_name) values ('admin2', '1111', '관�
 
 
 
+select count(*) from t_member_info where mi_id = '';
 
-
-
-
-
-
-
-
-
+update t_member_info set mi_phone = '', mi_email = '', mi_isad = '' where mi_id = '';
 
 
 

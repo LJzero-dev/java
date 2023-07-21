@@ -1,7 +1,9 @@
 package ctrl;
 
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import vo.MemberInfo;
 
 @Controller
 public class LoginFormCtrl {

@@ -4,13 +4,11 @@ import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import dao.LoginDaoSpr;
-import dao.MemberDao;
-import svc.LoginSvcSpr;
-import svc.MemberSvc;
+import dao.ScheduleDao;
+import svc.ScheduleSvc;
 
 @Configuration
-public class MemberConfig {	// 회원 관련 작업 설정 클래스
+public class ScheduleConfig {
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
 			DataSource ds = new DataSource();
@@ -19,23 +17,13 @@ public class MemberConfig {	// 회원 관련 작업 설정 클래스
 			return ds;
 	}
 	@Bean
-	public LoginDaoSpr loginDaoSpr() {
-		return new LoginDaoSpr(dataSource());
+	public ScheduleDao scheduleDao() {
+		return new ScheduleDao(dataSource());
 	}
 	@Bean
-	public LoginSvcSpr loginSvcSpr() {
-		LoginSvcSpr loginSvcSpr = new LoginSvcSpr();
-		loginSvcSpr.setLoginDaoSpr(loginDaoSpr());
-		return loginSvcSpr;
-	}
-	@Bean
-	public MemberDao memberDao() {
-		return new MemberDao(dataSource());
-	}
-	@Bean
-	public MemberSvc memberSvc() {
-		MemberSvc memberSvc = new MemberSvc();
-		memberSvc.setMemberDao(memberDao());
-		return memberSvc;
+	public ScheduleSvc scheduleSvc() {
+		ScheduleSvc scheduleSvc = new ScheduleSvc();
+		scheduleSvc.setMemberDao(scheduleDao());
+		return scheduleSvc;
 	}	
 }

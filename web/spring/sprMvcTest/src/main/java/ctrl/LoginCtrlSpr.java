@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import config.CtrlConfig.LoginRequired;
 import svc.LoginSvcSpr;
 import vo.MemberInfo;
+
 
 @Controller
 @RequestMapping("/loginSpr")
@@ -21,6 +23,8 @@ public class LoginCtrlSpr {
 	public void setLoginSvcSpr(LoginSvcSpr loginSvcSpr) {
 		this.LoginSvcSpr = loginSvcSpr;
 	}
+	
+	@LoginRequired
 	@GetMapping	//	요청(loginSpr)을 get방식으로 받았을 경우
 	public String loginForm() {
 		return "loginFormSpr";
