@@ -51,7 +51,14 @@ public class ScheduleCtrl {	// 일정관리 관련 모든 기능을 매핑시키는 컨트롤러 클�
 		LocalDate edate = LocalDate.of(schYear, schMonth, 1);
 		ci.setSchLast(edate.lengthOfMonth());
 		ci.setsWeek(edate.getDayOfWeek().getValue());
+		
+		HttpSession session = request.getSession();
+		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
+		List<ScheduleInfo> scheduleList = scheduleSvc.getScheduleList(mi.getMi_id(), schYear, schMonth);
+		
+		
 		request.setAttribute("ci", ci);
+		request.setAttribute("scheduleList", scheduleList);
 		return "schedule/schedule";
 	}
 	@GetMapping("/scheduleInForm")
@@ -66,11 +73,7 @@ public class ScheduleCtrl {	// 일정관리 관련 모든 기능을 매핑시키는 컨트롤러 클�
 		LocalDate schDate = LocalDate.of(y, m, d);
 		ci.setSchLast(schDate.lengthOfMonth());
 		ci.setCurYear(LocalDate.now().getYear());
-		HttpSession session = request.getSession();
-		MemberInfo mi = (MemberInfo)session.getAttribute("loginInfo");
-		
-		List<ScheduleInfo> scheduleList = scheduleSvc.getScheduleList(mi.getMi_id());
-		
+				
 		request.setAttribute("ci", ci);
 		return "schedule/scheduleInForm";
 	}

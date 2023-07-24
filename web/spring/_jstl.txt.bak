@@ -1,0 +1,77 @@
+JSTL(JSP Standard Tag Library)
+ - 웹 애플리케이션 개발 플랫폼을 위한 컴포넌트 모음으로 데이터 처리와 조건문, 반목문 등의 작업을 스크립틀릿이 아닌 태그 라이브러리로 작업하는 것
+
+ - 장점
+ 	빠른 개발 : JSP를 단순화하는 많은 태그들을 제공해줌
+	스크립틀릿을 사용할 필요가 없음 : 디자이너나 퍼블리셔, 프론그 개발자 등이 소스 보기가 편해짐
+
+스프링 없이 사용 시
+ - 다운로드
+ 	https://tomcat.apache.org/ 의 왼쪽 메뉴들 중 Download 메뉴의 Taglibs 클릭 후
+	화면 하단의 링크에서 'taglibs-standard-impl-1.2.5.jar',
+	'taglibs-standard-spec-1.2.5.jar', 'taglibs-standard-jstlel-1.2.5.jar' 세 개의 파일을 다운받아 ~/WebContent/WEB-INF/lib 폴더에 저장한 후 사용함
+
+스프링에서 사용 시
+- https://mvnrepository.com/ dptj 'jstl'과 'taglibs standard impl'을 검색
+ - pom.xml에 <dependency> 추가
+<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+</dependency>
+
+ taglibx standard impl
+ <!-- https://mvnrepository.com/artifact/org.apache.taglibs/taglibs-standard-impl -->
+<dependency>
+    <groupId>org.apache.taglibs</groupId>
+    <artifactId>taglibs-standard-impl</artifactId>
+    <version>1.2.5</version>
+    <scope>runtime</scope>
+</dependency>
+
+- JSTL은 일반적으로 JSTL과 EL의 조합을 의미하는 경우가 많음
+ 
+ 
+El(Expression Language)
+ - JSP에서 제공하는 표현식 (<%=test %>)을 대신하여 좀 더 편리하게 출력하기 위해 제공되는 언어임
+  예) <%=test %>을 EL로 표현하면 ${test}
+
+- EL에는 여러 내장 객체가 존재함			
+	pageScope : Page 영역(요청을 받은 페이지)에 존재하는 객체를 참조할 때 사용
+	requestScope : Request 영역(요청을 받은 페이지와 디스패치 방식으로 이동한 페이지 포함)에 존재하는 객체를 참조할 때 사용
+	sessionScope : Session 영역(사이트 전체를 의미하며, 시간적 제한이 있음)에 존재하는 객체를 참조할 떄 사용
+	applicationScope : application 영역(사이트 전체를 의미하며, 웹 서버가 멈출 때 까지 존재)에 존재하는 객체를 참조할 때 사용
+	param : 파라미터 값을 얻어올 때 사용
+	paramValues : 파라미터 값을 배열로 얻어올 때 사용
+	header : Header 정보를 얻어올 때 사용
+	headerValues : Header 정보를 배열로 얻어올 때 사용
+	cookie : 쿠키 객체를 참조할 때 사용
+
+ - EL의 연산자
+ 	산술연산자
+	+ - * / % : 사칙연산과 나머지 연산자(나누기는 div, 나머지는 mod로 대체할 수 있음)
+	비교연산자
+	==, eq : 두 값이 같은지 여부
+	!=, ne : 두 값이 다른지 여부
+	<, lt : 보다 작다로 연산자의 왼쪽 항이 오른쪽 항보다 작으면 true
+	>, gt : 보다 크다로 연산자의 왼쪽 항이 오른쪽 항보다 크면 true
+	<=, le : 작거나 같다 연산자의 왼쪽 항이 오른쪽 항보다 작거나 같으면 true
+	>=, ge : 크거나 같다 연산자의 왼쪽 항이 오른쪽 항보다 크거나 같으면 true
+	논리연산자
+	&&, and : 조건이 모두 참이며면 true
+	||, or : 조건들 중 하나라도 참이면 true
+	!, not : true를 false로, false를 true로 리턴
+
+JSTL의 액션 - JSTL core
+ - core는 JSTL의 기본적인 기능들을 구현해 놓은 라이브러리임(분기문, 반복문)
+ - core 기능을 사용하려면 라이브러리를 페이지에서 등록해야 함
+
+1. core 등록법
+	<%@taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+	 prefix="c" : core 태그를 사용할 때 붙일 접두어로 core이므로 보통 c를 사용함
+2. core 라이브러리의 태그들
+2-1) 출력관련 태그 : <c:out>
+	 - 문법 : <c:out value="출력값" default="기본값" excapeXml="true of false" /> 
+	 value : 출력할 값
+	 default : 기본값으로 value가 null일 경우 기본값이 출력됨

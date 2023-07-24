@@ -25,5 +25,5 @@ public class ScheduleConfig {
 		ScheduleSvc scheduleSvc = new ScheduleSvc();
 		scheduleSvc.setMemberDao(scheduleDao());
 		return scheduleSvc;
-	}	
+	}
 }

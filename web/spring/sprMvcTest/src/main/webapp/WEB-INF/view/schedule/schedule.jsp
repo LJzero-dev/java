@@ -7,6 +7,8 @@ request.setCharacterEncoding("utf-8");
 
 CalendarInfo ci = (CalendarInfo)request.getAttribute("ci");
 // 달력 출력을 위한 정보(현재 연월일, 검색 연월, 말일 등) 
+List<ScheduleInfo> scheduleList = (List<ScheduleInfo>)request.getAttribute("scheduleList");
+// 검색 연월에 해당하는 일정들의 목록을 저장하고 있는 List
 
 int sy = ci.getSchYear(), sm = ci.getSchMonth();
 int sWeek = ci.getsWeek();	// 1일의 요일 및 시작 번호(1~7, 1:월요일), 말일(루프의 조건으로 사용)
@@ -46,7 +48,28 @@ a:visited { color:black; text-decoration:none; }
 .txtBlue { color:blue; font-weight:bold; }
 #txtToday { background:#efefef; }
 #searchBox { width:700px; text-align:center; }
+.scheduleBox { width:400px; height:150px; background:#fbef84; 
+	padding:10px 5px; overflow:auto; position:absolute; 
+	top:200px; left:150px; display:none; font-size:0.9em; 
+}
 </style>
+<script>
+function showSchedule(num) {
+	var obj = document.getElementById("box" + num);
+	obj.style.display = "block";
+}
+
+function hideSchedule(num) {
+	var obj = document.getElementById("box" + num);
+	obj.style.display = "none";
+}
+
+function callDel(idx) {
+	if (confirm("정말 삭제하시겠습니까?")) {
+		location.href = "scheduleDel?idx=" + idx + '&sch=<%=sy+""+sm%>';
+	}
+}
+</script>
 </head>
 <body>
 	<div id="searchBox">
@@ -83,16 +106,40 @@ a:visited { color:black; text-decoration:none; }
 			if (n % 7 == 1) out.println("<tr>");			// 요일 번호가 1(월요일) 이면 <tr>을 열어줌
 			if (n % 7 == 6) txtClass = " class='txtBlue' ";
 			else if (n % 7 == 0) txtClass = " class='txtRed' ";
+			String sch = "", close = "";
+			if (scheduleList.size() > 0) {	// 검색 연월에 해당하는 일정이 있을 경우
+				String schDate = sy + "-" + (sm < 10 ? "0" + sm : sm) + 
+				"-" + (i < 10 ? "0" + i : i);	// si_date와 비교할 값
+				out.println("<div class='scheduleBox' id='box" + i + "'>");
+				for (ScheduleInfo si : scheduleList) {
+					if (schDate.equals(si.getSi_date())) {
+					// 현재 출력할 날짜에 해당하는 일정이 있을 경우
+						sch = "<a href='javascript:showSchedule(" + i + ");'>일정확인</a>";
+						close = "<input type='button' value='닫기' onclick='hideSchedule(" + i + ");' /><br /><br />";
+		%>
+			<%=schDate %><span style="margin-right:240px;"></span><%=close %>
+			일시 : <%=si.getSi_time() %>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" value="삭제" onclick="callDel(<%=si.getSi_idx() %>);" />
+			<br /><%=si.getSi_content().replace("\r\n", "<br />") %>
+			<br /><br />등록일 : <%=si.getSi_regdate() %><hr />
+		<%
+					}
+				}
+				out.println("</div>");
+			}
+
 			String args = "?y=" + sy + "&m=" + sm + "&d=" + i;
-			out.println("<td  valign='top'>" + "<a href='scheduleInForm" + args + "'" + txtClass +  ">" + i + "</a></td>");
-			if (n % 7 == 0) {
+			out.println("<td valign='top'>" + "<a href='scheduleInForm" + 
+			args + "' " + txtClass + ">" + i + "</a><br />" + sch + "</td>");
+
+			if (n % 7 == 0) {	// 요일번호가 7의 배수(일요일)이면
 				out.println("</tr>");
 			} else if (i == eDay) {
-				for (int j = n % 7; j < 7; j++)	out.println("<td></td>");
+				for (int j = n % 7 ; j < 7 ; j++)	out.println("<td></td>");
 				out.println("</tr>");
 			}
 		}
 		%>
-	</table><span style="color:red; font-weight:bold;"></span>
-</body>
-</html>
+		</table>
+		</body>
+		</html>

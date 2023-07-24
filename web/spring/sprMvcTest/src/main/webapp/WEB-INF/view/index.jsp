@@ -22,5 +22,7 @@ MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
 <hr />
 <a href="schedule">일정관리</a>
 <% } %>
+<hr />
+<a href="jstlIndex">JSTL Index Test</a>
 </body>
 </html>

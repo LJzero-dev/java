@@ -2,21 +2,23 @@ package svc;
 
 import java.util.List;
 
-import dao.ScheduleDao;
-import vo.ScheduleInfo;
+import dao.*;
+import vo.*;
 
 public class ScheduleSvc {
 	private ScheduleDao scheduleDao;
-	
-	public void setMemberDao(ScheduleDao scheduleDao) {
+
+	public void setScheduleDao(ScheduleDao scheduleDao) {
 		this.scheduleDao = scheduleDao;
 	}
 
 	public int scheduleInsert(ScheduleInfo si) {
-		return scheduleDao.scheduleInsert(si);
+		int result = scheduleDao.scheduleInsert(si);
+		return result;
 	}
 
 	public List<ScheduleInfo> getScheduleList(String uid, int y, int m) {
-		return scheduleDao.getScheduleList(uid, y, m);
+		List<ScheduleInfo> schduleList = scheduleDao.getScheduleList(uid, y, m);
+		return schduleList;
 	}
 }
