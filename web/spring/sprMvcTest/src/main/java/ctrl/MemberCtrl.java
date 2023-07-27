@@ -62,7 +62,7 @@ public class MemberCtrl {	// 회원 관련 모든 기능에 대한 컨트롤러
 	@ResponseBody	// 자바객체를 http 응답용 객체로 변환하여 클라이언트에 전송 비동기 통신(ajax)시 서버에서 클라이언트로 응답메세지를 보낼 때 데이터를 담아서 보낼 해당 본문을 의미 
 	public String dupId(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
-		return memberSvc.chkDupId(request.getParameter("uid").trim().toLowerCase());		 
+		return memberSvc.chkDupId(request.getParameter("uid").trim().toLowerCase());
 	}	
 	
 	@GetMapping("/memberUp")

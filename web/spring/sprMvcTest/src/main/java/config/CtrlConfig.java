@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import ctrl.BbsCtrl;
 import ctrl.JstlCtrl;
 import ctrl.LoginCtrlMvc;
 import ctrl.LoginCtrlSpr;
 import ctrl.LogoutCtrl;
 import ctrl.MemberCtrl;
 import ctrl.ScheduleCtrl;
+import svc.JstlSvc;
 import svc.LoginSvcSpr;
 import svc.MemberSvc;
 import svc.ScheduleSvc;
@@ -28,6 +30,9 @@ public class CtrlConfig {
 	private MemberSvc memberSvc;
 	@Autowired
 	private ScheduleSvc scheduleSvc;
+	@Autowired
+	private JstlSvc jstlSvc;
+	
 	@Bean
 	public TestCtrl testCtrl() {
 		return new TestCtrl();
@@ -65,12 +70,18 @@ public class CtrlConfig {
 	}
 	@Bean
 	public JstlCtrl jstlCtrl() {
-		return new JstlCtrl();
+		JstlCtrl jstlCtrl = new JstlCtrl();
+		jstlCtrl.setJstlSvc(jstlSvc);
+		return jstlCtrl;
 	}
 
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target(ElementType.METHOD)
 	public @interface LoginRequired {
+	}
+	@Bean
+	public BbsCtrl bbsCtrl() {
+		return new BbsCtrl();
 	}
 }
 	

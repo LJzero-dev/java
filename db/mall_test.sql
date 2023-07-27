@@ -308,11 +308,15 @@ select * from t_schedule_info;
 
 select * from t_schedule_info where mi_id = '' and si_date like '2023-07%';
 
-
-
-
-
-
+select * from t_member_info;
+-- drop table test;
+-- idx int 자동증가, num int 기본키, name vc(20) 필수 테이블 test
+create table test(
+	idx int auto_increment unique,
+    num int primary key,
+    name varchar(20) not null
+);
+insert into test (num, name) values ()
 
 
 

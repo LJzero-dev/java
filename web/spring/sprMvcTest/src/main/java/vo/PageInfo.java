@@ -4,6 +4,9 @@ public class PageInfo {	// 게시판 목록, 상품 목록 등에서 페이징에 필요한 정보들�
 	private int cpage, spage, psize, bsize, rcnt, pcnt;
 	private String schtype, keyword, args, schargs, obargs, vargs, pcb, pcs, sch, ob, v;
 		
+	public PageInfo(String schtype, String keyword) {
+		this.schtype = schtype;	this.keyword = keyword;
+	}
 	public int getCpage() {
 		return cpage;
 	}
