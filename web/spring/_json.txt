@@ -85,4 +85,6 @@ var 변수 = JSON.stringify(변경할 자바스크립트 객체[, replacer]);
  - JSON.stringify() 메소드와 반대로 인수로 전달받은 JSON 형식의 문자열을 자바스크립트 객체로 변환하여 리턴
  - JSON 형식의 문자열만을 변환함
  - 문법
-var 변수 = JSON.parse(JSON 형식의 문자열)
+var 변수 = JSON.parse(JSON 형식의 문자열[, riviver]);
+	riviver : 선택사항으로 함수를 넣을 수 있음
+	 - 함수는 기본적으로 key와 value를 인수로 전달 받으며 value를 리턴하고, 간단한 작업도 가능함

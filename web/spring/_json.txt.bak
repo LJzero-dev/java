@@ -84,3 +84,5 @@ var 변수 = JSON.stringify(변경할 자바스크립트 객체[, replacer]);
 2. JSON.parse() : 비직렬화 메소드
  - JSON.stringify() 메소드와 반대로 인수로 전달받은 JSON 형식의 문자열을 자바스크립트 객체로 변환하여 리턴
  - JSON 형식의 문자열만을 변환함
+ - 문법
+var 변수 = JSON.parse(JSON 형식의 문자열)
