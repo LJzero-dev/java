@@ -26,6 +26,8 @@
 				config.WebConfig
 				config.ScheduleConfig
 				config.JstlConfig
+				config.FreeConfig
+				config.JsonConfig
 				\WEB-INF\spring\appServlet\servlet-context.xml
 			</param-value>
 		</init-param>

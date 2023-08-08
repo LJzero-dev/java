@@ -9,7 +9,8 @@ public class MemberSvc {
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
-
+	
+	
 	public int memberInsert(MemberInfo mi) {
 		return memberDao.memberInsert(mi);
 	}

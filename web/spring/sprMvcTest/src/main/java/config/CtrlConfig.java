@@ -10,12 +10,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import ctrl.BbsCtrl;
+import ctrl.FreeCtrl;
+import ctrl.JsonCtrl;
 import ctrl.JstlCtrl;
 import ctrl.LoginCtrlMvc;
 import ctrl.LoginCtrlSpr;
 import ctrl.LogoutCtrl;
 import ctrl.MemberCtrl;
 import ctrl.ScheduleCtrl;
+import svc.FreeSvc;
+import svc.JsonSvc;
 import svc.JstlSvc;
 import svc.LoginSvcSpr;
 import svc.MemberSvc;
@@ -32,6 +36,10 @@ public class CtrlConfig {
 	private ScheduleSvc scheduleSvc;
 	@Autowired
 	private JstlSvc jstlSvc;
+	@Autowired
+	private FreeSvc freeSvc;
+	@Autowired
+	private JsonSvc jsonSvc;
 	
 	@Bean
 	public TestCtrl testCtrl() {
@@ -82,6 +90,18 @@ public class CtrlConfig {
 	@Bean
 	public BbsCtrl bbsCtrl() {
 		return new BbsCtrl();
+	}
+	@Bean
+	public FreeCtrl freeCtrl() {
+		FreeCtrl freeCtrl = new FreeCtrl();
+		freeCtrl.setFreeSvc(freeSvc);
+		return freeCtrl;
+	}
+	@Bean
+	public JsonCtrl jsonCtrl() {
+		JsonCtrl jsonCtrl = new JsonCtrl();
+		jsonCtrl.setJsonSvc(jsonSvc);
+		return jsonCtrl;
 	}
 }
 	

@@ -393,7 +393,30 @@ create table t_free_list (
 	fl_date	datetime default now()	-- 작성일
 );
 
+select fl_idx, fl_title, fl_reply, fl_writer, fl_read, if(curdate() = date(fl_date), right(fl_date, 8), mid(fl_date,3,8)) wdate from t_free_list  where fl_isview = 'y'  order by fl_idx desc limit 0, 10;
 
+select * from t_free_list;
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (1,'test1', '제목1', '내용1', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (2,'test1', '제목2', '내용2', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (3,'test1', '제목3', '내용3', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (4,'test1', '제목4', '내용4', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (5,'test1', '제목5', '내용5', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (6,'test1', '제목6', '내용6', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (7,'test1', '제목7', '내용7', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (8,'test1', '제목8', '내용8', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (9,'test1', '제목9', '내용9', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (10,'test1', '제목10', '내용10', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (11,'test1', '제목11', '내용11', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (12,'test1', '제목12', '내용12', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (13,'test1', '제목13', '내용13', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (14,'test1', '제목14', '내용14', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (15,'test1', '제목15', '내용15', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (16,'test1', '제목16', '내용16', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (17,'test1', '제목17', '내용17', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (18,'test1', '제목18', '내용18', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (19,'test1', '제목19', '내용19', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (20,'test1', '제목20', '내용20', '120.0.0.1');
+insert into t_free_list (fl_idx, fl_writer, fl_title, fl_content, fl_ip) values (21,'test1', '제목21', '내용21', '120.0.0.1');
 
 -- 자유게시판 댓글 테이블
 
@@ -431,8 +454,8 @@ create table t_free_reply_gnb(
 		references t_member_info (mi_id)
 );
 
-
-
+select * from t_free_list where fl_isview = 'y' and fl_idx = 12;
+update t_free_list set fl_read = 2147483640 where fl_idx = 12;
 -- 구매 후기 테이블
 
 create table t_review_list (			

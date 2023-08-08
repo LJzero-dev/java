@@ -11,8 +11,9 @@ public class MemberDao {
 	public MemberDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
-	public int memberInsert(MemberInfo mi) {
-		return jdbcTemplate.update("insert into t_member_info values (?, ?, ?, ?, ?, ?, ?, ?, 1000, 'a', now(), null)",mi.getMi_id(), mi.getMi_pw(), mi.getMi_name(), mi.getMi_gender(), mi.getMi_birth(), mi.getMi_phone(), mi.getMi_email(), mi.getMi_isad());		
+	public int memberInsert(MemberInfo mi) {				
+		return	jdbcTemplate.update("insert into t_member_info values (?, ?, ?, ?, ?, ?, ?, ?, 1000, 'a', now(), null)",mi.getMi_id(), mi.getMi_pw(), mi.getMi_name(), mi.getMi_gender(), mi.getMi_birth(), mi.getMi_phone(), mi.getMi_email(), mi.getMi_isad()) 
+				+ jdbcTemplate.update("insert into t_member_point (mi_id, mp_point, mp_desc) values ('" + mi.getMi_id() + "',1000, '가입축하금')");		
 	}
 	public String chkDupId(String uid) {
 		return jdbcTemplate.queryForObject("select count(*) from t_member_info where mi_id = '" + uid + "'", String.class);

@@ -1,12 +1,26 @@
 package vo;
 
 public class PageInfo {	// 게시판 목록, 상품 목록 등에서 페이징에 필요한 정보들을 저장할 클래스
-	private int cpage, spage, psize, bsize, rcnt, pcnt;
+	private int cpage, pcnt, spage, psize, rcnt, bsize,num;
+	// 현재 페이지 번호, 페이지 수, 시작헤이지, 게시글 수, 페이지 크기, 블록 크기, 번호
 	private String schtype, keyword, args, schargs, obargs, vargs, pcb, pcs, sch, ob, v;
-		
+	
+	
 	public PageInfo(String schtype, String keyword) {
 		this.schtype = schtype;	this.keyword = keyword;
 	}
+
+	public PageInfo() {
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+
 	public int getCpage() {
 		return cpage;
 	}

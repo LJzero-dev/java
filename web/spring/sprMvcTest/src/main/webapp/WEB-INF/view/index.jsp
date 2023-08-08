@@ -26,5 +26,9 @@ MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
 <a href="jstlIndex">JSTL Index Test</a>
 <hr />
 <a href="bbsFormIn">파일업로드</a>
+<hr />
+<a href="freeList">자유 게시판</a>
+<hr />
+<a href="jsonIndex">JSON</a>
 </body>
 </html>
