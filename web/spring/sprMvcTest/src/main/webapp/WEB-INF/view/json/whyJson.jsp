@@ -18,13 +18,31 @@ $.ajax({
 	}
 	$("#result1").html(str += "</ul>");
 	}
-    })
+    });
 }
+
+function useJson() {
+	$.ajax({
+		type:"get",
+		url:"useJson",
+		success: function(rs){
+			var arr = JSON.parse(rs);	//	json형식의 문자열을 자바스크림트 객체로 변환시키는 parse() 함수 사용
+			var str = "<ul>";        	 
+			for (i = 0; i < arr.length; i++) {
+				str += "<li>" + arr[i] + "</li>";
+			}
+			$("#result2").html(str += "</ul>");
+			}
+	    });
+	}
 </script>
 </head>
 <body>
 <p id="result1"></p>
 <input type="button" value="json 없이 실행" onclick="noJson();" />
 <hr />
+<p id="result2"></p>
+<input type="button" value="json 으로 실행" onclick="useJson();" />
+
 </body>
 </html>
