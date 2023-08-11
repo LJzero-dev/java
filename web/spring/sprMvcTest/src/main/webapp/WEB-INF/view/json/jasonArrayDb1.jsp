@@ -50,9 +50,8 @@ function chkVal(frm){
 		}
 	}
 	if(isChk){
-		frm.jsonStr.value = JSON.stringify(jsonArr);
-		alert(frm.jsonStr.value);
-		return false;
+		frm.jsonStr.value = JSON.stringify(jsonArr);	//	jsonArr라는 자바스크립트 배열을 제이슨 형식의 문자열로 변환하여 저장
+		return true
 	} else {
 		alert("한명 이상의 회원을 선택하세요.");
 		return false;

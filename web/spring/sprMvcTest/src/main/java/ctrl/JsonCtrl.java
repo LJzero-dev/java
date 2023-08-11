@@ -1,6 +1,11 @@
 package ctrl;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,10 +13,10 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import svc.JsonSvc;
 import vo.PageInfo;
 
@@ -43,9 +48,9 @@ public class JsonCtrl {
 		return "/json/whyJson";
 	}
 	@GetMapping(value ="/noJson", produces = "application/text; charset=utf8")
-	@ResponseBody	// ÀÚ¹ÙÀÇ °´Ã¼¸¦ http ÀÀ´ä¿ë °´Ã¼·Î º¯È¯ÇÏ¿© Å¬¶óÀÌ¾ðÆ®¿¡ Àü¼Û
+	@ResponseBody	// ï¿½Ú¹ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ http ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public String noJson() {
-		String[] arr = {"È«±æµ¿", "Àü¿ìÄ¡", "ÀÓ²©Á¤"};
+		String[] arr = {"È«ï¿½æµ¿", "ï¿½ï¿½ï¿½ï¿½Ä¡", "ï¿½Ó²ï¿½ï¿½ï¿½"};
 		String result = "";
 		for(String str : arr) {
 			result += "," + str;
@@ -53,10 +58,10 @@ public class JsonCtrl {
 		return result.substring(1);
 	} 
 	@GetMapping(value ="/useJson", produces = "application/text; charset=utf8")
-	@ResponseBody	// ÀÚ¹ÙÀÇ °´Ã¼¸¦ http ÀÀ´ä¿ë °´Ã¼·Î º¯È¯ÇÏ¿© Å¬¶óÀÌ¾ðÆ®¿¡ Àü¼Û
+	@ResponseBody	// ï¿½Ú¹ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ http ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ Å¬ï¿½ï¿½ï¿½Ì¾ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public String useJson() {
-		String[] arr = {"È«±æµ¿", "Àü¿ìÄ¡", "ÀÓ²©Á¤"};
-		org.json.JSONArray result = new org.json.JSONArray(arr);	//	JSONArray´Â List¿¡ °¡±î¿ò(Æ¯È÷, ArrayList)		
+		String[] arr = {"È«ï¿½æµ¿", "ï¿½ï¿½ï¿½ï¿½Ä¡", "ï¿½Ó²ï¿½ï¿½ï¿½"};
+		org.json.JSONArray result = new org.json.JSONArray(arr);	//	JSONArrayï¿½ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½(Æ¯ï¿½ï¿½, ArrayList)		
 		return result.toString();
 	}
 	@GetMapping("/jsonFile")
@@ -71,14 +76,14 @@ public class JsonCtrl {
 	public String jsonArray2(HttpServletRequest request) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String jsonStr = request.getParameter("jsonArr");
-		JSONParser p = new JSONParser();	//	Æ¯Á¤ ¹®ÀÚ¿­ µîÀ» JSON°´Ã¼·Î º¯È¯ÇÒ ¶§ »ç¿ëÇÏ´Â ÀÎ½ºÅÏ½º
+		JSONParser p = new JSONParser();	//	Æ¯ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½ï¿½ JSONï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½
 		JSONArray jsonArr = new JSONArray();
-		jsonArr = (JSONArray) p.parse(jsonStr);	// jsonÇü½ÄÀÇ ¹®ÀÚ¿­(jsonStr)À» JSONArray·Î º¯È¯ÇÏ¿© ÀúÀå	//	JSONArray´Â ¹è¿­º¸´Ù List¿¡ °¡±î¿ò(Æ¯È÷, ArrayList)
+		jsonArr = (JSONArray) p.parse(jsonStr);	// jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½(jsonStr)ï¿½ï¿½ JSONArrayï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½	//	JSONArrayï¿½ï¿½ ï¿½è¿­ï¿½ï¿½ï¿½ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½(Æ¯ï¿½ï¿½, ArrayList)
 		for (int i = 0; i < jsonArr.size(); i++) {
-			JSONObject jo = (JSONObject)jsonArr.get(i);	//	JsonArr¿¡ µé¾îÀÖ´Â ¿ä¼Ò¸¦ JSONObjectÇü ÀÎ½ºÅÏ½º·Î º¯È¯
-			System.out.println("id : " + jo.get("id") + " / addr : " + jo.get("addr"));	//	JSONObject´Â ¸ã(Map)ÀÌ¹Ç·Î Å°¸¦ ÀÌ¿ëÇÏ¿© µ¥ÀÌÅÍ¸¦ ÃßÃâÇÔ
+			JSONObject jo = (JSONObject)jsonArr.get(i);	//	JsonArrï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½Ò¸ï¿½ JSONObjectï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+			System.out.println("id : " + jo.get("id") + " / addr : " + jo.get("addr"));	//	JSONObjectï¿½ï¿½ ï¿½ï¿½(Map)ï¿½Ì¹Ç·ï¿½ Å°ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		}		
-		request.setAttribute("jsonStr", jsonStr.replaceAll("\"", "\'"));	//	jsonÇü½ÄÀÇ ¹®ÀÚ¿­À» request¿¡ ÀúÀå
+		request.setAttribute("jsonStr", jsonStr.replaceAll("\"", "\'"));	//	jsonï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		return "/json/jsonArray2";
 	}
 	@GetMapping("/jasonArrayDb1")
@@ -100,8 +105,95 @@ public class JsonCtrl {
 	}
 	@PostMapping("/jsonArrayDb2")
 	public String jsonArrayDb2(HttpServletRequest request) throws Exception {
-		request.getParameter("miid");
-		System.out.println(request.getParameter("miid") + "aa");
+		request.setCharacterEncoding("utf-8");
+		JSONParser p = new JSONParser();
+		JSONArray jsonArr = new JSONArray();
+		jsonArr = (JSONArray)p.parse(request.getParameter("jsonStr"));
+		for (int i = 0; i < jsonArr.size(); i++) {
+			JSONObject jo = (JSONObject)jsonArr.get(i);
+		}
 		return "/json/jsonArrayDb2";
+	}
+	@GetMapping("/jsonArray3")
+	public String jsonArray3() {
+		return "/json/jsonArray3";
+	}
+	@GetMapping("/addrOpenApi")
+	public String addrOpenApi() {
+		return "/json/addrOpenApi";
+	}
+	@GetMapping("/openApi1")
+	public String openApi1(HttpServletRequest request) throws Exception {
+		int cpage = 1, psize = 10, rcnt = 0, bsize = 10;
+		//	í˜„ìž¬ íŽ˜ì´ì§€ ë²ˆí˜¸, íŽ˜ì´ì§€ í¬ê¸°, ë°ì´í„° ê°œìˆ˜, ë¸”ë¡ í¬ê¸°
+		if(request.getParameter("cpage") != null) cpage = Integer.parseInt(request.getParameter("cpage"));
+		if(request.getParameter("psize") != null) cpage = Integer.parseInt(request.getParameter("psize"));
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1262000/CountryPopulationService2/getCountryPopulationList2"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=eK%2Bh7ZUqemVimmd2QHIY39z3iyTO6LPrfEsKz6ztWfVpnpcSVP9Iws9Q9G0avyhKEid0se7AOr8lSHas4L0yLQ%3D%3D"); /*Service Key*/        
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode(String.valueOf(cpage), "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode(String.valueOf(psize), "UTF-8")); /*ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½*/
+        // urlBuilder.append("&" + URLEncoder.encode("cond[country_nm::EQ]","UTF-8") + "=" + URLEncoder.encode("ï¿½ï¿½ï¿½ï¿½", "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+        // urlBuilder.append("&" + URLEncoder.encode("cond[country_iso_alp2::EQ]","UTF-8") + "=" + URLEncoder.encode("GH", "UTF-8")); /*ISO 2ï¿½Ú¸ï¿½ï¿½Úµï¿½*/
+        urlBuilder.append("&" + URLEncoder.encode("returnType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*XML ï¿½Ç´ï¿½ JSON*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        JSONParser p = new JSONParser();
+        JSONObject jo = (JSONObject)p.parse(sb.toString());
+        rcnt = Integer.parseInt(jo.get("totalCount").toString());
+		JSONArray dataList = (JSONArray)jo.get("data");
+		PageInfo pi = new PageInfo();
+		pi.setCpage(cpage);	pi.setPsize(psize);	pi.setRcnt(rcnt);	pi.setBsize(bsize);
+		request.setAttribute("pi", pi);	//	íŽ˜ì´ì§•ì„ ìœ„í•œ ì •ë³´ë¥¼ PageInfoí˜• ì¸ìŠ¤í„´ìŠ¤ piì— ì €ìž¥
+		request.setAttribute("dataList", dataList);
+		return "/json/openApi1";
+	}
+	@GetMapping("/openApi2")
+	public String openApi2(HttpServletRequest request) throws Exception {
+	        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1262000/CountryCovid19SafetyServiceNew/getCountrySafetyNewsListNew"); /*URL*/
+	        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=eK%2Bh7ZUqemVimmd2QHIY39z3iyTO6LPrfEsKz6ztWfVpnpcSVP9Iws9Q9G0avyhKEid0se7AOr8lSHas4L0yLQ%3D%3D"); /*Service Key*/
+	        urlBuilder.append("&" + URLEncoder.encode("returnType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*XML ï¿½Ç´ï¿½ JSON*/
+	        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½*/
+	        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£*/
+	        // urlBuilder.append("&" + URLEncoder.encode("cond[country_nm::EQ]","UTF-8") + "=" + URLEncoder.encode("ï¿½ï¿½ï¿½ï¿½", "UTF-8")); /*ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+	        // urlBuilder.append("&" + URLEncoder.encode("cond[country_iso_alp2::EQ]","UTF-8") + "=" + URLEncoder.encode("GH", "UTF-8")); /*ISO 2ï¿½Ú¸ï¿½ï¿½Úµï¿½*/
+	        URL url = new URL(urlBuilder.toString());
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        conn.setRequestMethod("GET");
+	        conn.setRequestProperty("Content-type", "application/json");
+	        System.out.println("Response code: " + conn.getResponseCode());
+	        BufferedReader rd;
+	        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+	            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        } else {
+	            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+	        }
+	        StringBuilder sb = new StringBuilder();
+	        String line;
+	        while ((line = rd.readLine()) != null) {
+	            sb.append(line);
+	        }
+	        rd.close();
+	        conn.disconnect();
+	        JSONParser p = new JSONParser();
+	        JSONObject jo = (JSONObject)p.parse(sb.toString());
+			JSONArray dataList = (JSONArray)jo.get("data");
+			request.setAttribute("dataList", dataList);
+        return "/json/openApi2";
 	}
 }

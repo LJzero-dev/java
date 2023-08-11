@@ -88,3 +88,10 @@ var 변수 = JSON.stringify(변경할 자바스크립트 객체[, replacer]);
 var 변수 = JSON.parse(JSON 형식의 문자열[, riviver]);
 	riviver : 선택사항으로 함수를 넣을 수 있음
 	 - 함수는 기본적으로 key와 value를 인수로 전달 받으며 value를 리턴하고, 간단한 작업도 가능함
+
+	 일반 인증키
+(Encoding)	
+eK%2Bh7ZUqemVimmd2QHIY39z3iyTO6LPrfEsKz6ztWfVpnpcSVP9Iws9Q9G0avyhKEid0se7AOr8lSHas4L0yLQ%3D%3D
+일반 인증키
+(Decoding)	
+eK+h7ZUqemVimmd2QHIY39z3iyTO6LPrfEsKz6ztWfVpnpcSVP9Iws9Q9G0avyhKEid0se7AOr8lSHas4L0yLQ==

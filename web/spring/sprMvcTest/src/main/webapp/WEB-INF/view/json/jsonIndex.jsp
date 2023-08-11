@@ -31,7 +31,13 @@
 		jsonArrayDb2에서는 jsonArrayDb1.jsp에서 보낸 회원들의 정보들을
 		JSONArray로 변경하여 출력
 		 -->
-		<td width="25%"><a href=""></a></td>
+		<td width="25%"><a href="jsonArray3">JSONArray3</a></td>
+	</tr>
+	<tr>
+		<td><a href="addrOpenApi">Address Open API</a></td>
+		<td><a href="openApi1">OPEN API 1</a></td>
+		<td><a href="openApi2">OPEN API 2</a></td>
+		<td><a href=""></a></td>
 	</tr>
 </table>
 </body>
