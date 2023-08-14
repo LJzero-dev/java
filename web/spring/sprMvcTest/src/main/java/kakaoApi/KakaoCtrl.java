@@ -13,4 +13,8 @@ public class KakaoCtrl {
 	public String kakaoMap() {
 		return "/kakao/kakaoMap";
 	}
+	@GetMapping("/kakaoBook")
+	public String kakaoBook() {
+		return "/kakao/kakaoBook";
+	}
 }

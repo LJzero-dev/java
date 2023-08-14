@@ -39,6 +39,9 @@
 		<td><a href="openApi2">OPEN API 2</a></td>
 		<td><a href="kakaoMap">Kakao Map</a></td>
 	</tr>
+	<tr>
+		<td><a href="kakaoBook">Kakao Book</a></td>
+	</tr>
 </table>
 </body>
 </html>
