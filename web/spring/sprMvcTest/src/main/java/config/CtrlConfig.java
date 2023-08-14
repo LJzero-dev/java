@@ -18,6 +18,8 @@ import ctrl.LoginCtrlSpr;
 import ctrl.LogoutCtrl;
 import ctrl.MemberCtrl;
 import ctrl.ScheduleCtrl;
+import kakaoApi.KakaoCtrl;
+import kakaoApi.KakaoSvc;
 import svc.FreeSvc;
 import svc.JsonSvc;
 import svc.JstlSvc;
@@ -27,7 +29,7 @@ import svc.ScheduleSvc;
 import test.TestCtrl;
 @Configuration
 public class CtrlConfig {
-// ±¸ÇöÇØ ³õÀº ÄÁÆ®·Ñ·¯µéÀ» ½ºÇÁ¸µ ºóÀ¸·Î µî·Ï½ÃÅ°´Â Å¬·¡½º
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï½ï¿½Å°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½
 	@Autowired
 	private LoginSvcSpr loginSvcSpr;
 	@Autowired
@@ -40,6 +42,8 @@ public class CtrlConfig {
 	private FreeSvc freeSvc;
 	@Autowired
 	private JsonSvc jsonSvc;
+	@Autowired
+	private KakaoSvc kakaoSvc;
 	
 	@Bean
 	public TestCtrl testCtrl() {
@@ -102,6 +106,12 @@ public class CtrlConfig {
 		JsonCtrl jsonCtrl = new JsonCtrl();
 		jsonCtrl.setJsonSvc(jsonSvc);
 		return jsonCtrl;
+	}
+	@Bean
+	public KakaoCtrl kakaoCtrl() {
+		KakaoCtrl kakaoCtrl = new KakaoCtrl();
+		kakaoCtrl.setKakaoSvc(kakaoSvc);
+		return kakaoCtrl;
 	}
 }
 	

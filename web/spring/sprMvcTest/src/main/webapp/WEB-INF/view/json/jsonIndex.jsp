@@ -37,7 +37,7 @@
 		<td><a href="addrOpenApi">Address Open API</a></td>
 		<td><a href="openApi1">OPEN API 1</a></td>
 		<td><a href="openApi2">OPEN API 2</a></td>
-		<td><a href=""></a></td>
+		<td><a href="kakaoMap">Kakao Map</a></td>
 	</tr>
 </table>
 </body>

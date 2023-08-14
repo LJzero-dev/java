@@ -28,6 +28,7 @@
 				config.JstlConfig
 				config.FreeConfig
 				config.JsonConfig
+				config.KakaoConfig
 				\WEB-INF\spring\appServlet\servlet-context.xml
 			</param-value>
 		</init-param>
