@@ -18,6 +18,7 @@ import ctrl.LoginCtrlSpr;
 import ctrl.LogoutCtrl;
 import ctrl.MemberCtrl;
 import ctrl.ScheduleCtrl;
+import ctrl.VueCtrl;
 import kakaoApi.KakaoCtrl;
 import kakaoApi.KakaoSvc;
 import svc.FreeSvc;
@@ -29,7 +30,6 @@ import svc.ScheduleSvc;
 import test.TestCtrl;
 @Configuration
 public class CtrlConfig {
-// ������ ���� ��Ʈ�ѷ����� ������ ������ ��Ͻ�Ű�� Ŭ����
 	@Autowired
 	private LoginSvcSpr loginSvcSpr;
 	@Autowired
@@ -113,5 +113,8 @@ public class CtrlConfig {
 		kakaoCtrl.setKakaoSvc(kakaoSvc);
 		return kakaoCtrl;
 	}
+	@Bean
+	public VueCtrl vueCtrl() {
+		return new VueCtrl();
+	}	
 }
-	

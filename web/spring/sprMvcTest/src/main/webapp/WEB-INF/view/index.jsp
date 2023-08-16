@@ -30,5 +30,7 @@ MemberInfo loginInfo = (MemberInfo)session.getAttribute("loginInfo");
 <a href="freeList">자유 게시판</a>
 <hr />
 <a href="jsonIndex">JSON</a>
+<hr />
+<a href="vueIndex">Vue.js</a>
 </body>
 </html>

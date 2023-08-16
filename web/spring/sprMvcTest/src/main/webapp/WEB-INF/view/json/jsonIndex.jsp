@@ -41,6 +41,7 @@
 	</tr>
 	<tr>
 		<td><a href="kakaoBook">Kakao Book</a></td>
+		<td><a href="kakaoLogin">Kakao Login</a></td>
 	</tr>
 </table>
 </body>
