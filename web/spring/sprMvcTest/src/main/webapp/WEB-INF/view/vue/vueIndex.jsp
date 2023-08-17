@@ -10,8 +10,7 @@
 <table width="700" cellpadding="5">
 	<tr>
 		<td width="25%"><a href="basicIndex">Basic</a></td>
-		<td width="25%"><a href=""></a></td>
-		<td width="25%"><a href=""></a></td>
+		<td width="25%"><a href="directiveIndex">Directive</a></td>
 		<td width="25%"><a href=""></a></td>
 	</tr>
 </table>

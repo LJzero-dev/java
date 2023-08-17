@@ -12,7 +12,15 @@
 		<td width="25%"><a href="propertyPrint">프로퍼티 출력</a></td>
 		<td width="25%"><a href="dataPrint">기본 자료형 출력</a></td>
 		<td width="25%"><a href="arrayPrint">배열 자료형 출력</a></td>
-		<td width="25%"><a href="objectPrint">객체 출력</a></td>
+		<td width="25%"><a href="objectPrint">객체 자료형 출력</a></td>
+	</tr>
+</table>
+<table width="700" cellpadding="5">
+	<tr>
+		<td width="25%"><a href="jsDataPrint">JS 자료형 출력</a></td>
+		<td width="25%"><a href="allDataPrint">모든 데이터 출력</a></td>
+		<td width="25%"><a href=""></a></td>
+		<td width="25%"><a href=""></a></td>
 	</tr>
 </table>
 </body>

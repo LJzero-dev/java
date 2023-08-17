@@ -116,5 +116,5 @@ public class CtrlConfig {
 	@Bean
 	public VueCtrl vueCtrl() {
 		return new VueCtrl();
-	}	
+	}
 }

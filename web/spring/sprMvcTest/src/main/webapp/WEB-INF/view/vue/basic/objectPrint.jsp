@@ -20,7 +20,7 @@
 	<p>{{ "obj.inner.age : " + obj.inner.age}}</p>
 </div>
 <!-- 
-obj : { "uname": "홍길동", "age": 33, "addr": "서울", "arr": [ 1, 2, 3 ] }
+obj : { "uname": "홍길동", "age": 33, "addr": "서울", "arr": [ 1, 2, 3 ], "inner": { "name": "전우치", "age": 30 } }
 obj.uname : 홍길동
 obj.age : 33
 obj.addr : 서울
@@ -28,6 +28,8 @@ obj.arr : 1,2,3
 obj.arr[0] : 1
 obj.arr[1] : 2
 obj.arr[2] : 3
+obj.inner.name : 전우치
+obj.inner.age : 30
  -->
 <script>
 new Vue({
