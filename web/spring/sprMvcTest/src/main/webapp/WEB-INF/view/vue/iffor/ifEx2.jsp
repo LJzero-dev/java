@@ -4,15 +4,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/style.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-<h2>Vue.js Test Page</h2>
-<table width="700" cellpadding="5">
-	<tr>
-		<td width="25%"><a href="basicIndex">Basic</a></td>
-		<td width="25%"><a href="directiveIndex">Directive</a></td>
-		<td width="25%"><a href="ifforIndex">If & For</a></td>
-	</tr>
-</table>
+<div id="app">
+	<p v-if="isShow"><input type="button" v-on:click="isShow = isShow" value="버튼 숨기기" /></p>
+</div>
+<script>
+new Vue({
+	el : "#app",
+	data : {
+		isShow : true
+	}
+});
+</script>
 </body>
 </html>

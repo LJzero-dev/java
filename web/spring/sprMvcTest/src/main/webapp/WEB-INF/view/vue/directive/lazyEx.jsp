@@ -9,27 +9,14 @@
 </head>
 <body>
 <div id="app">
-	<input type="text" v-model="uname" />
-	<p>추가될 이름 : {{ uname }}</p>
-	<p>모든 이름 : {{ arrName }} </p>
-	<input type="button" value="이름 추가" v-on:click="addName" />
-	<input type="button" value="이름 삭제" v-on:click="delName" />
+	<input type="text" v-model.lazy="lazyText" />
+	<p>입력 완료 후 표시 '{{lazyText}}'</p>
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		uname : "",
-		arrName : ["홍길동", "전우치", "임꺽정"]
-	},
-	methods : {
-		addName() {
-			this.arrName.push(this.uname);
-			this.uname = "";
-		},
-		delName() {
-			this.arrName.pop();
-		}
+		lazyText : ""	//	모든 글자를 입력할 때 까지 저장되지 않음(엔터를 치거나 포커스가 이동할 때 까지)		
 	}
 });
 </script>

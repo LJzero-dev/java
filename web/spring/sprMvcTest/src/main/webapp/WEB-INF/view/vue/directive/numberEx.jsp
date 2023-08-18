@@ -9,27 +9,18 @@
 </head>
 <body>
 <div id="app">
-	<input type="text" v-model="uname" />
-	<p>추가될 이름 : {{ uname }}</p>
-	<p>모든 이름 : {{ arrName }} </p>
-	<input type="button" value="이름 추가" v-on:click="addName" />
-	<input type="button" value="이름 삭제" v-on:click="delName" />
+	<input type="number" v-model="numberText1" />
+	<p>100에 더해서 표시 '{{numberText1 + 100}}'</p>
+	<hr />
+	<input type="number" v-model.number="numberText2" /><!-- 입력된 값을 숫자형 데이터로 변경하여 프로퍼티에 저장 -->
+	<p>100을 더해서 표시 '{{numberText2 + 100}}'</p>
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		uname : "",
-		arrName : ["홍길동", "전우치", "임꺽정"]
-	},
-	methods : {
-		addName() {
-			this.arrName.push(this.uname);
-			this.uname = "";
-		},
-		delName() {
-			this.arrName.pop();
-		}
+		numberText1 : 0,
+		numberText2 : 0
 	}
 });
 </script>

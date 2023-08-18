@@ -9,27 +9,18 @@
 </head>
 <body>
 <div id="app">
-	<input type="text" v-model="uname" />
-	<p>추가될 이름 : {{ uname }}</p>
-	<p>모든 이름 : {{ arrName }} </p>
-	<input type="button" value="이름 추가" v-on:click="addName" />
-	<input type="button" value="이름 삭제" v-on:click="delName" />
+	<input type="number" v-model.number="dan" />단을
+	<input type="number" v-model.number="limit" />까지 곱하기
+	<ul>
+		<li v-for="n in limit">{{dan}} X {{n}} = {{dan * n}}</li>
+	</ul>
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		uname : "",
-		arrName : ["홍길동", "전우치", "임꺽정"]
-	},
-	methods : {
-		addName() {
-			this.arrName.push(this.uname);
-			this.uname = "";
-		},
-		delName() {
-			this.arrName.pop();
-		}
+		dan : 0,
+		limit : 0
 	}
 });
 </script>

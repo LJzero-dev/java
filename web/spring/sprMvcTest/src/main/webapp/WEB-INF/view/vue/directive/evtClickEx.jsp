@@ -9,28 +9,28 @@
 </head>
 <body>
 <div id="app">
-	<input type="text" v-model="uname" />
-	<p>추가될 이름 : {{ uname }}</p>
-	<p>모든 이름 : {{ arrName }} </p>
-	<input type="button" value="이름 추가" v-on:click="addName" />
-	<input type="button" value="이름 삭제" v-on:click="delName" />
+	<p>카운트 : {{count}}</p>
+	<hr />
+	<input type="button" value="3증가" v-on:click="countUp(3)" />
+	<input type="button" value="30증가" v-on:click="countUp(30)" />
+	<input type="button" value="300증가" v-on:click="countUp(300)" />
+	<hr />
+	<!-- 택스트 필드에 더할 값을 입력한 후 버튼을 클릭하면 그 값을 더하여 카운트에 표시 -->
+	<input type="number" v-model.number="addNum" />
+	<input type="button" value="증가" v-on:click="countUp(addNum)" />	
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		uname : "",
-		arrName : ["홍길동", "전우치", "임꺽정"]
+		count : 0,
+		count2 : 0
 	},
 	methods : {
-		addName() {
-			this.arrName.push(this.uname);
-			this.uname = "";
-		},
-		delName() {
-			this.arrName.pop();
+		countUp(cnt) {
+			this.count += cnt
 		}
-	}
+	}	
 });
 </script>
 </body>

@@ -9,27 +9,17 @@
 </head>
 <body>
 <div id="app">
-	<input type="text" v-model="uname" />
-	<p>추가될 이름 : {{ uname }}</p>
-	<p>모든 이름 : {{ arrName }} </p>
-	<input type="button" value="이름 추가" v-on:click="addName" />
-	<input type="button" value="이름 삭제" v-on:click="delName" />
+	<label><input type="checkbox" v-model="isVisible" />표시</label>
+	<p v-if="isVisible">체크박스 ON</p><p v-else="isVisible">체크박스 OFF</p>
+	<hr />
+	<p v-show="isVisible">v-show로 {{isVisible}}</p>
+	<p v-show="!isVisible">v-show로 {{isVisible}}</p>
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		uname : "",
-		arrName : ["홍길동", "전우치", "임꺽정"]
-	},
-	methods : {
-		addName() {
-			this.arrName.push(this.uname);
-			this.uname = "";
-		},
-		delName() {
-			this.arrName.pop();
-		}
+		isVisible : false
 	}
 });
 </script>

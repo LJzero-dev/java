@@ -27,6 +27,8 @@ public class VueCtrl {
 	public String jsDataPrint() {	return "/vue/basic/jsDataPrint";	}
 	@GetMapping("/allDataPrint")
 	public String allDataPrint() {	return "/vue/basic/allDataPrint";	}
+	
+	
 	@GetMapping("/directiveIndex")
 	public String directiveIndex() {	return "/vue/directive/directiveIndex";	}
 	@GetMapping("/vBindEx1")
@@ -47,4 +49,43 @@ public class VueCtrl {
 	public String countEx() {	return "/vue/directive/countEx";	}
 	@GetMapping("/arrayEx")
 	public String arrayEx() {	return "/vue/directive/arrayEx";	}
+	@GetMapping("/lazyEx")
+	public String lazyEx() {	return "/vue/directive/lazyEx";	}
+	@GetMapping("/numberEx")
+	public String numberEx() {	return "/vue/directive/numberEx";	}
+	@GetMapping("/trimEx")
+	public String trimEx() {	return "/vue/directive/trimEx";	}
+	@GetMapping("/evtClickEx")
+	public String evtClickEx() {	return "/vue/directive/evtClickEx";	}
+	@GetMapping("/evtKeyupEx")
+	public String evtKeyupEx() {	return "/vue/directive/evtKeyupEx";	}
+	@GetMapping("/evtCalEx")
+	public String evtCalEx() {	return "/vue/directive/evtCalEx";	}
+	@GetMapping("/controlEx")
+	public String controlEx() {	return "/vue/directive/controlEx";	}
+	
+	
+	@GetMapping("/ifforIndex")
+	public String ifforIndex() {	return "/vue/iffor/ifforIndex";	}
+	@GetMapping("/ifEx1")
+	public String ifEx1() {	return "/vue/iffor/ifEx1";	}
+	@GetMapping("/ifEx2")
+	public String ifEx2() {	return "/vue/iffor/ifEx2";	}
+	@GetMapping("/forEx1")
+	public String forEx1() {	return "/vue/iffor/forEx1";	}
+	@GetMapping("/forEx2")
+	public String forEx2() {	return "/vue/iffor/forEx2";	}
+	@GetMapping("/forEx3")
+	public String forEx3() {	return "/vue/iffor/forEx3";	}
+	@GetMapping("/forEx4")
+	public String forEx4() {	return "/vue/iffor/forEx4";	}
 }
+
+
+
+
+
+
+
+
+

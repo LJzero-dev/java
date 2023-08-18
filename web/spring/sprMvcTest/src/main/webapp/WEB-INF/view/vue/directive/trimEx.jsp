@@ -9,27 +9,18 @@
 </head>
 <body>
 <div id="app">
-	<input type="text" v-model="uname" />
-	<p>추가될 이름 : {{ uname }}</p>
-	<p>모든 이름 : {{ arrName }} </p>
-	<input type="button" value="이름 추가" v-on:click="addName" />
-	<input type="button" value="이름 삭제" v-on:click="delName" />
+	<input type="text" v-model="trimText1" />
+	<p>앞뒤 공백 남김 '{{trimText1}}'</p>
+	<input type="text" v-model.trim="trimText2" />
+	<p>앞뒤 공백 제거 '{{trimText2}}'</p>
+	<hr />
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		uname : "",
-		arrName : ["홍길동", "전우치", "임꺽정"]
-	},
-	methods : {
-		addName() {
-			this.arrName.push(this.uname);
-			this.uname = "";
-		},
-		delName() {
-			this.arrName.pop();
-		}
+		trimText1 : "",
+		trimText2 : ""
 	}
 });
 </script>

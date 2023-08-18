@@ -23,6 +23,15 @@
 	</tr>	
 	<tr>
 		<td><a href="arrayEx">배열 추가/삭제</a></td>
+		<td><a href="lazyEx">수식자 lazy</a></td>
+		<td><a href="numberEx">수식자 number</a></td>
+		<td><a href="trimEx">수식자 trim</a></td>
+	</tr>
+	<tr>
+		<td><a href="evtClickEx">이벤트 click</a></td>
+		<td><a href="evtKeyupEx">이벤트 keyup</a></td>
+		<td><a href="evtCalEx">초간단 계산기</a></td>
+		<td><a href="controlEx">컨트롤 예제</a></td>
 	</tr>
 </table>
 </body>

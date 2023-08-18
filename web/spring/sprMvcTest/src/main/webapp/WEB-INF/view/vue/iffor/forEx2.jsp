@@ -9,27 +9,25 @@
 </head>
 <body>
 <div id="app">
-	<input type="text" v-model="uname" />
-	<p>추가될 이름 : {{ uname }}</p>
-	<p>모든 이름 : {{ arrName }} </p>
-	<input type="button" value="이름 추가" v-on:click="addName" />
-	<input type="button" value="이름 삭제" v-on:click="delName" />
+	<h3>문자열 배열 루프</h3>
+	<ul>
+		<li v-for="item in arrBook">{{item}}</li>
+	</ul>
+	<h3>객체 배열 루프</h3>
+	<ul>
+		<li v-for="item in arrObj">책 이름 : {{item.name}} / 가격 : {{item.price}}원</li>
+	</ul>
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		uname : "",
-		arrName : ["홍길동", "전우치", "임꺽정"]
-	},
-	methods : {
-		addName() {
-			this.arrName.push(this.uname);
-			this.uname = "";
-		},
-		delName() {
-			this.arrName.pop();
-		}
+		arrBook : ["Java 기초", "JSP & Servlet", "Java with Spring"],
+		arrObj : [
+			{name:"Java 기초", price:25000},
+			{name:"JSP & Servlet", price:30000},
+			{name:"Java with Spring", price:35000}
+		]
 	}
 });
 </script>
