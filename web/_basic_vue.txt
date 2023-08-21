@@ -170,3 +170,5 @@ var 변수명 = new Vue({ el: {}, data: {}, method: {}, computed: {} });
 <태그명 v-for="변수 in 배열">반복할 부분</태그명>
  - 문법3
 <태그명 v-for="(변수, 인덱스) in 배열">반복할 부분</태그명>
+
+ - computed 

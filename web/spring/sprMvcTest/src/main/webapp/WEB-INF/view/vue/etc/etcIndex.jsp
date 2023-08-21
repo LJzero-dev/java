@@ -4,18 +4,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
-<h2>Vue.js Test Page</h2>
+<h2>Vue.js etc Page!!</h2>
 <table width="700" cellpadding="5">
 	<tr>
-		<td width="25%"><a href="basicIndex">Basic</a></td>
-		<td width="25%"><a href="directiveIndex">Directive</a></td>
-		<td width="25%"><a href="ifforIndex">If & For</a></td>
-		<td width="25%"><a href="etcIndex">etcIndex</a></td>
+		<td width="25%"><a href="chartEx1">예제1</a></td>
+		<td width="25%"><a href="chartEx2">예제2</a></td>
+		<td width="25%"><a href=""></a></td>
+		<td width="25%"><a href=""></a></td>
 	</tr>
 	<tr>
-		<td><a href="compIndex">Computed</a></td>
+		<td><a href=""></a></td>
 		<td><a href=""></a></td>
 		<td><a href=""></a></td>
 		<td><a href=""></a></td>

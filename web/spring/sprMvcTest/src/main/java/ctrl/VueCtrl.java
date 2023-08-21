@@ -79,6 +79,18 @@ public class VueCtrl {
 	public String forEx3() {	return "/vue/iffor/forEx3";	}
 	@GetMapping("/forEx4")
 	public String forEx4() {	return "/vue/iffor/forEx4";	}
+	@GetMapping("/forEx10")
+	public String forEx10() {	return "/vue/iffor/forEx10";	}
+	@GetMapping("/etcIndex")
+	public String etcIndex() {	return "/vue/etc/etcIndex";	}
+	@GetMapping("/chartEx1")
+	public String chartEx1() {	return "/vue/etc/chartEx1";	}
+	@GetMapping("/chartEx2")
+	public String chartEx2() {	return "/vue/etc/chartEx2";	}
+	@GetMapping("/compIndex")
+	public String compIndex() {	return "/vue/comp/compIndex";	}
+	@GetMapping("/compEx1")
+	public String compEx1() {	return "/vue/comp/compEx1";	}
 }
 
 
