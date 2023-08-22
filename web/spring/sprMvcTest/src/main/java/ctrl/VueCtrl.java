@@ -91,6 +91,18 @@ public class VueCtrl {
 	public String compIndex() {	return "/vue/comp/compIndex";	}
 	@GetMapping("/compEx1")
 	public String compEx1() {	return "/vue/comp/compEx1";	}
+	@GetMapping("/compEx2")
+	public String compEx2() {	return "/vue/comp/compEx2";	}
+	@GetMapping("/compEx3")
+	public String compEx3() {	return "/vue/comp/compEx3";	}
+	@GetMapping("/compEx4")
+	public String compEx4() {	return "/vue/comp/compEx4";	}
+	@GetMapping("/watchEx1")
+	public String watchEx1() {	return "/vue/comp/watchEx1";	}
+	@GetMapping("/watchEx2")
+	public String watchEx2() {	return "/vue/comp/watchEx2";	}
+	@GetMapping("/watchEx3")
+	public String watchEx3() {	return "/vue/comp/watchEx3";	}
 }
 
 

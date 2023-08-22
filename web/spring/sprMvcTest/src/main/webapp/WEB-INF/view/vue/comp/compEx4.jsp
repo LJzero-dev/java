@@ -9,25 +9,23 @@
 </head>
 <body>
 <div id="app">
-	<input type="number" v-model.number="price" />원 X
-	<input type="number" v-model.number="count" />개
-	<p>합계 : {{sum}}원 / 할인가 : {{realPrice}}원</p>
-	할인율 : <input type="number" v-model.number="dc" />%
+	<!-- 0에서 255까지의 값을 표현하는 range 컨트롤 -->
+	 <input v-model="R" type="range" min=0 max=255>
+	 <input v-model="G" type="range" min=0 max=255>
+	 <input v-model="B" type="range" min=0 max=255>
+	 <p :style="{backgroundColor:mixColor}">{{mixColor}}</p>
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		price : 100,
-		count : 1,
-		dc : 0
+		R : 255,
+		G : 150,
+		B : 100
 	},
 	computed : {
-		sum() {	//	price나 count가 변하면 합계 금액을 다시 계산함
-			return this.price * this.count;
-		},
-		realPrice() {	//	합계 금액이 변하면 다시 계산함
-			return this.sum * 1 - this.dc/100;
+		mixColor(){
+			return "rgb(" + this.R + ", " + this.G + ", " + this.B + ")"
 		}
 	}
 });

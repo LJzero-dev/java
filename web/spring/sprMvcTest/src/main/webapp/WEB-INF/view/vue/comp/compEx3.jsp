@@ -9,25 +9,27 @@
 </head>
 <body>
 <div id="app">
-	<input type="number" v-model.number="price" />원 X
-	<input type="number" v-model.number="count" />개
-	<p>합계 : {{sum}}원 / 할인가 : {{realPrice}}원</p>
-	할인율 : <input type="number" v-model.number="dc" />%
+	<input type="text" v-model="findWord" />
+	<ul>
+		<li v-for="item in findItems">{{item}}</li>
+	</ul>
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		price : 100,
-		count : 1,
-		dc : 0
+		findWord : "",	//	검색어
+		items : ["설악산", "한라산", "북한산", "지리산", "백두산", "관악산"]
 	},
 	computed : {
-		sum() {	//	price나 count가 변하면 합계 금액을 다시 계산함
-			return this.price * this.count;
-		},
-		realPrice() {	//	합계 금액이 변하면 다시 계산함
-			return this.sum * 1 - this.dc/100;
+		findItems() {
+			if(this.findWord) {	//	this.findWord에 값이 있으면
+				return this.items.filter(function(val){
+					return (val.indexOf(this.findWord) >= 0);
+				}, this);
+			} else {			//	this.findWord에 값이 없으면
+				return this.items;
+			}
 		}
 	}
 });

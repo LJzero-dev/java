@@ -6,28 +6,28 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/style.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
 </head>
 <body>
 <div id="app">
-	<input type="number" v-model.number="price" />원 X
-	<input type="number" v-model.number="count" />개
-	<p>합계 : {{sum}}원 / 할인가 : {{realPrice}}원</p>
-	할인율 : <input type="number" v-model.number="dc" />%
+	<p>값은 {{aniNumber}}입니다.</p>
+	<input type="number" v-model.number="myNumber" />
 </div>
 <script>
 new Vue({
 	el : "#app",
 	data : {
-		price : 100,
-		count : 1,
-		dc : 0
+		myNumber : 0,
+		tweenedNumber : 0		
 	},
 	computed : {
-		sum() {	//	price나 count가 변하면 합계 금액을 다시 계산함
-			return this.price * this.count;
-		},
-		realPrice() {	//	합계 금액이 변하면 다시 계산함
-			return this.sum * 1 - this.dc/100;
+		aniNumber() {
+			return this.tweenedNumber.toFixed(0);
+		}
+	},
+	watch : {
+		myNumber() {
+			TweenMax.to(this.$data, 1, {tweenedNumber : this.myNumber});
 		}
 	}
 });

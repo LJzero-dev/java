@@ -10,16 +10,15 @@
 <h2>Vue.js CompIndex Page!!</h2>
 <table width="700" cellpadding="5">
 	<tr>
-		<td width="25%"><a href="compEx1">computed</a></td>
-		<td width="25%"><a href=""></a></td>
-		<td width="25%"><a href=""></a></td>
-		<td width="25%"><a href=""></a></td>
+		<td width="25%"><a href="compEx1">computed 예제1</a></td>
+		<td width="25%"><a href="compEx2">computed 예제2</a></td>
+		<td width="25%"><a href="compEx3">computed 예제3</a></td>
+		<td width="25%"><a href="compEx4">computed 예제4</a></td>
 	</tr>
 	<tr>
-		<td><a href=""></a></td>
-		<td><a href=""></a></td>
-		<td><a href=""></a></td>
-		<td><a href=""></a></td>
+		<td><a href="watchEx1">watch 예제1</a></td>
+		<td><a href="watchEx2">watch 예제2</a></td>
+		<td><a href="watchEx3">watch 예제3</a></td>
 	</tr>
 </table>
 </body>
