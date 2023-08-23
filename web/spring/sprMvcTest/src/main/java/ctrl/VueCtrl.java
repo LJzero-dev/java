@@ -103,6 +103,10 @@ public class VueCtrl {
 	public String watchEx2() {	return "/vue/comp/watchEx2";	}
 	@GetMapping("/watchEx3")
 	public String watchEx3() {	return "/vue/comp/watchEx3";	}
+	@GetMapping("/todoEx1")
+	public String todoEx1() {	return "/vue/etc/todoEx1";	}
+	@GetMapping("/todoEx2")
+	public String todoEx2() {	return "/vue/etc/todoEx2";	}
 }
 
 
