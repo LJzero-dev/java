@@ -174,6 +174,29 @@ var 변수명 = new Vue({ el: {}, data: {}, method: {}, computed: {} });
 - computed :  계산작업을 하는 공간(프로퍼티의 값을 계산해주는 영역)
 - watch : 데이터나 수식의 값이 변할 때 어떤 처리를 할 때 사용하는 옵션
 
+7. 컴포넌트
+ - 같은 종류의 처리를 하는 부분을 하나로 묶는 기능
+ - 데이터가 중복되는 것을 피하고 동일한 내용을 반복하고자 할 때 사용
+ - html의 일부분으로 object로 정리할 때는 template object를 사용하며, 그 object에 이름을 붙인 것을 컴포넌트라 함
+ - 컴포넌트 오브젝트의 이름은 javascript에 속하므로 파스칼표기법(MemberInfo)으로 컴포넌트 태그의 이름은 html에 속하므로 케밥표기법(member-info)으로 입력
+ - 컴포넌트에서 사용할 html부분은 template에서 정의함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ※ setTimeout() 함수와 setInterval() 함수
 1) setTimeout() 함수
  - 특정 코드를 일정 시간 기다린 후 실행
@@ -181,6 +204,8 @@ var 변수명 = new Vue({ el: {}, data: {}, method: {}, computed: {} });
 setTimeout(실행할 코드가 담긴 함수명 또는 함수블록, 기다릴 시간(ms단위)[, 실행할 함수에 필요한 인수들])
  - setTimeout() 함수는 리턴값으로 타임아웃 아이디를 리턴하며 그 값을 이용하여
  setTimeout() 함수에서 지정한 함수를 실행 취소 시킬 수 있음(clearTimeout(아이디))
+ - 함수블록은 실제 작업할 코드를 setTimeout() 함수내에서 정의할 수 있음
+setTimeout(() => { 작업할 코드 }, milliseconds)
 
 2) setInterval() 함수
  - 특정 코드를 일정 시간 간격으로 반복적으로 실행시킬 때 사용하는 함수

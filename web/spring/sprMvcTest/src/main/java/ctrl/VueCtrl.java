@@ -107,6 +107,26 @@ public class VueCtrl {
 	public String todoEx1() {	return "/vue/etc/todoEx1";	}
 	@GetMapping("/todoEx2")
 	public String todoEx2() {	return "/vue/etc/todoEx2";	}
+	@GetMapping("/componentIndex")
+	public String componentIndex() {	return "/vue/component/componentIndex";	}
+	@GetMapping("/componentEx1")
+	public String componentEx1() {	return "/vue/component/componentEx1";	}
+	@GetMapping("/componentEx2")
+	public String componentEx2() {	return "/vue/component/componentEx2";	}
+	@GetMapping("/componentEx3")
+	public String componentEx3() {	return "/vue/component/componentEx3";	}
+	@GetMapping("/componentEx4")
+	public String componentEx4() {	return "/vue/component/componentEx4";	}
+	@GetMapping("/componentEx5")
+	public String componentEx5() {	return "/vue/component/componentEx5";	}
+	@GetMapping("/componentEx6")
+	public String componentEx6() {	return "/vue/component/componentEx6";	}
+	@GetMapping("/jsonCompEx1")
+	public String jsonCompEx1() {	return "/vue/component/jsonCompEx1";	}
+	@GetMapping("/jsonCompEx2")
+	public String jsonCompEx2() {	return "/vue/component/jsonCompEx2";	}
+	@GetMapping("/jsonCompEx3")
+	public String jsonCompEx3() {	return "/vue/component/jsonCompEx3";	}
 }
 
 

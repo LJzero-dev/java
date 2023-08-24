@@ -16,7 +16,7 @@
 	</tr>
 	<tr>
 		<td><a href="compIndex">Computed</a></td>
-		<td><a href=""></a></td>
+		<td><a href="componentIndex">Component</a></td>
 		<td><a href=""></a></td>
 		<td><a href=""></a></td>
 	</tr>
